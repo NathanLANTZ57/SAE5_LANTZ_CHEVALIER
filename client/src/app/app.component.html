@@ -1,59 +1,29 @@
 <div class="container">
   <aside class="sidebar">
     <div class="menu-title">
-      <h2>Menu</h2>
+      <h2>{{ menuTitle }}</h2> <!-- Liaison de données pour le titre du menu -->
     </div>
+
     <nav>
       <ul>
-        <li><a href="#"><i class="home-icon"></i></a></li>
-        <li><a href="#"><i class="basket-icon"></i></a></li>
-        <li><a href="#"><i class="truck-icon"></i></a></li>
-        <li><a href="#"><i class="profile-icon"></i></a></li>
-      </ul>
+        <li *ngFor="let item of menuItems">
+          <a [href]="item.link" [attr.aria-label]="item.label">
+            <img [src]="item.icon" alt="{{ item.label }}" /> <!-- Utilisation de la balise <img> pour les icônes -->
+          </a>
+        </li>
+      </ul>      
     </nav>
   </aside>
 
   <main class="content">
     <header>
-      <h1>Jardin de Cocagne</h1>
-    </header> 
+      <h1>{{ pageTitle }}</h1>
+    </header>
 
     <section class="grid">
-      <div class="card">
-        <img src="assets/legumes-de-saison.jpg" alt="Légumes de saison" />
-        <h3>Les légumes de saison</h3>
-      </div>
-      <div class="card">
-        <img src="assets/fruits-de-saison.jpg" alt="Fruits de saison" />
-        <h3>Les fruits de saison</h3>
-      </div>
-      <div class="card">
-        <img src="assets/paniers.jpg" alt="Les paniers" />
-        <h3>Les paniers</h3>
-      </div>
-      <div class="card">
-        <img src="assets/dates-livraison.jpg" alt="Dates de livraisons" />
-        <h3>Les dates de livraisons</h3>
-      </div>
-      <div class="card">
-        <img src="assets/depots.jpg" alt="Dépôts" />
-        <h3>Les dépôts</h3>
-      </div>
-      <div class="card">
-        <img src="assets/absence.jpg" alt="Signaler une absence" />
-        <h3>Signaler une absence</h3>
-      </div>
-      <div class="card">
-        <img src="assets/profil.jpg" alt="Accéder au profil" />
-        <h3>Accéder au profil</h3>
-      </div>
-      <div class="card">
-        <img src="assets/abonnement.jpg" alt="Mon abonnement" />
-        <h3>Mon abonnement</h3>
-      </div>
-      <div class="card">
-        <img src="assets/suivre-panier.jpg" alt="Suivre mon panier" />
-        <h3>Suivre mon panier</h3>
+      <div class="card" *ngFor="let card of cards">
+        <img [src]="card.image" [alt]="card.alt" />
+        <h3>{{ card.title }}</h3>
       </div>
     </section>
   </main>
