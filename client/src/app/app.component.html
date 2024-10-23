@@ -1,22 +1,9 @@
 <div class="container">
-  <aside class="sidebar">
-    <div class="menu-title">
-      <h2>{{ menuTitle }}</h2> <!-- Liaison de données pour le titre du menu -->
-    </div>
-
-    <nav>
-      <ul>
-        <li *ngFor="let item of menuItems">
-          <a [href]="item.link" [attr.aria-label]="item.label">
-            <img [src]="item.icon" alt="{{ item.label }}" /> <!-- Utilisation de la balise <img> pour les icônes -->
-          </a>
-        </li>
-      </ul>      
-    </nav>
-  </aside>
+  <app-sidebar></app-sidebar>
 
   <main class="content">
     <header>
+      <img [src]="imageLogo" alt="Logo Jardin de Cocagne" class="logo" />
       <h1>{{ pageTitle }}</h1>
     </header>
 

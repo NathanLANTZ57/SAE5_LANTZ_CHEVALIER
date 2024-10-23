@@ -1,89 +1,39 @@
-$sidebar-bg-color: #c9e6d3;
-$icon-color: #333;
 $main-font-color: #3a5a40;
 $accent-color: #5C8F36;
 $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400;700&display=swap');
+
 
 .container {
   display: flex;
   flex-wrap: wrap;
 
-  .sidebar {
-    background-color: $sidebar-bg-color;
-    width: 200px;
-    padding: 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; // Positionner la section Connexion en bas
-    text-align: center; // Centrer le contenu
-
-    .menu-title {
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #3a5a40;
-        border-bottom: 2px solid #ffffff;
-    }
-    
-
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        margin-bottom: 10vh; // Ajoute de l'espace de 30px entre chaque icône
-
-        &:last-child {
-          margin-bottom: 10vh; // Pas d'espace après le dernier élément
-        }
-
-        a {
-          text-decoration: none;
-          color: $icon-color;
-          display: block; // Pour que l'icône prenne toute la largeur
-          text-align: center;
-
-          img {
-            width: 40px; // Taille des icônes ajustée
-            height: 40px;
-            object-fit: contain; // S'assurer que les icônes gardent leurs proportions
-            transition: transform 0.3s ease; // Ajouter une animation douce au survol
-          }
-
-          &:hover img {
-            transform: scale(1.1); // Zoom léger au survol
-          }
-        }
-      }
-    }
-
-    .footer-menu {
-      margin-top: auto; // Positionner en bas
-      .login-link {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: $main-font-color;
-        text-decoration: none;
-      }
-    }
-  }
-
   .content {
     flex-grow: 1;
-    padding: 20px;
+    margin-left: 42vh;
 
     header {
-      text-align: right;
-      font-size: 1em;
+      display: flex;
+      justify-content: flex-end; /* Aligner à gauche */
+      font-size: 0.75em;
       font-family: 'Josefin Slab';
       font-weight: bold;
       color: $accent-color;
+      margin-right: 4vh;
+      
+      .logo {
+        height: 3vw;
+        margin-right: 10px; /* Réduire l'espace entre le logo et le titre */
+      }
+    
+      
     }
+    
+    
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); // 3 colonnes pour grands écrans
+      grid-template-columns: repeat(3, 1fr); 
       gap: 20px;
       margin-top: 30px;
 

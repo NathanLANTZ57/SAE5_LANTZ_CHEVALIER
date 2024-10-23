@@ -1,0 +1,59 @@
+$main-font-color: #2F5232;
+$accent-color: #5C8F36;
+$sidebar-bg-color: #c9e6d3;
+$icon-color: #333;
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&display=swap');
+
+.sidebar {
+    background-color: $sidebar-bg-color;
+    width: 20vh; /* Sidebar fermée */
+    height: 100%;
+    transition: width 0.3s ease; /* Transition fluide lors de l'ouverture/fermeture */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    h2 {
+        color: $main-font-color;
+        font-family: 'Instrument Sans';
+        margin-left: 2vh;
+    }
+  
+    &.open {
+      width: 35vh; /* Sidebar ouverte */
+    }
+  
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      li {
+        margin: 1.5rem 0;
+  
+        a {
+          display: flex;
+          align-items: center;
+          color: $icon-color;
+          text-decoration: none;
+  
+          img {
+            width: 40px;
+            height: 40px;
+          }
+  
+          span {
+            margin-left: 1rem;
+            white-space: nowrap; /* Évite le retour à la ligne des labels */
+          }
+        }
+      }
+    }
+  
+    .fleche{
+        height: 1.7vw;
+    }
+  }
+  
