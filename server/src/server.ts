@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import cors from 'cors'; // Si tu as besoin de gérer les requêtes cross-origin
+import cors from 'cors'; // Si besoin de gérer les requêtes cross-origin
 import dotenv from 'dotenv';
 
 // Charger les variables d'environnement
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors()); // Facultatif : si tu veux que ton backend accepte les requêtes de ton frontend Angular
 
 // Connexion à la base de données MongoDB Atlas
-mongoose.connect(process.env.MONGODB_URI as string)  // Assure-toi que `MONGODB_URI` est défini dans `.env`
+mongoose.connect(process.env.MONGODB_URI as string)
     .then(() => {
         console.log('Connected to MongoDB Atlas');
     })
