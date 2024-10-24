@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -26,5 +28,10 @@ export class SidebarComponent implements OnInit {
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.classList.toggle('open', this.isSidebarOpen);
+    }
   }
+  
 }

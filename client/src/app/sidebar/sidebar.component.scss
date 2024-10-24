@@ -18,6 +18,7 @@ $sidebar-bg-color: #B1D9B7;
 
   .ligne_ouvert {
     margin-left: 2.3vh; 
+    margin-bottom: 5vw;
   }
 
   .menu-header {
@@ -49,41 +50,45 @@ $sidebar-bg-color: #B1D9B7;
   &.open {
     width: 35vh;
   }
+  a {
+    display: flex;
+    align-items: center;
+    color: $main-font-color;
+    text-decoration: none;
+    font-family: 'Instrument Sans';
+    margin-left: 3.5vw;  // Marges par défaut (fermé)
+    margin-bottom: 5vw;
 
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    img {
+      width: 4.5vh;
+      height: 4.5vh;
+      
+    }
 
-    li {
-      margin: 4.7vw 0;
+   
+  }
 
-      a {
-        display: flex;
-        align-items: center;
-        color: $main-font-color;
-        font-family: 'Inter';
-        text-decoration: none;
+  &.open {
+    width: 35vh;
 
-        img {
-          width: 4.5vh;
-          height: 4.5vh;
-          margin-left: 7vh; /* Adjusted margin for proper alignment */
-        }
+    a {
+      margin-left: 2vw;
+      margin-bottom: 3vw;
 
-        span {
-          margin-left: 1rem;
-          white-space: nowrap;
-        }
+      img {
+        margin-right: 3vh;
+      }
+
+      p{
+        margin-top: 1.5vw;
       }
     }
   }
 
-  nav p {
-    font-family: 'Instrument Sans';
+  .deco p {
     color: $main-font-color;
-    margin-left: 9.5vh;
+    font-family: 'Instrument Sans';
+    margin-top: 4.5vw;
+    margin-left: 9vh;
   }
-
-  
 }

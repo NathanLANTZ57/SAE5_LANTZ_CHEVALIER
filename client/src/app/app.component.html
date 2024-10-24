@@ -1,21 +1,6 @@
-<body>
-  <div class="container">
-    <app-sidebar></app-sidebar>
-  
-    <main class="content">
-      <header>
-        <img [src]="imageLogo" alt="Logo Jardin de Cocagne" class="logo" />
-        <h1>{{ pageTitle }}</h1>
-      </header>
-  
-      <section class="grid">
-        <div class="card" *ngFor="let card of cards">
-          <img [src]="card.image" [alt]="card.alt" />
-          <h3>{{ card.title }}</h3>
-        </div>
-      </section>
-    </main>
+<div class="app-layout">
+  <app-sidebar></app-sidebar>
+  <div class="main-content">
+    <router-outlet></router-outlet>
   </div>
-</body>
-
-
+</div>

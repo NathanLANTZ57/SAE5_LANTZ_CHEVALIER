@@ -1,26 +1,83 @@
-<div class="sidebar" [class.open]="isSidebarOpen">
-  <div class="menu-header">
-    <h2 class="menuTitle" *ngIf="!isSidebarOpen">{{ menuTitle }}</h2>
-    <h2 class="menuTitleOuvert" *ngIf="isSidebarOpen">{{ menuTitleOuvert }}</h2>
-    
-    <!-- Arrow for toggling sidebar -->
-    <img class="fleche" [src]="isSidebarOpen ? 'assets/fleche_gauche.png' : 'assets/fleche_droite.png'"
-         (click)="toggleSidebar()" alt="Toggle Sidebar">
-  </div>
-  
-  <img class="ligne_ouvert" [src]="isSidebarOpen ? 'assets/ligne_ouvert.png' : 'assets/ligne_ferme.png'" alt="Ligne blanche">
-  
-  <nav>
-    <ul>
-      <li *ngFor="let item of menuItems">
-        <a [routerLink]="item.link" routerLinkActive="active" [attr.aria-label]="item.label">
-          <img [src]="item.icon" alt="{{ item.label }}" />
-          <span *ngIf="isSidebarOpen">{{ item.label }}</span>
-        </a>
-      </li>
-    </ul>
-    <div class="deco" *ngIf="isSidebarOpen">
+<div class="app-layout">
+
+  <div class="sidebar" [class.open]="isSidebarOpen">
+    <div class="menu-header">
+      <h2 class="menuTitle" *ngIf="!isSidebarOpen">{{ menuTitle }}</h2>
+      <h2 class="menuTitleOuvert" *ngIf="isSidebarOpen">{{ menuTitleOuvert }}</h2>
+
+      <img 
+        class="fleche" 
+        [src]="isSidebarOpen ? 'assets/fleche_gauche.png' : 'assets/fleche_droite.png'"
+        (click)="toggleSidebar()" 
+        alt="Toggle Sidebar">
+    </div>
+
+    <img 
+      class="ligne_ouvert" 
+      [src]="isSidebarOpen ? 'assets/ligne_ouvert.png' : 'assets/ligne_ferme.png'" 
+      alt="Ligne blanche">
+
+    <a 
+      class="button" 
+      routerLink="/app-accueil-adherent"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+      <img src="assets/accueil.png" alt="Accueil">
+      <div class="faits" *ngIf="isSidebarOpen">
+        <p>Accueil</p>
+      </div>
+    </a>
+
+    <a 
+      class="button" 
+      routerLink="*"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+      <img src="assets/panier.png" alt="panier">
+      <div class="faits" *ngIf="isSidebarOpen">
+        <p>Panier</p>
+      </div>
+    </a>
+
+    <a 
+      class="button" 
+      routerLink="*"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+      <img src="assets/camion.png" alt="livraison">
+      <div class="faits" *ngIf="isSidebarOpen">
+        <p>Livraison</p>
+      </div>
+    </a>
+
+    <a 
+      class="button" 
+      routerLink="/faits-divers"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+      <img src="assets/faitsDivers.png" alt="Faits Divers">
+      <div class="faits" *ngIf="isSidebarOpen">
+        <p>Faits Divers</p>
+      </div>
+    </a>
+    <a 
+      class="button" 
+      routerLink="*"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+      <img src="assets/pageprofil.png" alt="profil">
+      <div class="faits" *ngIf="isSidebarOpen">
+        <p>Profil</p>
+      </div>
+    </a>
+
+    <div *ngIf="isSidebarOpen" class="deco">
       <p>Déconnexion</p>
     </div>
-  </nav>
+
+  </div>
+
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>  
 </div>

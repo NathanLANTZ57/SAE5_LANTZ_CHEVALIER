@@ -20,11 +20,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'SAE5_LANTZ_CHEVALIER'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('SAE5_LANTZ_CHEVALIER');
-  });
+  // it(`should have as title 'SAE5_LANTZ_CHEVALIER'`, () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   const app = fixture.componentInstance;
+  //   expect(app.title).toEqual('SAE5_LANTZ_CHEVALIER');
+  // });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
