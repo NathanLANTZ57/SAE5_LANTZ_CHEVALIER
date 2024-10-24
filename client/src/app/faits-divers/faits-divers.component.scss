@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap');
+
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+$accent-color: #5C8F36;
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 30vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
+}
+
+.titre {
+    margin-top: 5vw;
+    margin-left: 45vh;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Literata';
+}
+
+.explication {
+    margin-left: 47vh;
+    max-width: 125vh;
+    font-size: 20px;
+    font-family: 'Arima';
+    text-align: justify;
+}
+
+.telecharger {
+    color :$accent-color;
+}
+
+.ligneSepare {
+    margin-top: 6vw;
+    margin-left: 70vh;
+    margin-bottom: 6vh;
+}
+
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 50px 0 ;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin-left: 28%;
+}
+
+table, th, td {
+    border: 1px solid #A1A1A1;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+td img {
+    width: 30px;
+    vertical-align: middle;
+    margin-left: 2vh;
+}

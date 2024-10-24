@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FaitsDiversComponent } from './faits-divers/faits-divers.component';
 import { AccueilAdherentComponent } from './accueil-adherent/accueil-adherent.component';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     FaitsDiversComponent,
-    AccueilAdherentComponent
+    AccueilAdherentComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400;700&display=swap');
+
+$accent-color: #5C8F36;
+
+header {
+    display: flex;
+    justify-content: flex-end; /* Aligner à droite */
+    font-size: 0.75em;
+    font-family: 'Josefin Slab';
+    font-weight: bold;
+    color: $accent-color;
+    margin-right: 3vh;
+
+    .logo {
+      height: 3vw;
+      margin-right: 10px;
+    }
+}

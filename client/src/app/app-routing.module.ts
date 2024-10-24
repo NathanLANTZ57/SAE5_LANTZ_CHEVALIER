@@ -4,7 +4,7 @@ import { FaitsDiversComponent } from './faits-divers/faits-divers.component';
 import { AccueilAdherentComponent } from './accueil-adherent/accueil-adherent.component';
 
 const routes: Routes = [
-  { path: 'app-accueil-adherent', component: AccueilAdherentComponent },
+  { path: '', component: AccueilAdherentComponent },
   { path: 'faits-divers', component: FaitsDiversComponent },
 ];
 
