@@ -12,8 +12,7 @@ export class AppComponent {
 
   imageLogo = 'assets/cocagne-vert.png';
 
-
- 
+  background = 'assets/image_arbre.jpg';
 
   cards = [
     { image: 'assets/legumes-de-saison.jpg', alt: 'Légumes de saison', title: 'Les légumes de saison' },

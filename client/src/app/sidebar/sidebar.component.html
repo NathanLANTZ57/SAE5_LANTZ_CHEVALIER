@@ -1,30 +1,26 @@
 <div class="sidebar" [class.open]="isSidebarOpen">
-    <!-- Titre affiché quand la sidebar est fermée -->
-    <div class="menu-title" *ngIf="!isSidebarOpen">
-      <h2>{{ menuTitle }}</h2>
+  <div class="menu-header">
+    <h2 class="menuTitle" *ngIf="!isSidebarOpen">{{ menuTitle }}</h2>
+    <h2 class="menuTitleOuvert" *ngIf="isSidebarOpen">{{ menuTitleOuvert }}</h2>
+    
+    <!-- Arrow for toggling sidebar -->
+    <img class="fleche" [src]="isSidebarOpen ? 'assets/fleche_gauche.png' : 'assets/fleche_droite.png'"
+         (click)="toggleSidebar()" alt="Toggle Sidebar">
+  </div>
+  
+  <img class="ligne_ouvert" [src]="isSidebarOpen ? 'assets/ligne_ouvert.png' : 'assets/ligne_ferme.png'" alt="Ligne blanche">
+  
+  <nav>
+    <ul>
+      <li *ngFor="let item of menuItems">
+        <a [routerLink]="item.link" routerLinkActive="active" [attr.aria-label]="item.label">
+          <img [src]="item.icon" alt="{{ item.label }}" />
+          <span *ngIf="isSidebarOpen">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+    <div class="deco" *ngIf="isSidebarOpen">
+      <p>Déconnexion</p>
     </div>
-  
-    <!-- Titre affiché quand la sidebar est ouverte -->
-    <div class="menu-title" *ngIf="isSidebarOpen">
-      <h2>{{ menuTitleOuvert }}</h2>
-    </div>
-  
-    <nav>
-      <ul>
-        <li *ngFor="let item of menuItems">
-          <a [href]="item.link" [attr.aria-label]="item.label">
-            <img [src]="item.icon" alt="{{ item.label }}" />
-            <!-- Afficher le label uniquement si la sidebar est ouverte -->
-            <span *ngIf="isSidebarOpen">{{ item.label }}</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  
-    <!-- Bouton de basculement avec l'image de la flèche -->
-    <img class="fleche" src="assets/flèche_gauche.png" (click)="toggleSidebar()" alt="Toggle Sidebar">
-    <!-- Afficher la flèche selon l'état de la sidebar -->
-    <span *ngIf="isSidebarOpen"></span>
-    <span *ngIf="!isSidebarOpen"></span>
+  </nav>
 </div>
-  

@@ -9,18 +9,17 @@ export class SidebarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-   menuTitle = 'Menu';
-   menuTitleOuvert = 'Tableau de bord';
+  menuTitle = 'Menu';
+  menuTitleOuvert = 'Tableau de bord';
 
-   menuItems = [
-     { link: '#', icon: 'assets/home-icon.png', label: 'Accueil' },
-     { link: '#', icon: 'assets/basket-icon.png', label: 'Panier' },
-     { link: '#', icon: 'assets/truck-icon.png', label: 'Livraisons' },
-     { link: '#', icon: 'assets/profile-icon.png', label: 'Profil' },
-     { link: '#', icon: 'assets/connexion.png', label: 'Connexion' }
+  menuItems = [
+    { link: '#', label: 'Accueil', icon: 'assets/home-icon.png' },
+    { link: '#', label: 'Panier', icon: 'assets/basket-icon.png' },
+    { link: '#', label: 'Livraisons', icon: 'assets/truck-icon.png' },
+    { link: '#', label: 'Faits divers', icon: 'assets/faitsDivers.png' },
+    { link: '#', label: 'Profil', icon: 'assets/pageprofil.png' },
   ];
 
   isSidebarOpen = false;
@@ -28,6 +27,4 @@ export class SidebarComponent implements OnInit {
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
-   
-
 }
