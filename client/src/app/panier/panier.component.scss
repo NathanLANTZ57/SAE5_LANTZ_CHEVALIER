@@ -1,0 +1,98 @@
+$main-font-color: #2F5232;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 30vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
+}
+
+.titre {
+    margin-top: 5vw;
+    margin-left: 45vh;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Literata';
+}
+
+.partie_1 h3 {
+    margin-left: 47vh;
+    max-width: 125vh;
+    font-size: 22px;
+    font-family: 'Lustria';
+    text-align: justify;
+    font-weight: lighter;
+}
+
+.nosService p {
+    margin-left: 49vh;
+    max-width: 125vh;
+    font-size: 18px;
+    font-family: 'Arima';
+    text-align: justify;
+}
+
+.partie_3 {
+    display: flex;
+    align-items: center;
+    margin-left: 47vh;
+    max-width: 125vh;
+    margin: 0;
+}
+
+.partie_2 h3, .partie_3 h3  {
+    margin-left: 47vh;
+    margin-top: 9vh;
+    max-width: 125vh;
+    font-size: 22px;
+    font-family: 'Lustria';
+    text-align: justify;
+    font-weight: lighter;
+    
+}
+
+h4 {
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 9.5vh;
+    font-family: 'Lustria';
+    font-weight: lighter;
+}
+
+
+.partie_4 p {
+    color: $main-font-color;
+    text-decoration: underline;
+}
+
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 50px 0 ;
+    font-family: 'Arima';
+    font-size: 18px;
+    margin-left: 28%;
+}
+
+table, th, td {
+    border: 1px solid #A1A1A1;
+    
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+.depot th {
+    border: none;
+    color: #0D9B4D;
+}
+
+th {
+    color: #5C8F36;
+}
