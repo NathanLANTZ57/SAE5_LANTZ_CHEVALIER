@@ -1,23 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-
-$main-font-color: #2F5232;
-$sidebar-bg-color: #B1D9B7;
-
+$main-font-color: #2f5232;
+$sidebar-bg-color: #b1d9b7;
 
 .sidebar {
   background-color: $sidebar-bg-color;
-  width: 20vh; 
+  width: 20vh;
   height: 100%;
-  transition: width 0.55s ease; 
+  transition: width 0.55s ease;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
 
   .ligne_ouvert {
-    margin-left: 2.3vh; 
+    margin-left: 2.3vh;
     margin-bottom: 5vw;
   }
 
@@ -25,18 +23,18 @@ $sidebar-bg-color: #B1D9B7;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 1vh; 
-    
-    .menuTitle  {
+    padding-right: 1vh;
+
+    .menuTitle {
       color: $main-font-color;
-      font-family: 'Instrument Sans';
+      font-family: "Instrument Sans";
       margin-left: 3.2vh;
       margin-top: 2vw;
     }
-    
-    .menuTitleOuvert{
+
+    .menuTitleOuvert {
       color: $main-font-color;
-      font-family: 'Instrument Sans';
+      font-family: "Instrument Sans";
       margin-left: 2vh;
       margin-top: 2vw;
     }
@@ -55,17 +53,14 @@ $sidebar-bg-color: #B1D9B7;
     align-items: center;
     color: $main-font-color;
     text-decoration: none;
-    font-family: 'Instrument Sans';
-    margin-left: 3.5vw;  // Marges par défaut (fermé)
+    font-family: "Instrument Sans";
+    margin-left: 3.5vw; // Marges par défaut (fermé)
     margin-bottom: 5vw;
 
     img {
       width: 4.5vh;
       height: 4.5vh;
-      
     }
-
-   
   }
 
   &.open {
@@ -79,7 +74,7 @@ $sidebar-bg-color: #B1D9B7;
         margin-right: 3vh;
       }
 
-      p{
+      p {
         margin-top: 1.5vw;
       }
     }
@@ -87,7 +82,7 @@ $sidebar-bg-color: #B1D9B7;
 
   .deco p {
     color: $main-font-color;
-    font-family: 'Instrument Sans';
+    font-family: "Instrument Sans";
     margin-top: 4.5vw;
     margin-left: 9vh;
   }
@@ -113,11 +108,25 @@ $sidebar-bg-color: #B1D9B7;
   max-width: 500px;
   text-align: left;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  
+
+  .close-button {
+    margin-top: -10vh;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #2f5232; 
+    margin-left: auto; 
+  }
+
+  .close-button:hover {
+    color: red; 
+  }
+
   .modal-header {
-    background-color: #B1D9B7;
-    color: #2F5232;
-    margin: -2rem -2rem 1rem -2rem; 
+    background-color: #b1d9b7;
+    color: #2f5232;
+    margin: -2rem -2rem 1rem -2rem;
     padding: 1.5rem;
     display: flex;
     align-items: center;
@@ -131,7 +140,7 @@ $sidebar-bg-color: #B1D9B7;
 
     h2 {
       margin-top: 4rem;
-      font-family: 'Josefin Slab';
+      font-family: "Josefin Slab";
       font-weight: bold;
       font-size: 1.5rem;
       text-align: center;
@@ -146,19 +155,20 @@ $sidebar-bg-color: #B1D9B7;
 
   label {
     width: 10vw; /* Largeur pour aligner les labels */
-    color: #76B946;
-    font-family: 'Josefin Slab';
+    color: #76b946;
+    font-family: "Josefin Slab";
     font-weight: bold;
     font-size: 1.3rem;
   }
 
-  input[type="text"], input[type="password"] {
+  input[type="text"],
+  input[type="password"] {
     flex: 1;
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-    font-family: 'Josefin Slab';
+    font-family: "Josefin Slab";
     font-weight: bold;
   }
 
@@ -168,8 +178,8 @@ $sidebar-bg-color: #B1D9B7;
     margin: 1.5rem 0;
 
     p {
-      color: #76B946;
-      font-family: 'Josefin Slab';
+      color: #76b946;
+      font-family: "Josefin Slab";
       font-weight: bold;
       font-size: 1.3rem;
       margin-right: 1rem;
@@ -182,9 +192,9 @@ $sidebar-bg-color: #B1D9B7;
     }
 
     label {
-      font-family: 'Josefin Slab';
+      font-family: "Josefin Slab";
       font-weight: bold;
-      color: #76B946;
+      color: #76b946;
       font-size: 1.3rem;
 
       input[type="radio"] {
@@ -197,12 +207,12 @@ $sidebar-bg-color: #B1D9B7;
     display: block;
     margin: 1.5rem auto 0;
     padding: 0.75rem 2rem;
-    background-color: #B1D9B7;
-    color: #2F5232;
-    border: 1px solid #2F5232;
+    background-color: #b1d9b7;
+    color: #2f5232;
+    border: 1px solid #2f5232;
     border-radius: 30px;
     cursor: pointer;
-    font-family: 'Josefin Slab';
+    font-family: "Josefin Slab";
     font-weight: bold;
     font-size: 1.1rem;
 
