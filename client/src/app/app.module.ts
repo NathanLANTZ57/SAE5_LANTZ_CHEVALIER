@@ -9,6 +9,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FaitsDiversComponent } from './faits-divers/faits-divers.component';
 import { AccueilAdherentComponent } from './accueil-adherent/accueil-adherent.component';
 import { LogoComponent } from './logo/logo.component';
+import { PanierComponent } from './panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LogoComponent } from './logo/logo.component';
     SidebarComponent,
     FaitsDiversComponent,
     AccueilAdherentComponent,
-    LogoComponent
+    LogoComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,
