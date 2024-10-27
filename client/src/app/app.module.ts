@@ -10,6 +10,7 @@ import { FaitsDiversComponent } from './faits-divers/faits-divers.component';
 import { AccueilAdherentComponent } from './accueil-adherent/accueil-adherent.component';
 import { LogoComponent } from './logo/logo.component';
 import { PanierComponent } from './panier/panier.component';
+import { DepotsComponent } from './depots/depots.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PanierComponent } from './panier/panier.component';
     FaitsDiversComponent,
     AccueilAdherentComponent,
     LogoComponent,
-    PanierComponent
+    PanierComponent,
+    DepotsComponent
   ],
   imports: [
     BrowserModule,
