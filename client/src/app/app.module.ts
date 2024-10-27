@@ -5,11 +5,15 @@ import { HttpClientModule } from '@angular/common/http'; // Importer HttpClientM
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DepotsComponent } from './depots/depots.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FaitsDiversComponent } from './faits-divers/faits-divers.component';
 import { AccueilAdherentComponent } from './accueil-adherent/accueil-adherent.component';
 import { LogoComponent } from './logo/logo.component';
 import { PanierComponent } from './panier/panier.component';
+import { LivraisonComponent } from './livraison/livraison.component';
+import { CalendrierLivraisonComponent } from './calendrier-livraison/calendrier-livraison.component';
+import { TrajetLivraisonComponent } from './trajet-livraison/trajet-livraison.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { PanierComponent } from './panier/panier.component';
     FaitsDiversComponent,
     AccueilAdherentComponent,
     LogoComponent,
-    PanierComponent
+    PanierComponent,
+    DepotsComponent,
+    LivraisonComponent,
+    CalendrierLivraisonComponent,
+    TrajetLivraisonComponent
   ],
   imports: [
     BrowserModule,
