@@ -7,6 +7,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FaitsDiversComponent } from './faits-divers/faits-divers.component';
 import { AccueilAdherentComponent } from './accueil-adherent/accueil-adherent.component';
 import { LogoComponent } from './logo/logo.component';
+import { FormulaireAdherentInfoComponent } from './formulaire-adherent-info/formulaire-adherent-info.component';
+import { LivraisonComponent } from './livraison/livraison.component';
+import { CalendrierLivraisonComponent } from './calendrier-livraison/calendrier-livraison.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { LogoComponent } from './logo/logo.component';
     SidebarComponent,
     FaitsDiversComponent,
     AccueilAdherentComponent,
-    LogoComponent
+    LogoComponent,
+    FormulaireAdherentInfoComponent,
+    LivraisonComponent,
+    CalendrierLivraisonComponent
   ],
   imports: [
     BrowserModule,
