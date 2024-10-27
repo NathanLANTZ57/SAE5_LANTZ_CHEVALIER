@@ -1,5 +1,6 @@
 $main-font-color: #2F5232;
 $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+$sidebar-bg-color: #B1D9B7;
 
 .imgEnTete img {
     box-shadow: $box-shadow;
@@ -51,7 +52,6 @@ $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     font-family: 'Lustria';
     text-align: justify;
     font-weight: lighter;
-    
 }
 
 h4 {
@@ -66,6 +66,7 @@ h4 {
 .partie_4 p {
     color: $main-font-color;
     text-decoration: underline;
+    font-family: 'Arima';
 }
 
 
@@ -73,14 +74,14 @@ table {
     width: 50%;
     border-collapse: collapse;
     margin: 50px 0 ;
-    font-family: 'Arima';
+    
     font-size: 18px;
     margin-left: 28%;
 }
 
 table, th, td {
     border: 1px solid #A1A1A1;
-    
+    font-family: 'Arima';
 }
 
 th, td {
@@ -95,4 +96,45 @@ th, td {
 
 th {
     color: #5C8F36;
+}
+
+.partie_5 p {
+    font-family: 'Arima';
+}
+
+.partie_5 .fruit p {
+    color: $main-font-color;
+    text-decoration: underline;
+    margin-top: 10vw;
+}
+
+.partie_5 .surcout p {
+    max-width: 125vh;
+}
+
+
+.partie_6 p {
+    font-family: 'Arima';
+    color: $main-font-color;
+    text-decoration: underline;
+    margin-top: 10vw;
+}
+
+.adherent {
+    margin-left: 86vh;
+    margin-top: 10vw;
+    margin-bottom: 5vw;
+}
+
+.adherent a {
+    color: $main-font-color;
+    text-decoration: none;
+}
+
+.adherent span {
+    background-color: $sidebar-bg-color;
+    padding: 2%;
+    font-size: 26px;
+    font-family: 'Arima';
+    border-radius: 2%;
 }
