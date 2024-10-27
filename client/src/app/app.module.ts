@@ -10,6 +10,9 @@ import { FaitsDiversComponent } from './faits-divers/faits-divers.component';
 import { AccueilAdherentComponent } from './accueil-adherent/accueil-adherent.component';
 import { LogoComponent } from './logo/logo.component';
 import { PanierComponent } from './panier/panier.component';
+import { CalendrierLivraisonComponent } from './calendrier-livraison/calendrier-livraison.component';
+import { LivraisonComponent } from './livraison/livraison.component';
+import { TrajetLivraisonComponent } from './trajet-livraison/trajet-livraison.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { PanierComponent } from './panier/panier.component';
     FaitsDiversComponent,
     AccueilAdherentComponent,
     LogoComponent,
-    PanierComponent
+    PanierComponent,
+    CalendrierLivraisonComponent,
+    LivraisonComponent,
+    TrajetLivraisonComponent
   ],
   imports: [
     BrowserModule,
