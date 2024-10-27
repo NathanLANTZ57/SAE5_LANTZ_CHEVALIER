@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // Importer FormsModule pour ngModel
+import { HttpClientModule } from '@angular/common/http'; // Importer HttpClientModule pour les requêtes HTTP
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +22,9 @@ import { PanierComponent } from './panier/panier.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,        
+    HttpClientModule      
   ],
   providers: [],
   bootstrap: [AppComponent]
