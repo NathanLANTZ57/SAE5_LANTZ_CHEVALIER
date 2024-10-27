@@ -1,5 +1,4 @@
 <div class="app-layout">
-
   <div class="sidebar" [class.open]="isSidebarOpen">
     <div class="menu-header">
       <h2 class="menuTitle" *ngIf="!isSidebarOpen">{{ menuTitle }}</h2>
@@ -17,6 +16,7 @@
       [src]="isSidebarOpen ? 'assets/ligne_ouvert.png' : 'assets/ligne_ferme.png'" 
       alt="Ligne blanche">
 
+    <!-- Liens de la barre latérale -->
     <a 
       class="button" 
       routerLink="/"
@@ -30,10 +30,10 @@
 
     <a 
       class="button" 
-      routerLink="*"
+      routerLink="/panier"
       routerLinkActive="active"
       ariaCurrentWhenActive="page">
-      <img src="assets/panier.png" alt="panier">
+      <img src="assets/panier.png" alt="Panier">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Panier</p>
       </div>
@@ -41,10 +41,10 @@
 
     <a 
       class="button" 
-      routerLink="*"
+      routerLink="/livraison"
       routerLinkActive="active"
       ariaCurrentWhenActive="page">
-      <img src="assets/camion.png" alt="livraison">
+      <img src="assets/camion.png" alt="Livraison">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Livraison</p>
       </div>
@@ -60,24 +60,56 @@
         <p>Faits Divers</p>
       </div>
     </a>
+
     <a 
       class="button" 
-      routerLink="*"
+      routerLink="/profil"
       routerLinkActive="active"
       ariaCurrentWhenActive="page">
-      <img src="assets/pageprofil.png" alt="profil">
+      <img src="assets/pageprofil.png" alt="Profil">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Profil</p>
       </div>
     </a>
 
     <div *ngIf="isSidebarOpen" class="deco">
-      <p>Déconnexion</p>
+      <p (click)="openModal()">Connexion</p>
     </div>
-
   </div>
 
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>  
+</div>
+
+<!-- Modale de Connexion -->
+<div *ngIf="showLoginModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <img src="assets/cocagne-vert.png" alt="Logo" class="logo">
+      <h2>Connectez vous pour plus d'avantage !</h2>
+    </div>
+
+    <form (ngSubmit)="onLogin()">
+      <label for="username">Nom d'utilisateur</label>
+      <input type="text" id="username" [ngModel]="username" name="username" required>
+
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" [ngModel]="password" name="password" required>
+
+      <div class="radio-group">
+        <p>Qui êtes vous ?</p>
+        <label>
+          <input type="radio" name="role" value="adherent" [ngModel]="role" required>
+          Adhérent
+        </label>
+        <label>
+          <input type="radio" name="role" value="employe" [ngModel]="role" required>
+          Employé
+        </label>
+      </div>
+
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
 </div>

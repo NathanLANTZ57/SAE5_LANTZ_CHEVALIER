@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Love+Ya+Like+A+Sister&family=Lusitana:wght@400;700&family=Lustria&display=swap');
 
 $main-font-color: #2F5232;
 $sidebar-bg-color: #B1D9B7;
@@ -92,3 +92,112 @@ $sidebar-bg-color: #B1D9B7;
     margin-left: 9vh;
   }
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 80vw;
+  max-width: 500px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  
+  .modal-header {
+    background-color: #B1D9B7;
+    color: #2F5232;
+    margin: -2rem -2rem 1rem -2rem; 
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    .logo {
+      height: 4rem;
+      margin-right: 1rem;
+    }
+
+    h2 {
+      font-family: 'Josefin Slab';
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-align: left;
+      margin: 0;
+    }
+  }
+
+  label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+    color: #76B946;
+    font-family: 'Josefin Slab';
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Josefin Slab';
+    font-weight: bold;
+  }
+
+  .radio-group {
+    margin: 1.5rem 0;
+    
+    p {
+      color: #76B946;
+      font-family: 'Josefin Slab';
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    label {
+      margin-right: 2rem;
+      font-family: 'Josefin Slab';
+      font-weight: bold;
+      color: #76B946;
+      font-size: 1rem;
+
+      input[type="radio"] {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  button {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 2rem;
+    background-color: #B1D9B7;
+    color: #2F5232;
+    border: 1px solid #2F5232;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Josefin Slab';
+    font-weight: bold;
+    font-size: 1.1rem;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
