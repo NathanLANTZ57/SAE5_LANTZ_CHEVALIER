@@ -92,7 +92,6 @@ $sidebar-bg-color: #B1D9B7;
     margin-left: 9vh;
   }
 }
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -131,27 +130,31 @@ $sidebar-bg-color: #B1D9B7;
     }
 
     h2 {
+      margin-top: 4rem;
       font-family: 'Josefin Slab';
       font-weight: bold;
       font-size: 1.5rem;
-      text-align: left;
-      margin: 0;
+      text-align: center;
     }
   }
 
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
   label {
-    display: block;
-    margin: 1rem 0 0.5rem;
+    width: 10vw; /* Largeur pour aligner les labels */
     color: #76B946;
     font-family: 'Josefin Slab';
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
 
   input[type="text"], input[type="password"] {
-    width: 100%;
+    flex: 1;
     padding: 0.75rem;
-    margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
@@ -160,21 +163,29 @@ $sidebar-bg-color: #B1D9B7;
   }
 
   .radio-group {
+    display: flex;
+    align-items: flex-start; /* Aligne la question avec les options radio */
     margin: 1.5rem 0;
-    
+
     p {
       color: #76B946;
       font-family: 'Josefin Slab';
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      margin-right: 1rem;
+    }
+
+    .radio-options {
+      display: flex;
+      flex-direction: column; /* Empile les options radio */
+      margin: 0.5rem 0.5rem;
     }
 
     label {
-      margin-right: 2rem;
       font-family: 'Josefin Slab';
       font-weight: bold;
       color: #76B946;
-      font-size: 1rem;
+      font-size: 1.3rem;
 
       input[type="radio"] {
         margin-right: 0.5rem;
@@ -200,4 +211,3 @@ $sidebar-bg-color: #B1D9B7;
     }
   }
 }
-
