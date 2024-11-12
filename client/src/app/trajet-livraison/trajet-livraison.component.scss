@@ -70,7 +70,7 @@
 .days {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espace entre chaque bouton */
+    gap: 10px; 
     margin-top: 3.5%;
     margin-left: 35vh;
 }
@@ -98,4 +98,67 @@
 .mercredi { background-color: #42ADCA; }
 .jeudi { background-color: #004F88; }
 .vendredi { background-color: #A062F5; }
+
+
+.day-container {
+    position: relative; /* Nécessaire pour positionner le sous-menu par rapport au bouton */
+}
+
+/* Styles pour le conteneur du sous-menu */
+
+
+.sub-menu-epinal {
+    display: block; /* Assure que chaque bouton occupe une ligne */
+    width: 100%; /* Largeur complète dans le conteneur */
+    padding: 5px 10px;
+    text-align: center;
+    background-color: #fd3f92;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    margin-top: -15px; 
+    cursor: pointer;
+}
+
+.sub-menu-dinoze {
+    display: block; /* Assure que chaque bouton occupe une ligne */
+    width: 100%; /* Largeur complète dans le conteneur */
+    padding: 5px 10px;
+    text-align: center;
+    background-color: #fd6c9e ;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    margin-top: 5px; /* Espacement entre les boutons */
+    cursor: pointer;
+}
+
+.sub-menu-golbey {
+    display: block; /* Assure que chaque bouton occupe une ligne */
+    width: 100%; /* Largeur complète dans le conteneur */
+    padding: 5px 10px;
+    text-align: center;
+    background-color: #e0115f ;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    margin-top: 5px; /* Espacement entre les boutons */
+    cursor: pointer;
+}
+
+.sub-menu-epinal:hover,
+.sub-menu-dinoze:hover,
+.sub-menu-golbey:hover {
+    background-color: #ac1e44; /* Couleur légèrement plus foncée au survol */
+}
+
+/* Conteneur pour les boutons du sous-menu, positionné à droite du bouton "Mardi" */
+.sub-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 100%; /* Place le sous-menu à droite du bouton "Mardi" */
+    top: 0;
+    z-index: 10;
+}
 

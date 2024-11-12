@@ -1,6 +1,5 @@
 <div id="map"></div>
 
-<!-- Conteneur pour la légende et les jours -->
 <div class="legend-days-container">
     <div class="legend">
         <h3>Légende :</h3>
@@ -12,10 +11,19 @@
     </div>
 
     <div class="days">
-        <button class="day-button mardi">
-            Mardi
-            <img src="assets/ordinateur.png" alt="Icone ordinateur" class="button-icon">
-        </button>
+        <div class="day-container" (mouseenter)="showTuesdayOptions = true" (mouseleave)="showTuesdayOptions = false">
+            <button class="day-button mardi">
+                Mardi
+                <img src="assets/ordinateur.png" alt="Icone ordinateur" class="button-icon">
+            </button>
+        
+            <div class="sub-menu">
+                <button *ngIf="showTuesdayOptions" class="sub-menu-epinal" (click)="showEpinalTrajet()">Epinal</button>
+                <button *ngIf="showTuesdayOptions" class="sub-menu-dinoze" (click)="showDinozeTrajet()">Dinozé</button>
+                <button *ngIf="showTuesdayOptions" class="sub-menu-golbey" (click)="showGolbeyTrajet()">Golbey</button>    
+            </div>
+        </div>
+        
         <button class="day-button mercredi">
             Mercredi
             <img src="assets/crayon.png" alt="Icone ordinateur" class="button-icon">
@@ -29,5 +37,4 @@
             <img src="assets/tasse_cafe.png" alt="Icone ordinateur" class="button-icon">
         </button>
     </div>
-    
 </div>
