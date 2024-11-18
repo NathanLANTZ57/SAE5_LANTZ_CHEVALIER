@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  angular-app:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
