@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "npx ts-node --esm src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "ts-node server.ts"
   },
   "author": "",
   "license": "ISC",

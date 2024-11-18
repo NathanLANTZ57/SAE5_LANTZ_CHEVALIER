@@ -18,3 +18,21 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/saejardindecocagne
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: saejardindecocagne
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

@@ -1,8 +1,36 @@
-# Étape 1 : Utilisation de l'image Node.js
-FROM node:18
+# Étape 1 : Construire le projet avec Node.js et TypeScript
+FROM node:18 AS build
+
+# Définir le répertoire de travail
 WORKDIR /app
+
+# Copier les fichiers de dépendances
 COPY package*.json ./
+
+# Installer les dépendances
 RUN npm install
+
+# Copier le reste du code source
 COPY . .
+
+# Compiler le TypeScript en JavaScript (si applicable)
+RUN npm run build
+
+# Étape 2 : Exécuter l'application dans une image allégée
+FROM node:18-alpine
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier les fichiers nécessaires de l'étape précédente
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/package*.json ./
+
+# Installer uniquement les dépendances nécessaires à la production
+RUN npm install --only=production
+
+# Exposer le port de l'application
 EXPOSE 3000
-CMD ["node", "server.js"] # Assurez-vous que votre point d'entrée est correct
+
+# Commande par défaut pour démarrer l'application
+CMD ["node", "dist/server.js"]
