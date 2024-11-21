@@ -6,7 +6,4 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./faits-divers.component.scss']
 })
 export class FaitsDiversComponent {
-
-  
-
 }

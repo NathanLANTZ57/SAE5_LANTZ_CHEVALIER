@@ -5,7 +5,7 @@ $sidebar-bg-color: #B1D9B7;
 .imgEnTete img {
     box-shadow: $box-shadow;
     width: 135vh;
-    height: 35vw;
+    height: 30vw;
     border-radius: 5%;
     margin-top: 7vw;
     margin-left: 45vh;
@@ -22,14 +22,14 @@ $sidebar-bg-color: #B1D9B7;
 .titre2 {
     margin-top: -1vw;
     margin-left: 50vh;
-    font-size: 30px;
+    font-size: 27px;
     font-family: 'Literata';
 }
 
 .presentationdepots {
     margin-top: 3vw;
     margin-left: 50vh;
-    font-size: 25px;
+    font-size: 18px;
     width: 130vh;
     font-family: 'Literata';
 }
@@ -43,7 +43,7 @@ $sidebar-bg-color: #B1D9B7;
 .text1 {
     margin-top: 3vw;
     margin-left: 50vh;
-    font-size: 25px;
+    font-size: 18px;
     width: 130vh;
     font-family: 'Literata';
 }
@@ -51,7 +51,7 @@ $sidebar-bg-color: #B1D9B7;
 .text2 {
     margin-top: 3vw;
     margin-left: 50vh;
-    font-size: 25px;
+    font-size: 18px;
     width: 130vh;
     font-family: 'Literata';
 }
@@ -62,4 +62,10 @@ $sidebar-bg-color: #B1D9B7;
     height: 35vw;
     margin-top: 7vw;
     margin-left: 45vh;
+    margin-bottom: 16vh;
+}
+
+a {
+    color: #5C8F36;
+    text-decoration: underline;
 }
