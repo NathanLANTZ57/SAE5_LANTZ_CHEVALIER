@@ -1,13 +1,14 @@
 {
-    "compilerOptions": {
-      "target": "ES6",                  
-      "module": "ESNext",               
-      "moduleResolution": "node",        
-      "esModuleInterop": true,            
-      "skipLibCheck": true,              
-      "forceConsistentCasingInFileNames": true
-    },
-    "include": ["src/**/*.ts"],  
-    "exclude": ["node_modules"]
-  }
-  
+  "compilerOptions": {
+    "target": "ES6",                   
+    "module": "ESNext",                
+    "moduleResolution": "node",        
+    "esModuleInterop": true,            
+    "skipLibCheck": true,              
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "src",                   // Indique où se trouvent les fichiers source
+    "outDir": "dist"                    // Spécifie où écrire les fichiers compilés
+  },
+  "include": ["src/**/*.ts"],  
+  "exclude": ["node_modules"]
+}
