@@ -1,40 +1,79 @@
 <div id="map"></div>
 
 <div class="legend-days-container">
-    <div class="legend">
-        <h3>Légende :</h3>
-        <ul>
-            <li><span class="legend-icon"></span> Départ</li>
-            <li><span class="legend-icon-arrivee"></span> Arrivée</li>
-            <li><span class="legend-line"></span> Trajet</li>
-        </ul>
+  <div class="legend">
+    <h3>Légende :</h3>
+    <ul>
+      <li><span class="legend-icon"></span> Départ</li>
+      <li><span class="legend-icon-arrivee"></span> Arrivée</li>
+      <li><span class="legend-line"></span> Trajet</li>
+    </ul>
+  </div>
+
+  <div class="days">
+    <div 
+      class="day-container" 
+      (mouseenter)="showTuesdayOptions = true" 
+      (mouseleave)="showTuesdayOptions = false">
+      <button class="day-button mardi">
+        Mardi
+        <img src="assets/ordinateur.png" alt="Icône ordinateur" class="button-icon">
+      </button>
+        <div class="sub-menuMar" *ngIf="showTuesdayOptions">
+            <button class="sub-menu-epinalMar" (click)="showTrajet('epinalMardi')">Epinal</button>
+            <button class="sub-menu-dinozeMar" (click)="showTrajet('dinoze')">Dinozé</button>
+            <button class="sub-menu-golbeyMar" (click)="showTrajet('golbeyMardi')">Golbey</button>
+        </div>
     </div>
 
-    <div class="days">
-        <div class="day-container" (mouseenter)="showTuesdayOptions = true" (mouseleave)="showTuesdayOptions = false">
-            <button class="day-button mardi">
-                Mardi
-                <img src="assets/ordinateur.png" alt="Icone ordinateur" class="button-icon">
-            </button>
-        
-            <div class="sub-menu">
-                <button *ngIf="showTuesdayOptions" class="sub-menu-epinal" (click)="showEpinalTrajet()">Epinal</button>
-                <button *ngIf="showTuesdayOptions" class="sub-menu-dinoze" (click)="showDinozeTrajet()">Dinozé</button>
-                <button *ngIf="showTuesdayOptions" class="sub-menu-golbey" (click)="showGolbeyTrajet()">Golbey</button>    
-            </div>
+    <div 
+      class="day-container" 
+      (mouseenter)="showWesdayOptions = true" 
+      (mouseleave)="showWesdayOptions = false">
+      <button class="day-button mercredi">
+        Mercredi
+        <img src="assets/crayon.png" alt="Icône crayon" class="button-icon">
+      </button>
+        <div class="sub-menuMer" *ngIf="showWesdayOptions">
+            <button class="sub-menu-epinalMer" (click)="showTrajet('epinalMercredi')">Epinal</button>
+            <button class="sub-menu-golMer" (click)="showTrajet('golbey')">Golbey</button>
+            <button class="sub-menu-naborMer" (click)="showTrajet('stNarbordMer')">Saint-Narbord</button>
+            <button class="sub-menu-remirMer" (click)="showTrajet('remiremontMer')">Remiremont</button>
+            <button class="sub-menu-raonMer" (click)="showTrajet('raonAuxBois')">Raon aux bois</button>
+            <button class="sub-menu-docellesMer" (click)="showTrajet('docellesMer')">Docelles</button>
+            <button class="sub-menu-thaonMer" (click)="showTrajet('thaon')">Thaon</button>
         </div>
-        
-        <button class="day-button mercredi">
-            Mercredi
-            <img src="assets/crayon.png" alt="Icone ordinateur" class="button-icon">
-        </button>
+    </div>
+
+    <div class="day-container" 
+    (mouseenter)="showThudayOptions = true" 
+    (mouseleave)="showThudayOptions = false">
         <button class="day-button jeudi">
             Jeudi
-            <img src="assets/salle_reunion.png" alt="Icone ordinateur" class="button-icon">
+            <img src="assets/salle_reunion.png" alt="Icône salle de réunion" class="button-icon">
         </button>
+        <div class="sub-menuJeudi" *ngIf="showThudayOptions">
+            <button class="sub-menu-charmes" (click)="showTrajet('charmes')">Charmes</button>
+        </div>
+    </div>
+
+
+    <div class="day-container" 
+    (mouseenter)="showFridayOptions = true" 
+    (mouseleave)="showFridayOptions = false">
         <button class="day-button vendredi">
             Vendredi
-            <img src="assets/tasse_cafe.png" alt="Icone ordinateur" class="button-icon">
+            <img src="assets/tasse_cafe.png" alt="Icône tasse de café" class="button-icon">
         </button>
+
+        <div class="sub-menuVen" *ngIf="showFridayOptions">
+            <button class="sub-menu-epinalVen" (click)="showTrajet('epinalVen')">Epinal</button>
+            <button class="sub-menu-golbey" (click)="showTrajet('golbey')">Golbey</button>
+            <button class="sub-menu-bruyereVen" (click)="showTrajet('bruyereVen')">Bruyères</button>
+            <button class="sub-menu-gerardmerVen" (click)="showTrajet('gerardmerVen')">Gérardmer</button>
+            <button class="sub-menu-leTholyVen" (click)="showTrajet('leTholyVen')">Le Tholy</button>
+            <button class="sub-menu-thaon" (click)="showTrajet('thaon')">Thaon</button>
+        </div>
     </div>
+  </div>
 </div>
