@@ -31,7 +31,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: saejardindecocagne
-    command: mongod --noauth
     volumes:
       - mongo-data:/data/db
 
