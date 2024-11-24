@@ -1,25 +1,17 @@
 import express, { Request, Response } from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 // Charger les variables d'environnement
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 const app = express();
-const PORT: number = parseInt(process.env.PORT || '3000', 10);
-const JWT_SECRET: string = process.env.JWT_SECRET || 'secretKey';
-
-if (JWT_SECRET === 'secretKey') {
-  console.warn(
-    'Attention : JWT_SECRET est défini avec la valeur par défaut. Veuillez définir une valeur sécurisée dans votre fichier .env.'
-  );
-}
+const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors());
 
 // Connexion à la base de données MongoDB
@@ -33,98 +25,45 @@ mongoose
     process.exit(1);
   });
 
-// Schéma et modèle pour les utilisateurs
-interface IUser {
-  username: string;
-  password: string;
-  role: 'adherent' | 'employe' | 'admin';
-}
-
-const userSchema = new mongoose.Schema<IUser>({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  role: {
-    type: String,
-    required: true,
-    enum: ['adherent', 'employe', 'admin'],
-  },
-});
-
-const User = mongoose.model<IUser>('User', userSchema);
-
-// Vérification de l'administrateur en dur
-const adminUsername = process.env.ADMIN_USERNAME || 'admin';
-const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH || ''; // Mot de passe haché dans .env
-const adminRole = process.env.ADMIN_ROLE || 'admin';
-
-// Route pour hacher un mot de passe
-app.post('/api/hash-password', async (req: Request, res: Response): Promise<void> => {
-  const { password } = req.body;
-
-  if (!password || typeof password !== 'string') {
-    res.status(400).json({ message: 'Veuillez fournir un mot de passe valide.' });
-    return;
-  }
-
+// Route pour l'authentification admin
+app.post('/api/login/admin', async (req: Request, res: Response): Promise<void> => {
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    res.status(200).json({ hashedPassword });
-  } catch (err) {
-    console.error('Erreur lors du hashage du mot de passe :', err);
-    res.status(500).json({ message: 'Erreur interne lors du hashage du mot de passe.' });
-  }
-});
+    const { username, password } = req.body;
+    console.log('Requête reçue - username:', username, ', password:', password);
+    console.log('Variables .env - ADMIN_USERNAME:', process.env.ADMIN_USERNAME, ', ADMIN_PASSWORD:', process.env.ADMIN_PASSWORD);
 
-// Route pour se connecter
-app.post('/api/login', async (req: Request, res: Response): Promise<void> => {
-  const { username, password } = req.body;
+    if (!username || !password) {
+      res.status(400).json({ message: 'Nom d’utilisateur et mot de passe requis.' });
+      return;
+    }
 
-  if (!username || !password || typeof username !== 'string' || typeof password !== 'string') {
-    res.status(400).json({ message: 'Veuillez fournir un nom d’utilisateur et un mot de passe valides.' });
-    return;
-  }
-
-  try {
-    // Vérification des identifiants en dur
     if (
-      username === adminUsername &&
-      (await bcrypt.compare(password, adminPasswordHash))
+      username === process.env.ADMIN_USERNAME &&
+      password === process.env.ADMIN_PASSWORD
     ) {
-      const token = jwt.sign({ username, role: adminRole }, JWT_SECRET, {
-        expiresIn: '1h',
+      res.status(200).json({
+        message: 'Authentification réussie',
+        admin: {
+          username: process.env.ADMIN_USERNAME,
+          role: process.env.ADMIN_ROLE,
+          jwtSecret: process.env.JWT_SECRET,
+        },
       });
-      res.status(200).json({ token, role: adminRole });
-      return;
+    } else {
+      res.status(401).json({
+        message: "Échec de l'authentification : identifiants incorrects",
+      });
     }
-
-    // Vérification dans la base de données
-    const user = await User.findOne({ username });
-    if (!user) {
-      res.status(404).json({ message: 'Utilisateur non trouvé.' });
-      return;
-    }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      res.status(401).json({ message: 'Mot de passe incorrect.' });
-      return;
-    }
-
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    res.status(200).json({ token, role: user.role });
-  } catch (err) {
-    console.error('Erreur lors de la connexion :', err);
-    res.status(500).json({ message: 'Erreur interne lors de la connexion.' });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
   }
 });
 
-// Route par défaut
-app.get('/api/test', (req: Request, res: Response) => {
+// Route de test par défaut
+app.get('/api/test', async (req: Request, res: Response): Promise<void> => {
   res.status(200).json({ message: 'Bienvenue sur l’API.' });
 });
 
