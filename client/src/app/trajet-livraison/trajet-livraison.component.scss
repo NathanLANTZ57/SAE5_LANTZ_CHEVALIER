@@ -68,7 +68,7 @@
     cursor: pointer;
     padding: 1px 1px;
     gap: 8px;
-    width: 120px;
+    width: 130px;
     height: 25px;
     font-size: 14px;
 }
@@ -78,10 +78,29 @@
     height: 20px;
 }
 
-.mardi { background-color: #32CD32; }
-.mercredi { background-color: #20B2AA; }
-.jeudi { background-color: #004F88; }
-.vendredi { background-color: #A062F5; }
+.mardi { 
+    background-color: #32CD32;
+    font-family: 'Literata';
+    font-size: 17px;
+}
+
+.mercredi { 
+    background-color: #20B2AA; 
+    font-family: 'Literata';
+    font-size: 17px;
+}
+
+.jeudi { 
+    background-color: #004F88; 
+    font-family: 'Literata';
+    font-size: 17px;
+}
+
+.vendredi { 
+    background-color: #A062F5;
+    font-family: 'Literata';
+    font-size: 17px; 
+}
 
 .day-container {
     position: relative;
