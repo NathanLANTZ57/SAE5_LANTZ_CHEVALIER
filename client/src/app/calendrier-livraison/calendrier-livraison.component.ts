@@ -3,53 +3,53 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-calendrier-livraison',
   templateUrl: './calendrier-livraison.component.html',
-  styleUrls: ['./calendrier-livraison.component.scss']
+  styleUrls: ['./calendrier-livraison.component.scss'],
 })
 export class CalendrierLivraisonComponent implements OnInit {
+  currentDate: Date = new Date(); // Date actuelle
+  daysInMonth: number[] = []; // Liste des jours dans le mois
+  firstDayIndex: number = 0; // Index du premier jour (lundi = 0, etc.)
+  dayNames: string[] = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']; // Noms des jours
+  monthName: string = ''; // Nom du mois actuel en français
 
-  year: number = new Date().getFullYear();
-  month: number = new Date().getMonth();
-  monthNames: string[] = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-  dayNames: string[] = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
-  calendarDays: any[] = [];
-
-  ngOnInit() {
-    this.generateCalendar();
-  }
-  generateCalendar() {
-    const firstDay = new Date(this.year, this.month, 1);
-    const lastDay = new Date(this.year, this.month + 1, 0);
-    const daysInMonth = lastDay.getDate();
-    const weeks = [];
-    let week = [];
-
-    let dayOfWeek = (firstDay.getDay() + 6) % 7;
-
-    for (let i = 0; i < dayOfWeek; i++) {
-      week.push({ date: null });
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-      if (week.length === 5) {
-        weeks.push(week);
-        week = [];
-      }
-      week.push({ date: day });
-    }
-
-    while (week.length < 10) {
-      week.push({ date: null });
-    }
-    weeks.push(week);
-
-    this.calendarDays = weeks;
+  ngOnInit(): void {
+    this.generateCalendar(this.currentDate);
   }
 
+  // Génère le calendrier pour une date donnée
+  generateCalendar(date: Date): void {
+    const year = date.getFullYear();
+    const month = date.getMonth();
 
-  getDayClass(day: any) {
-    if (!day.date) return '';
-    const dayOfWeek = new Date(this.year, this.month, day.date).getDay();
-    return ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'][dayOfWeek];
+    // Calcul du nombre de jours dans le mois
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    this.daysInMonth = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+    // Calcul de l'index du premier jour (pour aligner le début du calendrier)
+    const firstDay = new Date(year, month, 1);
+    this.firstDayIndex = (firstDay.getDay() + 6) % 7; // Ajustement pour démarrer à lundi
+
+    // Obtenir le nom du mois en français
+    this.monthName = new Intl.DateTimeFormat('fr-FR', { month: 'long' }).format(date);
   }
 
+  // Change le mois affiché
+  changeMonth(offset: number): void {
+    const newMonth = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth() + offset,
+      1
+    );
+    this.currentDate = newMonth;
+    this.generateCalendar(newMonth);
+  }
+
+  isToday(day: number): boolean {
+    const today = new Date();
+    return (
+      day === today.getDate() &&
+      this.currentDate.getMonth() === today.getMonth() &&
+      this.currentDate.getFullYear() === today.getFullYear()
+    );
+  }
 }
