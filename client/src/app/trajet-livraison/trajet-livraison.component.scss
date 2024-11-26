@@ -41,16 +41,9 @@
     gap: 8px;
 }
 
-.legend-icon, .legend-icon-arrivee {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: 0.5px solid black;
+.legend .marker-icon {
+    height: 2vw;
 }
-
-.legend-icon { background-color: #64D612; }
-.legend-icon-arrivee { background-color: #5C70F0; }
 
 .legend-line {
     width: 18px;
