@@ -16,6 +16,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    env_file:
+      - ./server/.env
     environment:
       - NODE_ENV=production
       - MONGODB_URI=mongodb://mongo:27017/saejardindecocagne
