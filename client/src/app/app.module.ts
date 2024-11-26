@@ -14,6 +14,7 @@ import { PanierComponent } from './panier/panier.component';
 import { LivraisonComponent } from './livraison/livraison.component';
 import { CalendrierLivraisonComponent } from './calendrier-livraison/calendrier-livraison.component';
 import { TrajetLivraisonComponent } from './trajet-livraison/trajet-livraison.component';
+import { ProfilAdherentComponent } from './profil-adherent/profil-adherent.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TrajetLivraisonComponent } from './trajet-livraison/trajet-livraison.co
     DepotsComponent,
     LivraisonComponent,
     CalendrierLivraisonComponent,
-    TrajetLivraisonComponent
+    TrajetLivraisonComponent,
+    ProfilAdherentComponent
   ],
   imports: [
     BrowserModule,
