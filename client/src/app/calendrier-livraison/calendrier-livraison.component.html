@@ -1,19 +1,29 @@
 <div class="calendar-container">
-    <div class="calendar-header">
-      <span>{{ year }}</span>
-      <span class="month">{{ monthNames[month] }}</span>
+  <button class="arrow left" (click)="changeMonth(-1)">&#8249;</button>
+
+  <div class="header">
+    <span class="year">{{ currentDate.getFullYear() }}</span>
+    <span class="month">{{ monthName | titlecase }}</span>
+  </div>
+
+  <div class="days-grid">
+    <!-- Noms des jours de la semaine -->
+    <div class="day-name" *ngFor="let day of dayNames">
+      {{ day }}
     </div>
 
+    <!-- Cases vides pour aligner les jours -->
+    <div *ngFor="let empty of [].constructor(firstDayIndex)" class="empty"></div>
 
-    <hr class="ligne-separateur">
-
-    <div class="calendar">
-        <div class="day-header monday">Lundi</div>
-        <div class="day-header tuesday">Mardi</div>
-        <div class="day-header wednesday">Mercredi</div>
-        <div class="day-header thursday">Jeudi</div>
-        <div class="day-header friday">Vendredi</div>
-        <div class="day-header saturday">Samedi</div>
-        <div class="day-header sunday">Dimanche</div>  
+    <!-- Jours du mois -->
+    <div
+      class="day"
+      *ngFor="let day of daysInMonth"
+      [class.today]="isToday(day)"
+    >
+      {{ day | number: '2.0' }}
     </div>
+  </div>
+
+  <button class="arrow right" (click)="changeMonth(1)">&#8250;</button>
 </div>
