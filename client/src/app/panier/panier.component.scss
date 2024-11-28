@@ -74,7 +74,6 @@ table {
     width: 50%;
     border-collapse: collapse;
     margin: 50px 0 ;
-    
     font-size: 18px;
     margin-left: 28%;
 }
@@ -136,5 +135,17 @@ th {
     padding: 2%;
     font-size: 26px;
     font-family: 'Arima';
-    border-radius: 2%;
+    border-radius: 3%;
+    margin-left: 5vh;
+}
+
+.panierHebdo {
+    margin-left: 1vh;
+}
+
+.panierHebdo p {
+    color: $main-font-color;
+    text-decoration: underline;
+    font-family: 'Arima';
+    margin-top: 10vw;
 }
