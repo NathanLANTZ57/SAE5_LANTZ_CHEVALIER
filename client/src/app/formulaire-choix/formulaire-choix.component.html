@@ -1,0 +1,116 @@
+<body>
+    <div class="containerPanier">
+        <app-sidebar></app-sidebar>
+
+        <div class="contentPanier">
+            <app-logo></app-logo>
+
+            <div class="imgEnTete">
+                <img src="assets/formulaire_panier.jpg" alt="Accueil">
+            </div>
+            <p>J'opte pour la formule Panier légumes Bio :</p>
+
+            <div class="formPanier">
+                <form>
+                    <div class="option">
+                        <label for="panierFamilial">Panier simple hebdomadaires</label>
+                        <input type="checkbox" id="panierFamilial" name="panierFamilial">
+                    </div>
+                    <div class="option">
+                        <label for="panierSimple">Panier simple (6 paniers)</label>
+                        <input type="checkbox" id="panierSimple" name="panierSimple">
+                    </div>
+                    <div class="option">
+                        <label for="panierSimple">Panier simple (12 paniers)</label>
+                        <input type="checkbox" id="panierSimple" name="panierSimple">
+                    </div>
+                    <div class="option">
+                        <label for="panierSimple">Panier familial hebdomadaires</label>
+                        <input type="checkbox" id="panierSimple" name="panierSimple">
+                    </div>
+                    <div class="option">
+                        <label for="panierSimple">Panier familial (6 paniers)</label>
+                        <input type="checkbox" id="panierSimple" name="panierSimple">
+                    </div>
+                    <div class="option">
+                        <label for="panierSimple">Panier familial (12 paniers)</label>
+                        <input type="checkbox" id="panierSimple" name="panierSimple">
+                    </div>
+
+                </form>
+            </div>
+            <hr>
+            <div class="fruit">
+                <p>J'opte pour la formule Panier fruit BIO :</p>
+           </div>
+            <div class="formPanier">
+                <form>
+                    <div class="option">
+                        <label for="panierFruitsBio">Panier de fruits Bio</label>
+                        <input type="checkbox" id="panierFruitsBio" name="panierFruitsBio">
+                    </div>
+                    <div class="quantity">
+                        <label for="nombrePaniers">Nombre de Paniers que vous souhaitez :</label>
+                        <select id="nombrePaniers" name="nombrePaniers">
+                            <option *ngFor="let i of numbers" [value]="i">{{ i }}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <div class="oeufs">
+                 <p>J'opte pour la formule Boite de 6 oeufs Bio :</p>
+            </div>
+            <div class="formPanier">
+
+                <form>  
+                    <div class="option">
+                        <label for="boiteOeuf">Boîte à œuf</label>
+                        <input type="checkbox" id="boiteOeuf" name="boiteOeuf">
+                    </div>
+                    <div class="quantity">
+                        <label for="nombrePaniers">Nombre de paniers que vous souhaitez :</label>
+                        <select id="nombrePaniers" name="nombrePaniers">
+                            <option *ngFor="let i of numbers" [value]="i">{{ i }}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>  
+
+            <hr>
+
+            <div class="calendrier">
+                <p>
+                    Merci de choisir les semaines pendant lesquelles vous souhaitez être livré(e) en paniers fruits.
+                </p>
+                <p>
+                  Veuillez cliquer ici :  
+                    <a 
+                        class="btn retour" 
+                        routerLink="/app-formulaire-semaine-livraison"
+                        routerLinkActive="active"
+                        aria-current="page">
+                        <span>Choix des semaines</span>
+                    </a>  
+                </p>
+            </div>
+            
+            <div class="buttons">
+                <a 
+                    class="btn retour" 
+                    routerLink="/app-formulaire-cotisation"
+                    routerLinkActive="active"
+                    aria-current="page">
+                    <span>Retour</span>
+                </a>
+                <a 
+                    class="btn suivant" 
+                    routerLink="/app-formulaire-mode-livraison"
+                    routerLinkActive="active"
+                    aria-current="page">
+                    <span>Suivant</span>
+                </a>
+            </div>  
+        </div>
+    </div>
+</body>

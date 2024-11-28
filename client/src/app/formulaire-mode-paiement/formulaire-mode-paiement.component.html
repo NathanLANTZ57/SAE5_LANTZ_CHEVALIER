@@ -1,0 +1,48 @@
+<body>
+    <div class="containerPanier">
+        <app-sidebar></app-sidebar>
+
+        <div class="contentPanier">
+            <app-logo></app-logo>
+
+            <div class="imgEnTete">
+                <img src="assets/formulaire_panier.jpg" alt="Accueil">
+            </div>
+        </div>
+        <p>Choisissez votre formule de payement : <i>(les règlements se font par prélèvement automatique)</i></p>
+
+
+        <div class="subscriptionOptions">
+            <div class="option">
+                <label for="annuel">Annuel</label>
+                <input type="checkbox" id="annuel" name="annuel">
+            </div>
+            <div class="option">
+                <label for="trimestre">Trimestre</label>
+                <input type="checkbox" id="trimestre" name="trimestre">
+            </div>
+            <div class="option">
+                <label for="mensuel">Mensuel</label>
+                <input type="checkbox" id="mensuel" name="mensuel">
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a 
+                class="btn retour" 
+                routerLink="/app-formulaire-mode-livraison"
+                routerLinkActive="active"
+                aria-current="page">
+                <span>Retour</span>
+            </a>
+            <a 
+                class="btn suivant" 
+                routerLink="/app-formulaire-mode-paiement"
+                routerLinkActive="active"
+                aria-current="page">
+                <span>Suivant</span>
+            </a>
+        </div> 
+        
+    </div>
+</body>

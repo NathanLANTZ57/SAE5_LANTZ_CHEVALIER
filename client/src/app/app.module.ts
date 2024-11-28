@@ -15,6 +15,12 @@ import { LivraisonComponent } from './livraison/livraison.component';
 import { CalendrierLivraisonComponent } from './calendrier-livraison/calendrier-livraison.component';
 import { TrajetLivraisonComponent } from './trajet-livraison/trajet-livraison.component';
 import { ProfilAdherentComponent } from './profil-adherent/profil-adherent.component';
+import { FormulairePanierComponent } from './formulaire-panier/formulaire-panier.component';
+import { FormulaireCotisationComponent } from './formulaire-cotisation/formulaire-cotisation.component';
+import { FormulaireChoixComponent } from './formulaire-choix/formulaire-choix.component';
+import { FormulaireModeLivraisonComponent } from './formulaire-mode-livraison/formulaire-mode-livraison.component';
+import { FormulaireModePaiementComponent } from './formulaire-mode-paiement/formulaire-mode-paiement.component';
+import { FormulaireSemaineLivraisonComponent } from './formulaire-semaine-livraison/formulaire-semaine-livraison.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,13 @@ import { ProfilAdherentComponent } from './profil-adherent/profil-adherent.compo
     LivraisonComponent,
     CalendrierLivraisonComponent,
     TrajetLivraisonComponent,
-    ProfilAdherentComponent
+    ProfilAdherentComponent,
+    FormulairePanierComponent,
+    FormulaireCotisationComponent,
+    FormulaireChoixComponent,
+    FormulaireModeLivraisonComponent,
+    FormulaireModePaiementComponent,
+    FormulaireSemaineLivraisonComponent
   ],
   imports: [
     BrowserModule,
