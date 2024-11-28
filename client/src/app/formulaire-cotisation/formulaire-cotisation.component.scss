@@ -1,0 +1,104 @@
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 32vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 6vh;
+    font-family: 'Literata';
+    margin-left: 47vh;
+    margin-top: 7vh;
+}
+
+.formCotisation {
+    font-family: 'Arima';
+    font-size: 17px;
+    margin: 20px auto;
+    width: 60%;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.option label {
+    flex: 1;
+    margin-left: 10vh;
+}
+
+.option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.donMontant {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.donMontant label {
+    flex: 1;
+    margin-left: 10vh;
+}
+
+.donInput {
+    display: flex;
+    align-items: center;
+}
+
+.donInput input[type="number"] {
+    width: 80px;
+    padding: 5px;
+    font-size: 13px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.donInput span {
+    font-size: 17px;
+}
+
+.buttons {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 12vh;
+    margin-bottom: 5vh;
+}
+
+.buttons .btn {
+    width: 30%; 
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buttons .retour {
+    background-color: #66201C; 
+    margin-left: 22vh;
+}
+
+.buttons .suivant {
+    background-color: #17760E; 
+    margin-right: 8vh;
+}
+
+.buttons .btn:hover {
+    opacity: 0.9;
+}

@@ -1,0 +1,170 @@
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 32vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 6vh;
+    font-family: 'Literata', serif;
+    margin-left: 47vh;
+    margin-top: 7vh;
+    max-width: 900px;
+}
+
+.calendar-container {
+    border: 1px solid #a1a1a1;
+    border-radius: 2vh;
+    width: 70%;
+    margin-left: 40vh;
+}
+
+.calendar-container h1 {
+    margin-left: 5vh;
+    font-family: 'Love Ya Like A Sister';
+    font-weight: lighter;
+}
+
+.calendar-container p {
+    font-family: 'Literata';
+    font-size: 25px;
+    text-align: right;
+    margin-right: 6vh;
+    margin-top: -2vh;
+}
+  
+.calendar-table {
+    border-collapse: separate; /* Permet d'ajouter de l'espacement entre les colonnes */
+    border-spacing: 10px; /* Augmente l'espace entre les mois */
+    margin-left: 1vh;
+}
+  
+.calendar-table th,
+.calendar-table td {
+    padding: 12px; /* Ajoute de l'espace interne dans les cellules */
+    text-align: center;
+    font-size: 17.5px;
+    cursor: pointer;
+}
+  
+/* Couleurs spécifiques pour chaque mois */
+.calendar-table th:nth-child(1) {
+    background-color: #FFCCCC; /* Janvier - Rose clair */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(2) {
+    background-color: #FFDD99; /* Février - Orange clair */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(3) {
+    background-color: #FFFF99; /* Mars - Jaune */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(4) {
+    background-color: #CCFFCC; /* Avril - Vert clair */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(5) {
+    background-color: #CCFFFF; /* Mai - Cyan clair */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(6) {
+    background-color: #CCCCFF; /* Juin - Bleu clair */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(7) {
+    background-color: #E0CCFF; /* Juillet - Violet clair */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(8) {
+    background-color: #FFCCE5; /* Août - Rose pastel */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(9) {
+    background-color: #FFD9CC; /* Septembre - Orange doux */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(10) {
+    background-color: #FFCC99; /* Octobre - Saumon */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(11) {
+    background-color: #FF9999; /* Novembre - Rouge doux */
+    border-radius: 2vh;
+}
+
+.calendar-table th:nth-child(12) {
+    background-color: #FFCCCC; /* Décembre - Rose clair */
+    border-radius: 2vh;
+}
+
+.calendar-table tbody td {
+    height: 40px;
+}
+  
+.calendar-table td.disabled {
+    cursor: not-allowed;
+    color: #9B2216;
+}
+  
+.calendar-table td.selected {
+    background-color: #0e0e0e;
+    color: white;
+    border-radius: 1vh;
+}
+
+hr {
+    color: #a1a1a1;
+    max-width: 95%;
+    margin-top: -2vh;
+}
+
+.buttons {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 12vh;
+    margin-bottom: 5vh;
+    font-family: 'Arima';
+}
+
+.buttons .btn {
+    width: 20%; 
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buttons .retour {
+    background-color: #66201C; 
+    margin-left: 62vh;
+}
+
+.buttons .suivant {
+    background-color: #17760E; 
+    margin-right: 47vh;
+}
+
+.buttons .btn:hover {
+    opacity: 0.9;
+}

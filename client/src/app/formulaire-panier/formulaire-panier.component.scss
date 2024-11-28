@@ -1,0 +1,80 @@
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 32vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 6vh;
+    font-family: 'Literata', serif;
+    margin-left: 47vh;
+    margin-top: 7vh;
+}
+
+.formulairePanier {
+    width: 50%;
+    margin: 50px auto;
+    text-align: left;
+    margin-left: 59vh;
+    font-family: 'Arima', sans-serif;
+}
+
+.formulairePanier label {
+    display: block;
+    margin-bottom: 1vh;
+    font-size: 18px;
+    margin-left: 0.5vh;
+}
+
+.formulairePanier input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 7vh;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+.formulairePanier input:focus {
+    border-color: #d3678e;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.buttons {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 4vh;
+}
+
+.buttons .btn {
+    width: 40%; 
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buttons .retour {
+    background-color: #66201C; 
+    margin-left: 3vh;
+}
+
+.buttons .suivant {
+    background-color: #17760E; 
+}
+
+.buttons .btn:hover {
+    opacity: 0.9;
+}
