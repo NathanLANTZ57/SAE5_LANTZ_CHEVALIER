@@ -15,6 +15,7 @@ import { LivraisonComponent } from './livraison/livraison.component';
 import { CalendrierLivraisonComponent } from './calendrier-livraison/calendrier-livraison.component';
 import { TrajetLivraisonComponent } from './trajet-livraison/trajet-livraison.component';
 import { ProfilAdherentComponent } from './profil-adherent/profil-adherent.component';
+import { importType } from '@angular/compiler/src/output/output_ast';
 import { FormulairePanierComponent } from './formulaire-panier/formulaire-panier.component';
 import { FormulaireCotisationComponent } from './formulaire-cotisation/formulaire-cotisation.component';
 import { FormulaireChoixComponent } from './formulaire-choix/formulaire-choix.component';
