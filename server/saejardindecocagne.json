@@ -1,0 +1,22 @@
+{
+  "Adhérents": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "password": "password123",
+      "email": "john.doe@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "password": "securepassword",
+      "email": "jane.doe@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Nathan Lantz",
+      "password": "test",
+      "email": "nth@gmail.com"
+    }
+  ]
+}

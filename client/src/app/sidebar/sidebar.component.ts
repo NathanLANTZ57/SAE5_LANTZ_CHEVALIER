@@ -22,7 +22,7 @@ export class SidebarComponent implements OnInit {
     { link: '/faits-divers', label: 'Faits Divers', icon: 'assets/faitsDivers.png' },
     { link: '/profil', label: 'Profil', icon: 'assets/pageprofil.png' },
   ];
-role: any;
+  role: any;
 
   constructor(private http: HttpClient) {}
 
@@ -45,19 +45,33 @@ role: any;
 
   // Fonction de connexion appelée lors de la soumission du formulaire
   onLogin() {
-    const loginData = { username: this.username, password: this.password };
-
-    this.http.post('http://localhost:3000/api/login', loginData)
+    const loginData = { name: this.username, password: this.password };
+  
+    // URL du backend : change 'http://localhost:3000' en 'http://api:3000' si nécessaire (Docker)
+    this.http.post('http://localhost:3000/api/login/adherent/connect', loginData)
       .subscribe(
-        response => {
+        (response: any) => {
           console.log('Connexion réussie', response);
+  
+          // Exemple d'action après connexion
+          if (response.adherent) {
+            alert(`Bienvenue, ${response.adherent.name}!`);
+            this.role = response.adherent.role || 'Adhérent';
+          }
+  
           this.closeModal();
           this.username = '';
           this.password = '';
         },
         error => {
           console.error('Erreur de connexion', error);
+  
+          if (error.status === 401) {
+            alert('Nom ou mot de passe incorrect.');
+          } else {
+            alert('Erreur interne du serveur. Veuillez réessayer plus tard.');
+          }
         }
       );
-  }
+  }  
 }
