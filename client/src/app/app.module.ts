@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Importer FormsModule pour ngModel
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importer FormsModule pour ngModel
 import { HttpClientModule } from '@angular/common/http'; // Importer HttpClientModule pour les requêtes HTTP
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { FormulaireChoixComponent } from './formulaire-choix/formulaire-choix.co
 import { FormulaireModeLivraisonComponent } from './formulaire-mode-livraison/formulaire-mode-livraison.component';
 import { FormulaireModePaiementComponent } from './formulaire-mode-paiement/formulaire-mode-paiement.component';
 import { FormulaireSemaineLivraisonComponent } from './formulaire-semaine-livraison/formulaire-semaine-livraison.component';
+import { FormulaireIbanComponent } from './formulaire-iban/formulaire-iban.component';
 
 @NgModule({
   declarations: [
@@ -41,13 +42,15 @@ import { FormulaireSemaineLivraisonComponent } from './formulaire-semaine-livrai
     FormulaireChoixComponent,
     FormulaireModeLivraisonComponent,
     FormulaireModePaiementComponent,
-    FormulaireSemaineLivraisonComponent
+    FormulaireSemaineLivraisonComponent,
+    FormulaireIbanComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,        
-    HttpClientModule      
+    HttpClientModule,
+    ReactiveFormsModule      
   ],
   providers: [],
   bootstrap: [AppComponent]
