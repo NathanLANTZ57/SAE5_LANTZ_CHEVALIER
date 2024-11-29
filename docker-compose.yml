@@ -21,6 +21,8 @@ services:
     environment:
       - NODE_ENV=production
       - MONGODB_URI=mongodb://mongo:27017/saejardindecocagne
+    volumes:
+      - ./server/saejardindecocagne.json:/app/saejardindecocagne.json # Montage du fichier JSON
     depends_on:
       - mongo
 
