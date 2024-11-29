@@ -1,0 +1,82 @@
+<body>
+    <div class="containerPanier">
+        <app-sidebar></app-sidebar>
+
+        <div class="contentPanier">
+            <app-logo></app-logo>
+
+            <div class="imgEnTete">
+                <img src="assets/formulaire_panier.jpg" alt="Accueil">
+            </div>
+        </div>
+        <div class="form-container">
+            <p>Entrer un IBAN et un BIC, <i>(taper vos numéros sans espace)</i></p>
+            <form [formGroup]="ibanForm" (ngSubmit)="onSubmit()">
+              <!-- Champ IBAN -->
+              <div class="form-group">
+                <label for="iban">IBAN :</label>
+                <input
+                  type="text"
+                  id="iban"
+                  formControlName="iban"
+                  placeholder="FR7612345678901234567890123"
+                  (input)="onInputUppercase('iban')"
+                />
+                <div *ngIf="submitted && iban?.errors" class="error">
+                  <span *ngIf="iban?.errors['required']">L'IBAN est requis.</span>
+                  <span *ngIf="iban?.errors['pattern']">
+                    Format IBAN invalide. Exemple : FR7612345678901234567890123.
+                  </span>
+                  <span *ngIf="iban?.errors['maxLength']">
+                    L'IBAN ne doit pas dépasser 34 caractères.
+                  </span>
+                </div>
+              </div>
+          
+              <!-- Champ BIC -->
+              <div class="form-group">
+                <label for="bic">BIC :</label>
+                <input
+                  type="text"
+                  id="bic"
+                  formControlName="bic"
+                  placeholder="BANKUS33XXX"
+                  (input)="onInputUppercase('bic')"
+                />
+                <div *ngIf="submitted && bic?.errors" class="error">
+                  <span *ngIf="bic?.errors['required']">Le BIC est requis.</span>
+                  <span *ngIf="bic?.errors['pattern']">
+                    Format BIC invalide. Exemple : BANKUS33XXX.
+                  </span>
+                  <span *ngIf="bic?.errors['minLength']">
+                    Le BIC doit contenir au moins 8 caractères.
+                  </span>
+                  <span *ngIf="bic?.errors['maxLength']">
+                    Le BIC ne doit pas dépasser 11 caractères.
+                  </span>
+                </div>
+              </div>
+          
+              <!-- Bouton Soumettre -->
+              <button type="submit" [disabled]="ibanForm.invalid">Soumettre</button>
+            </form>
+        </div>
+                
+        <div class="buttons">
+            <a 
+                class="btn retour" 
+                routerLink="/app-formulaire-mode-paiement"
+                routerLinkActive="active"
+                aria-current="page">
+                <span>Retour</span>
+            </a>
+            <a 
+                class="btn suivant" 
+                routerLink="/app-formulaire-iban"
+                routerLinkActive="active"
+                aria-current="page">
+                <span>Suivant</span>
+            </a>
+        </div>
+    </div>
+</body>

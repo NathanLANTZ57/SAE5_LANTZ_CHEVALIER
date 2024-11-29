@@ -12,6 +12,7 @@ import { FormulaireChoixComponent } from './formulaire-choix/formulaire-choix.co
 import { FormulaireModeLivraisonComponent } from './formulaire-mode-livraison/formulaire-mode-livraison.component';
 import { FormulaireModePaiementComponent } from './formulaire-mode-paiement/formulaire-mode-paiement.component';
 import { FormulaireSemaineLivraisonComponent } from './formulaire-semaine-livraison/formulaire-semaine-livraison.component';
+import { FormulaireIbanComponent } from './formulaire-iban/formulaire-iban.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'app-formulaire-choix', component: FormulaireChoixComponent },
   { path: 'app-formulaire-mode-livraison', component: FormulaireModeLivraisonComponent},
   { path: 'app-formulaire-mode-paiement', component: FormulaireModePaiementComponent},
-  { path: 'app-formulaire-semaine-livraison', component: FormulaireSemaineLivraisonComponent}
+  { path: 'app-formulaire-semaine-livraison', component: FormulaireSemaineLivraisonComponent},
+  { path: 'app-formulaire-iban', component: FormulaireIbanComponent}
 ];
 
 
