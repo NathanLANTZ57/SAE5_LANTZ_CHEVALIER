@@ -88,6 +88,12 @@ app.post('/api/login/adherent', async (req: Request, res: Response): Promise<voi
       return;
     }
 
+    const existingName = dbData.Adhérents.find((adherent: any) => adherent.name === name);
+    if (existingName) {
+      res.status(409).json({ message: 'Un adhérent avec ce nom existe déjà.' });
+      return;
+    }
+    
     // Ajouter un nouvel adhérent
     const newAdherent = {
       id: dbData.Adhérents.length ? dbData.Adhérents[dbData.Adhérents.length - 1].id + 1 : 1,
@@ -103,6 +109,47 @@ app.post('/api/login/adherent', async (req: Request, res: Response): Promise<voi
     res.status(201).json({
       message: 'Adhérent enregistré avec succès.',
       adherent: newAdherent,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour connecter un adhérent
+app.post('/api/login/adherent/connect', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, password } = req.body;
+
+    // Vérifier que tous les champs requis sont présents
+    if (!name || !password) {
+      res.status(400).json({ message: 'Nom et mot de passe sont requis.' });
+      return;
+    }
+
+    // Lire la base de données JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Trouver un adhérent avec le nom et le mot de passe
+    const adherent = dbData.Adhérents.find(
+      (adherent: any) => adherent.name === name && adherent.password === password
+    );
+
+    if (!adherent) {
+      res.status(401).json({ message: 'Nom ou mot de passe incorrect.' });
+      return;
+    }
+
+    // Authentification réussie
+    res.status(200).json({
+      message: 'Connexion réussie.',
+      adherent: {
+        id: adherent.id,
+        name: adherent.name,
+        email: adherent.email,
+      },
     });
   } catch (error) {
     res.status(500).json({
