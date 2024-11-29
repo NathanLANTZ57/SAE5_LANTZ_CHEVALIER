@@ -5,11 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './profil-adherent.component.html',
   styleUrls: ['./profil-adherent.component.scss']
 })
-export class ProfilAdherentComponent implements OnInit {
+export class ProfilAdherentComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  editSection(section: string): void {
+    alert(`Modification de la section : ${section}`);
   }
 
 }

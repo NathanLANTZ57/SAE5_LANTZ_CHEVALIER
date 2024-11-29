@@ -1,0 +1,92 @@
+
+
+.header-profile {
+    display: flex;
+    margin-left: 50vh;
+    margin-top: 10vh;
+    margin-left: 55vh;
+}
+
+.profile-logo {
+    width: 12%; /* Taille fixe de l'image */
+    height: 12%; /* Proportion carrée */
+    border-radius: 50%; /* Forme ronde */
+    border: 2px solid #a1a1a1; /* Bordure grise */
+    margin-right: 2vh;
+}
+
+.profile-name {
+    font-family: 'Milonga', serif;
+    font-size: 2em; /* Taille du texte */
+    font-weight: bold;
+    margin-top: 5vh;
+    margin-left: 2vh;
+}
+
+.profile-content {
+    max-width: 800px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    padding: 25px 30px;
+    margin-left: 26%;
+    margin-top: 10vh;
+    font-family: 'Literata';
+}
+
+/* Informations utilisateur */
+.user-info,
+.payment-info {
+    margin-bottom: 20px;
+}
+
+/* Style des éléments d'information */
+.info-item {
+    display: flex;
+    justify-content: space-between; /* Équilibre entre la clé et la valeur */
+    padding: 15px 0;
+    border-bottom: 1px solid #eaeaea; /* Ligne douce entre les éléments */
+    font-size: 1rem;
+}
+
+
+
+.info-item:last-child {
+    border-bottom: none; /* Supprime la dernière bordure */
+}
+
+.info-item span:first-child {
+    font-weight: bold;
+}
+
+.info-item span:last-child {
+    font-weight: normal;
+}
+
+
+.info-item:hover {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    display: inline-block;
+    margin: 20px 0 0; /* Espacement au-dessus */
+    padding: 10px 20px; /* Taille du bouton */
+    background-color: #ADE8FD; /* Bleu pour attirer l'attention */
+    color: #085D70; /* Texte blanc */
+    border: none;
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 1rem;
+    font-family: 'Arima';
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 87%;
+}
+
+.edit-button:hover {
+    background-color: #085D70; /* Bleu plus foncé au survol */
+    color: #ADE8FD;
+}
