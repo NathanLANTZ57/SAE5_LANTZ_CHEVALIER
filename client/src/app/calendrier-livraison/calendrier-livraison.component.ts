@@ -12,6 +12,11 @@ export class CalendrierLivraisonComponent implements OnInit {
   dayNames: string[] = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']; // Noms des jours
   monthName: string = ''; // Nom du mois actuel en français
 
+  // Modal
+  isModalOpen: boolean = false; // État du modal
+  selectedDay: number | null = null; // Jour sélectionné
+  selectedDayLabel: string = ''; // Texte affiché dans le modal
+
   ngOnInit(): void {
     this.generateCalendar(this.currentDate);
   }
@@ -52,4 +57,28 @@ export class CalendrierLivraisonComponent implements OnInit {
       this.currentDate.getFullYear() === today.getFullYear()
     );
   }
+
+
+  // Ouvrir le modal
+  openModal(day: number): void {
+    this.selectedDay = day;
+    const date = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth(),
+      day
+    );
+  
+    // Formate le jour et le mois pour affichage
+    const dayName = date.toLocaleDateString('fr-FR', { weekday: 'long' });
+    const formattedDayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+  
+    this.selectedDayLabel = `${formattedDayName} ${day} ${this.monthName}`;
+    this.isModalOpen = true;
+  }
+  
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedDay = null;
+  }
+  
 }
