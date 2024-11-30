@@ -58,6 +58,21 @@
     cursor: pointer;
     font-family: 'Literata';
 }
+
+.day:hover {
+    background-color: #8f8989; 
+    color: white;
+    font-weight: bold;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    width: 20px; 
+    height: 20px; 
+    border-radius: 50%; 
+    margin: auto; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
   
 .day.today {
     background-color: #0c0d0d; 
