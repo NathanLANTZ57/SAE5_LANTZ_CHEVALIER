@@ -1,0 +1,129 @@
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 125vh;
+    height: 28vw;
+    margin-top: 7vw;
+    border-radius: 2vh;
+    margin-left: 45vh;
+}
+
+
+.containerHeader p {
+    font-size: 26px;
+    font-family: 'Literata';
+    font-weight: bold;
+    margin-left: 47vh;
+}
+  
+.text-container p {
+    font-size: 17px;
+    margin-bottom: 20px;
+    margin-left: 50vh;
+    font-family: 'Lustria';
+}
+  
+.dates-container {
+    display: grid; /* Utilisation de grid pour un alignement parfait */
+    grid-template-columns: repeat(2, auto); /* Deux colonnes pour les boutons */
+    gap: 20px; /* Espacement vertical et horizontal entre les boutons */
+    justify-content: center; /* Centre les colonnes horizontalement */
+    margin-bottom: 10vh;
+    margin-top: 10vh;
+}
+
+.date-button {
+    border: none;
+    border-radius: 2vh;
+    padding: 6%;
+    min-width: 30vh;
+    font-size: 17px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+}
+
+a {
+    text-decoration: none;
+}
+
+.date-button:nth-child(1){
+    background-color: #A7236E;
+    color: white;
+}
+
+.date-button:nth-child(1):hover{
+    background-color: #6e1246;
+    color: white;
+}
+
+.date-button:nth-child(2){
+    background-color: #B33AC7;
+    color: white;
+}
+
+.date-button:nth-child(2):hover{
+    background-color: #6a1679;
+    color: white;
+}
+
+.date-button:nth-child(3){
+    background-color: #D3429E;
+    color: white;
+}
+
+.date-button:nth-child(3):hover{
+    background-color: #8a2c67;
+    color: white;
+}
+
+.date-button:nth-child(4) {
+    background-color: #C291C0;
+    color: white;
+}
+
+.date-button:nth-child(4):hover {
+    background-color: #bf6bbc;
+    color: white;
+}
+
+.actions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Aligne verticalement les boutons */
+    gap: 20px; /* Ajoute de l'espace entre les boutons */
+    max-width: 500px; /* Largeur maximale pour centrer les boutons */
+    margin: 0 auto; /* Centre le conteneur des boutons */
+    margin-top: 20px;
+}
+
+.action-button {
+    font-family: 'Arima', sans-serif;
+    flex: 1; /* Les boutons prennent une largeur égale */
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Ajoute une ombre pour les boutons */
+}
+
+.return-button {
+    background-color: #a5d6a7;
+    color: #2f5232;
+    text-align: center; /* Centre le texte */
+}
+
+.return-button:hover {
+    background-color: #81c784;
+}
+
+.next-button {
+    background-color: #b3e5fc;
+    color: #01579b;
+    text-align: center; /* Centre le texte */
+}
+
+.next-button:hover {
+    background-color: #81d4fa;
+}

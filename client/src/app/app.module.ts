@@ -26,6 +26,7 @@ import { FormulaireIbanComponent } from './formulaire-iban/formulaire-iban.compo
 import { ProfilModalAbonnementComponent } from './profil-modal-abonnement/profil-modal-abonnement.component';
 import { ProfilModalLivraisonComponent } from './profil-modal-livraison/profil-modal-livraison.component';
 import { ProfilModalHistoriquePaiementComponent } from './profil-modal-historique-paiement/profil-modal-historique-paiement.component';
+import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-date/profil-reprogrammation-date.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ProfilModalHistoriquePaiementComponent } from './profil-modal-historiqu
     FormulaireIbanComponent,
     ProfilModalAbonnementComponent,
     ProfilModalLivraisonComponent,
-    ProfilModalHistoriquePaiementComponent
+    ProfilModalHistoriquePaiementComponent,
+    ProfilReprogrammationDateComponent
   ],
   imports: [
     BrowserModule,
