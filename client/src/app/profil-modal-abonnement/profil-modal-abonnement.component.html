@@ -1,0 +1,33 @@
+<div class="modal-container" *ngIf="isOpen">
+    <div class="modal-content">
+      <h2>Mon abonnement</h2>
+      <div class="modal-body">
+        <p>Les Paniers</p>
+        <div class="ensPanier">
+            <div class="panier">
+                <span>
+                    Panier légumes Bio : Livraison à domicile, tous les mardis
+                </span>
+            </div>
+            <div class="panier">
+                <span>
+                    Panier fruits Bio : Livraison à domicile, tous les mardis
+                </span>
+            </div>
+            <div class="panier">
+                <span>
+                    Boîte de 6 œufs : Livraison à domicile, tous les mardis
+                </span>
+            </div>
+        </div>
+  
+    
+        <div class="modal-actions">
+          <button class="absence-button">Signaler une absence</button>
+        </div>
+        <div class="modal-actions">
+            <button class="close-button" (click)="closeModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+</div>

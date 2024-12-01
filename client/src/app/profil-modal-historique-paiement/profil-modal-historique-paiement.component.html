@@ -1,0 +1,28 @@
+<div class="modal-container" *ngIf="isOpen">
+    <div class="modal-content">
+      <h2>Historique de mes paiements</h2>
+      <div class="modal-body">
+        <div>
+          <p>Mes paiements</p>
+
+          <div class="paiement">
+            <span>Mardi 8/10/2024</span>
+            <span class="status valid">Validé</span>
+          </div>
+          <div class="paiement">
+            <span>Mardi 8/10/2024</span>
+            <span class="status valid">Validé</span>
+          </div>
+          <div class="paiement">
+            <span>Mardi 8/10/2024</span>
+            <span class="status valid">Validé</span>
+          </div>
+        </div>
+  
+    
+        <div class="modal-actions">
+            <button class="close-button" (click)="closeModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+</div>

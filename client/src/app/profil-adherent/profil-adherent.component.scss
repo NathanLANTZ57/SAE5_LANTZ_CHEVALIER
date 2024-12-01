@@ -48,8 +48,6 @@
     font-size: 1rem;
 }
 
-
-
 .info-item:last-child {
     border-bottom: none; /* Supprime la dernière bordure */
 }
@@ -57,11 +55,6 @@
 .info-item span:first-child {
     font-weight: bold;
 }
-
-.info-item span:last-child {
-    font-weight: normal;
-}
-
 
 .info-item:hover {
     background-color: #f5f5f5;
@@ -87,5 +80,21 @@
 
 .edit-button:hover {
     background-color: #085D70; /* Bleu plus foncé au survol */
+    color: #ADE8FD;
+}
+
+.voirDetails {
+    background-color: #ADE8FD;
+    border: none;
+    padding: 1.5%;
+    border-radius: 1vh;
+    font-family: 'Arima';
+    color: #085D70;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.voirDetails:hover {
+    background-color: #085D70;
     color: #ADE8FD;
 }

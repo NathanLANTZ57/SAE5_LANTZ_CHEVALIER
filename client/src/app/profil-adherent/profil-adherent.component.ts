@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-profil-adherent',
@@ -6,9 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profil-adherent.component.scss']
 })
 export class ProfilAdherentComponent {
+  isModalAbonnementOpen: boolean = false;
+  isModalLivraisonOpen: boolean = false;
+  isModalHistoriquePaiementOpen: boolean = false;
 
-  editSection(section: string): void {
-    alert(`Modification de la section : ${section}`);
+  // Ouvrir les modales
+  openModalAbonnement() {
+    this.isModalAbonnementOpen = true;
   }
 
+  openModalLivraison() {
+    this.isModalLivraisonOpen = true;
+  }
+
+  openModalHistoriquePaiement() {
+    this.isModalHistoriquePaiementOpen = true;
+  }
+
+  // Fermer les modales
+  closeModalAbonnement() {
+    this.isModalAbonnementOpen = false;
+  }
+
+  closeModalLivraison() {
+    this.isModalLivraisonOpen = false;
+  }
+
+  closeModalHistoriquePaiement() {
+    this.isModalHistoriquePaiementOpen = false;
+  }
 }

@@ -23,6 +23,9 @@ import { FormulaireModeLivraisonComponent } from './formulaire-mode-livraison/fo
 import { FormulaireModePaiementComponent } from './formulaire-mode-paiement/formulaire-mode-paiement.component';
 import { FormulaireSemaineLivraisonComponent } from './formulaire-semaine-livraison/formulaire-semaine-livraison.component';
 import { FormulaireIbanComponent } from './formulaire-iban/formulaire-iban.component';
+import { ProfilModalAbonnementComponent } from './profil-modal-abonnement/profil-modal-abonnement.component';
+import { ProfilModalLivraisonComponent } from './profil-modal-livraison/profil-modal-livraison.component';
+import { ProfilModalHistoriquePaiementComponent } from './profil-modal-historique-paiement/profil-modal-historique-paiement.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { FormulaireIbanComponent } from './formulaire-iban/formulaire-iban.compo
     FormulaireModeLivraisonComponent,
     FormulaireModePaiementComponent,
     FormulaireSemaineLivraisonComponent,
-    FormulaireIbanComponent
+    FormulaireIbanComponent,
+    ProfilModalAbonnementComponent,
+    ProfilModalLivraisonComponent,
+    ProfilModalHistoriquePaiementComponent
   ],
   imports: [
     BrowserModule,

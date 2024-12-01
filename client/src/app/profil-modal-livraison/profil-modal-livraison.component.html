@@ -1,0 +1,36 @@
+<div class="modal-container" *ngIf="isOpen">
+    <div class="modal-content">
+        <h2>Ma livraison</h2>
+      <div class="modal-body">
+        <div>
+          <p>Vos prochaines livraisons</p>
+          <div class="livraisons">
+            <div class="livraison">
+              <span>Mardi 8/10/2024</span>
+              <span class="status valid">Validé</span>
+            </div>
+            <div class="livraison">
+              <span>Mardi 15/10/2024</span>
+              <span class="status valid">Validé</span>
+            </div>
+            <div class="livraison">
+              <span>Mardi 22/10/2024</span>
+              <span class="status valid">Validé</span>
+            </div>
+            <div class="livraison">
+              <span>Mardi 29/10/2024</span>
+              <span class="status valid">Validé</span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="modal-actions">
+          <button class="absence-button">Signaler une absence</button>
+        </div>
+        <div class="modal-actions">
+            <button class="close-button" (click)="closeModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
