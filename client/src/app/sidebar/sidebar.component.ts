@@ -7,14 +7,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  isSidebarOpen = false;       // Gère l'ouverture de la barre latérale
-  showLoginModal = false;      // Gère l'affichage de la modale de connexion
-  username = '';               // Nom d'utilisateur pour la connexion
-  password = '';               // Mot de passe pour la connexion
-  menuTitle = 'Menu';          // Titre par défaut de la barre latérale fermée
-  menuTitleOuvert = 'Tableau de bord';  // Titre de la barre latérale ouverte
-
-  // Définition des éléments du menu de la barre latérale
+  isSidebarOpen = false;
+  showLoginModal = false;
+  isLoggedIn = false;
+  username = '';
+  password = '';
+  role = ''; // Peut être "adherent", "employe", ou vide pour admin
+  menuTitle = 'Menu';
+  menuTitleOuvert = 'Tableau de bord';
   menuItems = [
     { link: '/', label: 'Accueil', icon: 'assets/accueil.png' },
     { link: '/panier', label: 'Panier', icon: 'assets/panier.png' },
@@ -22,50 +22,54 @@ export class SidebarComponent implements OnInit {
     { link: '/faits-divers', label: 'Faits Divers', icon: 'assets/faitsDivers.png' },
     { link: '/profil', label: 'Profil', icon: 'assets/pageprofil.png' },
   ];
-  role: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
 
-  // Fonction pour basculer l'ouverture de la barre latérale
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
-  // Fonction pour ouvrir la modale de connexion
   openModal() {
     this.showLoginModal = true;
   }
 
-  // Fonction pour fermer la modale de connexion
   closeModal() {
     this.showLoginModal = false;
   }
 
-  // Fonction de connexion appelée lors de la soumission du formulaire
   onLogin() {
     const loginData = { name: this.username, password: this.password };
-  
-    // URL du backend : change 'http://localhost:3000' en 'http://api:3000' si nécessaire (Docker)
-    this.http.post('http://localhost:3000/api/login/adherent/connect', loginData)
+    let apiUrl = '';
+
+    // Déterminer l'URL de l'API selon le rôle sélectionné
+    if (this.role === 'adherent') {
+      apiUrl = 'http://localhost:3000/api/login/adherent/connect';
+    } else if (this.role === 'employe') {
+      apiUrl = 'http://localhost:3000/api/login/employe/connect';
+    } else {
+      apiUrl = 'http://localhost:3000/api/login/admin';
+    }
+
+    this.http.post(apiUrl, loginData, { headers: { 'Content-Type': 'application/json' } })
       .subscribe(
         (response: any) => {
           console.log('Connexion réussie', response);
-  
-          // Exemple d'action après connexion
-          if (response.adherent) {
-            alert(`Bienvenue, ${response.adherent.name}!`);
-            this.role = response.adherent.role || 'Adhérent';
+
+          if (response.adherent || response.admin) {
+            alert(`Bienvenue, ${this.username}!`);
+            this.isLoggedIn = true;
           }
-  
+
           this.closeModal();
           this.username = '';
           this.password = '';
+          this.role = '';
         },
         error => {
           console.error('Erreur de connexion', error);
-  
+
           if (error.status === 401) {
             alert('Nom ou mot de passe incorrect.');
           } else {
@@ -73,5 +77,10 @@ export class SidebarComponent implements OnInit {
           }
         }
       );
-  }  
+  }
+
+  onLogout() {
+    this.isLoggedIn = false;
+    alert('Déconnexion réussie.');
+  }
 }
