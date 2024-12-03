@@ -40,28 +40,39 @@ export class SidebarComponent implements OnInit {
   }
 
   onLogin() {
-    const loginData = { name: this.username, password: this.password };
     let apiUrl = '';
-
-    // Déterminer l'URL de l'API selon le rôle sélectionné
+    let loginData: any = {};
+  
+    // Déterminer l'URL de l'API et les données à envoyer selon le rôle sélectionné
     if (this.role === 'adherent') {
       apiUrl = 'http://localhost:3000/api/login/adherent/connect';
+      loginData = { name: this.username, password: this.password }; // Utilise 'name' pour adherent
     } else if (this.role === 'employe') {
       apiUrl = 'http://localhost:3000/api/login/employe/connect';
+      loginData = { name: this.username, password: this.password }; // Utilise 'name' pour employe
     } else {
       apiUrl = 'http://localhost:3000/api/login/admin';
+      loginData = { username: this.username, password: this.password }; // Utilise 'username' pour admin
     }
-
+  
     this.http.post(apiUrl, loginData, { headers: { 'Content-Type': 'application/json' } })
       .subscribe(
         (response: any) => {
           console.log('Connexion réussie', response);
-
-          if (response.adherent || response.admin) {
-            alert(`Bienvenue, ${this.username}!`);
+  
+          // Vérification du rôle dans la réponse de l'API
+          if (response.adherent) {
+            alert(`Bienvenue, ${this.username}! (Adhérent)`);
+            this.isLoggedIn = true;
+          } else if (response.employe) {
+            alert(`Bienvenue, ${this.username}! (Employé)`);
+            this.isLoggedIn = true;
+          } else if (response.admin) {
+            alert(`Bienvenue, ${this.username}! (Admin)`);
             this.isLoggedIn = true;
           }
-
+  
+          // Réinitialiser le formulaire après connexion
           this.closeModal();
           this.username = '';
           this.password = '';
@@ -69,7 +80,7 @@ export class SidebarComponent implements OnInit {
         },
         error => {
           console.error('Erreur de connexion', error);
-
+  
           if (error.status === 401) {
             alert('Nom ou mot de passe incorrect.');
           } else {
@@ -78,7 +89,7 @@ export class SidebarComponent implements OnInit {
         }
       );
   }
-
+    
   onLogout() {
     this.isLoggedIn = false;
     alert('Déconnexion réussie.');

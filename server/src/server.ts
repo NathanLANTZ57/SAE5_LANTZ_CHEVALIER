@@ -163,6 +163,99 @@ app.post('/api/login/adherent/connect', async (req: Request, res: Response): Pro
   }
 });
 
+// Route pour enregistrer un nouvel employé
+app.post('/api/login/employe', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, password, email } = req.body;
+
+    // Vérifier que tous les champs requis sont présents
+    if (!name || !password || !email) {
+      res.status(400).json({ message: 'Nom, mot de passe et email sont requis.' });
+      return;
+    }
+
+    // Lire la base de données JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Vérifier si l'email existe déjà
+    const existingEmploye = dbData.Employes.find((employe: any) => employe.email === email);
+    if (existingEmploye) {
+      res.status(409).json({ message: 'Un employé avec cet email existe déjà.' });
+      return;
+    }
+
+    const existingName = dbData.Employes.find((employe: any) => employe.name === name);
+    if (existingName) {
+      res.status(409).json({ message: 'Un employé avec ce nom existe déjà.' });
+      return;
+    }
+
+    // Ajouter un nouvel employé
+    const newEmploye = {
+      id: dbData.Employes.length ? dbData.Employes[dbData.Employes.length - 1].id + 1 : 1,
+      name,
+      password, // Attention : en production, hachez les mots de passe avec bcrypt
+      email,
+    };
+    dbData.Employes.push(newEmploye);
+
+    // Écrire les modifications dans le fichier JSON
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({
+      message: 'Employé enregistré avec succès.',
+      employe: newEmploye,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour connecter un employé
+app.post('/api/login/employe/connect', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, password } = req.body;
+
+    // Vérifier que tous les champs requis sont présents
+    if (!name || !password) {
+      res.status(400).json({ message: 'Nom et mot de passe sont requis.' });
+      return;
+    }
+
+    // Lire la base de données JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Trouver un employé avec le nom et le mot de passe
+    const employe = dbData.Employes.find(
+      (employe: any) => employe.name === name && employe.password === password
+    );
+
+    if (!employe) {
+      res.status(401).json({ message: 'Nom ou mot de passe incorrect.' });
+      return;
+    }
+
+    // Authentification réussie
+    res.status(200).json({
+      message: 'Connexion réussie.',
+      employe: {
+        id: employe.id,
+        name: employe.name,
+        email: employe.email,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {
   res.status(200).json({ message: 'Bienvenue sur l’API.' });
