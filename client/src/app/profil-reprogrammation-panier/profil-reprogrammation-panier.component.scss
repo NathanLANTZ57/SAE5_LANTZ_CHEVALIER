@@ -1,0 +1,123 @@
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 125vh;
+    height: 28vw;
+    margin-top: 7vw;
+    border-radius: 2vh;
+    margin-left: 45vh;
+}
+
+.containerHeader p {
+    font-size: 30px;
+    font-family: 'Literata';
+    font-weight: bold;
+    margin-left: 47vh;
+}
+  
+.text-container p {
+    font-size: 17px;
+    margin-bottom: 20px;
+    margin-left: 50vh;
+    font-family: 'Lustria';
+}
+  
+.dates-container {
+    display: grid; 
+    grid-template-columns: repeat(2, auto); 
+    gap: 20px; 
+    justify-content: center; 
+    margin-bottom: 10vh;
+    margin-top: 10vh;
+}
+
+.date-button {
+    border: none;
+    border-radius: 2vh;
+    padding: 6%;
+    min-width: 30vh;
+    font-size: 17px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+    font-family: 'Arima';
+}
+
+a {
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Arima';
+}
+
+.date-button:nth-child(1){
+    background-color: #2C3582;
+    color: white;
+}
+
+.date-button:nth-child(1):hover{
+    background-color: #030f2c;
+    color: white;
+}
+
+.date-button:nth-child(2){
+    background-color: #4279FA;
+    color: white;
+}
+
+.date-button:nth-child(2):hover{
+    background-color: #1b3674;
+    color: white;
+}
+
+.date-button:nth-child(3){
+    background-color: #5D8FC9;
+    color: white;
+    margin-left: 50%;
+    margin-top: 5%;
+}
+
+.date-button:nth-child(3):hover{
+    background-color: #3b5e86;
+    color: white;
+}
+
+.actions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    gap: 20px;
+    max-width: 500px; 
+    margin: 0 auto; 
+    margin-top: 20px;
+}
+
+.action-button {
+    font-family: 'Arima', sans-serif;
+    flex: 1; 
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.return-button {
+    background-color: #a5d6a7;
+    color: #2f5232;
+    text-align: center;
+}
+
+.return-button:hover {
+    background-color: #81c784;
+}
+
+.next-button {
+    background-color: #b3e5fc;
+    color: #01579b;
+    text-align: center; 
+}
+
+.next-button:hover {
+    background-color: #81d4fa;
+}
