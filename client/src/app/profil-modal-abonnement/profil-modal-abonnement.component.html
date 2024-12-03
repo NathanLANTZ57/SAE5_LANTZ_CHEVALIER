@@ -21,9 +21,14 @@
             </div>
         </div>
   
-    
         <div class="modal-actions">
-          <button class="absence-button">Signaler une absence</button>
+            <a 
+                class="absence-button"
+                routerLink="/app-profil-reprogrammation-date"
+                routerLinkActive="active"
+                aria-current="page">
+                <span>Signaler une absence</span>
+            </a>
         </div>
         <div class="modal-actions">
             <button class="close-button" (click)="closeModal()">Fermer</button>

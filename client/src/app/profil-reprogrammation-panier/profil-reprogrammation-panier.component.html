@@ -1,0 +1,45 @@
+<body>
+    <div class="containerProfil">
+        <div class="containerLogo">
+          <app-logo></app-logo>
+        </div>
+
+
+        <div class="containerHeader">
+            <div class="imgEnTete">
+                <img src="assets/image_date_absent.png" alt="Accueil">
+            </div>
+           
+            <p>Absent ?</p>
+        </div>
+
+        <div class="absent-container">
+            <div class="text-container">
+              <p>Quels sont les paniers que vous souhaitez faire livrer un autre jour ?</p>
+            </div>
+          
+            <div class="dates-container">
+              <button class="date-button">Panier de légumes BIO</button>
+              <button class="date-button">Panier de fruit BIO</button>
+              <button class="date-button">Boite d'œuf</button>
+            </div>
+          
+            <div class="actions-container">
+                <a 
+                    class="action-button return-button"
+                    routerLink="/app-profil-reprogrammation-date"
+                    routerLinkActive="active"
+                    aria-current="page">
+                    <span>Retour</span>
+                </a>
+                <a 
+                    class="action-button next-button"
+                    routerLink="/app-profil-reprogrammation-type-panier"
+                    routerLinkActive="active"
+                    aria-current="page">
+                    <span>Suivant</span>
+                </a>
+            </div>
+        </div>          
+    </div>
+</body>
