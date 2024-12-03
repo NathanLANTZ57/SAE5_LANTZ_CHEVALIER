@@ -27,6 +27,9 @@ import { ProfilModalAbonnementComponent } from './profil-modal-abonnement/profil
 import { ProfilModalLivraisonComponent } from './profil-modal-livraison/profil-modal-livraison.component';
 import { ProfilModalHistoriquePaiementComponent } from './profil-modal-historique-paiement/profil-modal-historique-paiement.component';
 import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-date/profil-reprogrammation-date.component';
+import { ProfilReprogrammationPanierComponent } from './profil-reprogrammation-panier/profil-reprogrammation-panier.component';
+import { ProfilReprogrammationTypePanierComponent } from './profil-reprogrammation-type-panier/profil-reprogrammation-type-panier.component';
+import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogrammation-nombre-panier/profil-reprogrammation-nombre-panier.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-dat
     ProfilModalAbonnementComponent,
     ProfilModalLivraisonComponent,
     ProfilModalHistoriquePaiementComponent,
-    ProfilReprogrammationDateComponent
+    ProfilReprogrammationDateComponent,
+    ProfilReprogrammationPanierComponent,
+    ProfilReprogrammationTypePanierComponent,
+    ProfilReprogrammationNombrePanierComponent
   ],
   imports: [
     BrowserModule,

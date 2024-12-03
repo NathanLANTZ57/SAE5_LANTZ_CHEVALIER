@@ -5,11 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './profil-reprogrammation-date.component.html',
   styleUrls: ['./profil-reprogrammation-date.component.scss']
 })
-export class ProfilReprogrammationDateComponent implements OnInit {
+export class ProfilReprogrammationDateComponent {
 
-  constructor() { }
+  selectedDate: string | null = null;
 
-  ngOnInit(): void {
-  }
+selectDate(date: string): void {
+    this.selectedDate = date;
+    console.log('Date sélectionnée :', this.selectedDate);
+}
+
 
 }

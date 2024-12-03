@@ -30,7 +30,6 @@ $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     justify-content: center; 
     margin-bottom: 10vh;
     margin-top: 10vh;
-    
 }
 
 .date-button {
@@ -48,58 +47,38 @@ a {
 }
 
 .date-button:nth-child(1){
-    background-color: #A7236E;
+    background-color: #2C3582;
     color: white;
 }
 
 .date-button:nth-child(1):hover{
-    background-color: #6e1246;
+    background-color: #030f2c;
     color: white;
 }
 
 .date-button:nth-child(2){
-    background-color: #B33AC7;
+    background-color: #4279FA;
     color: white;
 }
 
 .date-button:nth-child(2):hover{
-    background-color: #6a1679;
-    color: white;
-}
-
-.date-button:nth-child(3){
-    background-color: #D3429E;
-    color: white;
-}
-
-.date-button:nth-child(3):hover{
-    background-color: #8a2c67;
-    color: white;
-}
-
-.date-button:nth-child(4) {
-    background-color: #C291C0;
-    color: white;
-}
-
-.date-button:nth-child(4):hover {
-    background-color: #bf6bbc;
+    background-color: #1b3674;
     color: white;
 }
 
 .actions-container {
     display: flex;
     justify-content: space-between;
-    align-items: center; 
-    gap: 20px; 
-    max-width: 500px; 
+    align-items: center;
+    gap: 20px;
+    max-width: 500px;
     margin: 0 auto; 
     margin-top: 20px;
 }
 
 .action-button {
     font-family: 'Arima', sans-serif;
-    flex: 1;
+    flex: 1; 
     border: none;
     border-radius: 20px;
     padding: 10px 20px;

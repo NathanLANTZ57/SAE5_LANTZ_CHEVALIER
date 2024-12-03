@@ -14,6 +14,9 @@ import { FormulaireModePaiementComponent } from './formulaire-mode-paiement/form
 import { FormulaireSemaineLivraisonComponent } from './formulaire-semaine-livraison/formulaire-semaine-livraison.component';
 import { FormulaireIbanComponent } from './formulaire-iban/formulaire-iban.component';
 import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-date/profil-reprogrammation-date.component';
+import { ProfilReprogrammationPanierComponent } from './profil-reprogrammation-panier/profil-reprogrammation-panier.component';
+import { ProfilReprogrammationTypePanierComponent } from './profil-reprogrammation-type-panier/profil-reprogrammation-type-panier.component';
+import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogrammation-nombre-panier/profil-reprogrammation-nombre-panier.component';
 
 
 const routes: Routes = [
@@ -30,7 +33,10 @@ const routes: Routes = [
   { path: 'app-formulaire-mode-paiement', component: FormulaireModePaiementComponent},
   { path: 'app-formulaire-semaine-livraison', component: FormulaireSemaineLivraisonComponent},
   { path: 'app-formulaire-iban', component: FormulaireIbanComponent},
-  { path: 'app-profil-reprogrammation-date', component: ProfilReprogrammationDateComponent}
+  { path: 'app-profil-reprogrammation-date', component: ProfilReprogrammationDateComponent},
+  { path: 'app-profil-reprogrammation-panier', component: ProfilReprogrammationPanierComponent},
+  { path :'app-profil-reprogrammation-type-panier', component: ProfilReprogrammationTypePanierComponent},
+  { path: 'app-profil-reprogrammation-nombre-panier', component: ProfilReprogrammationNombrePanierComponent}
 ];
 
 

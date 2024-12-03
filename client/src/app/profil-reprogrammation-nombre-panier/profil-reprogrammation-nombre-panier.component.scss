@@ -30,14 +30,13 @@ $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     justify-content: center; 
     margin-bottom: 10vh;
     margin-top: 10vh;
-    
 }
 
 .date-button {
     border: none;
     border-radius: 2vh;
     padding: 6%;
-    min-width: 30vh;
+    min-width: 40vh;
     font-size: 17px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
     font-family: 'Arima';
@@ -48,42 +47,34 @@ a {
 }
 
 .date-button:nth-child(1){
-    background-color: #A7236E;
+    background-color: #E88655;
     color: white;
 }
 
 .date-button:nth-child(1):hover{
-    background-color: #6e1246;
+    background-color: #d36b37;
     color: white;
 }
 
 .date-button:nth-child(2){
-    background-color: #B33AC7;
+    background-color: #ECA85F;
     color: white;
 }
 
 .date-button:nth-child(2):hover{
-    background-color: #6a1679;
+    background-color: #f39c3f;
     color: white;
 }
 
 .date-button:nth-child(3){
-    background-color: #D3429E;
+    background-color: #EEAA4F;
     color: white;
+    margin-left: 50%;
+    margin-top: 5%;
 }
 
 .date-button:nth-child(3):hover{
-    background-color: #8a2c67;
-    color: white;
-}
-
-.date-button:nth-child(4) {
-    background-color: #C291C0;
-    color: white;
-}
-
-.date-button:nth-child(4):hover {
-    background-color: #bf6bbc;
+    background-color: #dd9638;
     color: white;
 }
 
@@ -112,7 +103,7 @@ a {
 .return-button {
     background-color: #a5d6a7;
     color: #2f5232;
-    text-align: center; 
+    text-align: center;
 }
 
 .return-button:hover {
@@ -122,7 +113,7 @@ a {
 .next-button {
     background-color: #b3e5fc;
     color: #01579b;
-    text-align: center; 
+    text-align: center;
 }
 
 .next-button:hover {
