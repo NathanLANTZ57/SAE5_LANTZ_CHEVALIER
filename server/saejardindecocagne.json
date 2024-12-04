@@ -17,8 +17,15 @@
       "name": "Nathan Lantz",
       "password": "test",
       "email": "nth@gmail.com"
+    },
+    {
+      "id": 4,
+      "name": "xavier",
+      "password": "zuzu",
+      "email": "xav@gmail.com"
     }
   ],
+  
   "Employes": [
     {
       "id": 1,
@@ -43,6 +50,12 @@
       "name": "Test12",
       "password": "test",
       "email": "employe1@gmail.com"
+    },
+    {
+      "id": 5,
+      "name": "noemy",
+      "password": "titi",
+      "email": "no@gmail.com"
     }
   ]
 }

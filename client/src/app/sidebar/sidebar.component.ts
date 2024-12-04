@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
   isLoggedIn = false;
   username = '';
   password = '';
-  role = ''; // Peut être "adherent", "employe", ou vide pour admin
+  role = ''; // Peut être "adherent" ou "employe"
   menuTitle = 'Menu';
   menuTitleOuvert = 'Tableau de bord';
   menuItems = [
@@ -22,6 +22,13 @@ export class SidebarComponent implements OnInit {
     { link: '/faits-divers', label: 'Faits Divers', icon: 'assets/faitsDivers.png' },
     { link: '/profil', label: 'Profil', icon: 'assets/pageprofil.png' },
   ];
+
+  // Variables pour l'inscription
+  showSignupModal = false;
+  signupUsername = '';
+  signupPassword = '';
+  signupEmail = '';
+  signupRole = ''; // Peut être "adherent" ou "employe"
 
   constructor(private http: HttpClient) {}
 
@@ -42,7 +49,7 @@ export class SidebarComponent implements OnInit {
   onLogin() {
     let apiUrl = '';
     let loginData: any = {};
-  
+
     // Déterminer l'URL de l'API et les données à envoyer selon le rôle sélectionné
     if (this.role === 'adherent') {
       apiUrl = 'http://localhost:3000/api/login/adherent/connect';
@@ -54,12 +61,12 @@ export class SidebarComponent implements OnInit {
       apiUrl = 'http://localhost:3000/api/login/admin';
       loginData = { username: this.username, password: this.password }; // Utilise 'username' pour admin
     }
-  
+
     this.http.post(apiUrl, loginData, { headers: { 'Content-Type': 'application/json' } })
       .subscribe(
         (response: any) => {
           console.log('Connexion réussie', response);
-  
+
           // Vérification du rôle dans la réponse de l'API
           if (response.adherent) {
             alert(`Bienvenue, ${this.username}! (Adhérent)`);
@@ -71,7 +78,7 @@ export class SidebarComponent implements OnInit {
             alert(`Bienvenue, ${this.username}! (Admin)`);
             this.isLoggedIn = true;
           }
-  
+
           // Réinitialiser le formulaire après connexion
           this.closeModal();
           this.username = '';
@@ -80,7 +87,7 @@ export class SidebarComponent implements OnInit {
         },
         error => {
           console.error('Erreur de connexion', error);
-  
+
           if (error.status === 401) {
             alert('Nom ou mot de passe incorrect.');
           } else {
@@ -89,9 +96,67 @@ export class SidebarComponent implements OnInit {
         }
       );
   }
-    
+
   onLogout() {
     this.isLoggedIn = false;
     alert('Déconnexion réussie.');
+  }
+
+  // Méthodes pour l'inscription
+  openSignupModal() {
+    this.showSignupModal = true;
+  }
+
+  closeSignupModal() {
+    this.showSignupModal = false;
+  }
+
+  onSignup() {
+    let apiUrl = '';
+    let signupData: any = {};
+
+    // Déterminer l'URL de l'API et les données à envoyer selon le rôle sélectionné
+    if (this.signupRole === 'adherent') {
+      apiUrl = 'http://localhost:3000/api/login/adherent';
+      signupData = { 
+        name: this.signupUsername, 
+        password: this.signupPassword, 
+        email: this.signupEmail 
+      }; // Utilise 'name' pour adherent
+    } else if (this.signupRole === 'employe') {
+      apiUrl = 'http://localhost:3000/api/login/employe';
+      signupData = { 
+        name: this.signupUsername, 
+        password: this.signupPassword, 
+        email: this.signupEmail 
+      }; // Utilise 'name' pour employe
+    } else {
+      alert('Veuillez sélectionner un rôle valide pour l\'inscription.');
+      return;
+    }
+
+    this.http.post(apiUrl, signupData, { headers: { 'Content-Type': 'application/json' } })
+      .subscribe(
+        (response: any) => {
+          console.log('Inscription réussie', response);
+          alert(`Inscription réussie pour ${this.signupUsername}! (${this.signupRole})`);
+
+          // Réinitialiser le formulaire après inscription
+          this.closeSignupModal();
+          this.signupUsername = '';
+          this.signupPassword = '';
+          this.signupEmail = '';
+          this.signupRole = '';
+        },
+        error => {
+          console.error('Erreur d\'inscription', error);
+          
+          if (error.status === 400) {
+            alert('Données d\'inscription invalides. Veuillez vérifier vos informations.');
+          } else {
+            alert('Erreur interne du serveur. Veuillez réessayer plus tard.');
+          }
+        }
+      );
   }
 }
