@@ -11,6 +11,9 @@ Reste à faire partie FRONT :
 - Optionnel - > s'il y a le temps faire un espace de planning pour les employés 
 
 
+
+
+
 Reste à faire BACK : 
 - Finaliser la connexion 
 - lié la page profil avec la BDD
