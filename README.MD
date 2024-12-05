@@ -7,6 +7,7 @@ Reste à faire partie FRONT :
 - finir le formulaire panier adhérent
 - faire formulaire employés 
 - modal inscription 
+- interface pour gérer les restaurants et les cantines
 - Optionnel - > s'il y a le temps faire un espace de planning pour les employés 
 
 
@@ -17,3 +18,4 @@ Reste à faire BACK :
 - créer table stocks, et le lié à la page des stocks
 -  le lié à la BDD, faire en sorte que les infos se retrouvent dans la page profil
 - lié table employés à son formulaire et sa page profil
+- faire un swagger
