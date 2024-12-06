@@ -14,9 +14,9 @@ Reste à faire partie FRONT :
 
 
 
-Reste à faire BACK : 
+Reste à faire BACK :
 - lié la page profil avec la BDD
 - créer route API validation inscription
 - créer table stocks, et le lié à la page des stocks
--  le lié à la BDD, faire en sorte que les infos se retrouvent dans la page profil
+- le lié à la BDD, faire en sorte que les infos se retrouvent dans la page profil
 - lié table employés à son formulaire et sa page profil

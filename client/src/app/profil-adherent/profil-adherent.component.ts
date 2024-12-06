@@ -1,14 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../shared/user.service'; // Import du service
 
 @Component({
   selector: 'app-profil-adherent',
   templateUrl: './profil-adherent.component.html',
   styleUrls: ['./profil-adherent.component.scss']
 })
-export class ProfilAdherentComponent {
+export class ProfilAdherentComponent implements OnInit {
   isModalAbonnementOpen: boolean = false;
   isModalLivraisonOpen: boolean = false;
   isModalHistoriquePaiementOpen: boolean = false;
+  username: string = ''; // Variable pour stocker le username
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    // Abonnez-vous pour obtenir le username depuis le service
+    this.userService.currentUsername.subscribe(username => {
+      this.username = username;
+    });
+  }
 
   // Ouvrir les modales
   openModalAbonnement() {

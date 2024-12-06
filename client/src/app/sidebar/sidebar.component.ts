@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from '../shared/user.service'; // Import du service UserService
 
 @Component({
   selector: 'app-sidebar',
@@ -30,7 +31,7 @@ export class SidebarComponent implements OnInit {
   signupEmail = '';
   signupRole = ''; // Peut être "adherent" ou "employe"
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {} // Injection du service
 
   ngOnInit(): void {}
 
@@ -69,19 +70,28 @@ export class SidebarComponent implements OnInit {
 
           // Vérification du rôle dans la réponse de l'API
           if (response.adherent) {
-            alert(`Bienvenue, ${this.username}! (Adhérent)`);
+            alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Adhérent.`);
             this.isLoggedIn = true;
+
+            // Mettre à jour le username dans le service après confirmation de la connexion réussie
+            this.userService.setUsername(this.username);
           } else if (response.employe) {
-            alert(`Bienvenue, ${this.username}! (Employé)`);
+            alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Employé.`);
             this.isLoggedIn = true;
+
+            // Mettre à jour le username dans le service
+            this.userService.setUsername(this.username);
           } else if (response.admin) {
-            alert(`Bienvenue, ${this.username}! (Admin)`);
+            alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Administrateur.`);
             this.isLoggedIn = true;
+
+            // Mettre à jour le username dans le service
+            this.userService.setUsername(this.username);
           }
 
           // Réinitialiser le formulaire après connexion
           this.closeModal();
-          this.username = '';
+          this.username = ''; // Réinitialisé après avoir été stocké dans le service
           this.password = '';
           this.role = '';
         },
@@ -99,6 +109,10 @@ export class SidebarComponent implements OnInit {
 
   onLogout() {
     this.isLoggedIn = false;
+
+    // Réinitialiser le username dans le service
+    this.userService.setUsername('');
+
     alert('Déconnexion réussie.');
   }
 
