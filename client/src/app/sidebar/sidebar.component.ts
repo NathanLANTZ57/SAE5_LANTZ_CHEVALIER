@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../shared/user.service'; // Import du service UserService
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -31,7 +32,7 @@ export class SidebarComponent implements OnInit {
   signupEmail = '';
   signupRole = ''; // Peut être "adherent" ou "employe"
 
-  constructor(private http: HttpClient, private userService: UserService) {} // Injection du service
+  constructor(private http: HttpClient, private userService: UserService, private router: Router) {} // Injection du service
 
   ngOnInit(): void {}
 
@@ -72,18 +73,21 @@ export class SidebarComponent implements OnInit {
           if (response.adherent) {
             alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Adhérent.`);
             this.isLoggedIn = true;
+            this.userService.setLoggedIn(true); // Ajout ici
 
             // Mettre à jour le username dans le service après confirmation de la connexion réussie
             this.userService.setUsername(this.username);
           } else if (response.employe) {
             alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Employé.`);
             this.isLoggedIn = true;
+            this.userService.setLoggedIn(true); // Ajout ici
 
             // Mettre à jour le username dans le service
             this.userService.setUsername(this.username);
           } else if (response.admin) {
             alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Administrateur.`);
             this.isLoggedIn = true;
+            this.userService.setLoggedIn(true); // Ajout ici
 
             // Mettre à jour le username dans le service
             this.userService.setUsername(this.username);
@@ -107,14 +111,21 @@ export class SidebarComponent implements OnInit {
       );
   }
 
-  onLogout() {
+  onLogout(): void {
     this.isLoggedIn = false;
-
+  
+    // Mettre à jour l'état de connexion global dans UserService
+    this.userService.setLoggedIn(false);
+  
     // Réinitialiser le username dans le service
     this.userService.setUsername('');
 
+    // Redirection vers la page d'accueil
+    this.router.navigate(['/']); // Redirige vers l'accueil
+  
     alert('Déconnexion réussie.');
   }
+  
 
   // Méthodes pour l'inscription
   openSignupModal() {

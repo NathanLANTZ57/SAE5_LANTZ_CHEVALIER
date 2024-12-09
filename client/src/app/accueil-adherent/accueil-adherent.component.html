@@ -72,13 +72,14 @@
         <div class="card">
           <a 
             class="button" 
-            routerLink="/app-profil-adherent"
+            [routerLink]="isLoggedIn ? '/app-profil-adherent' : null"
+            (click)="checkLoginStatus()"
             routerLinkActive="active"
             aria-current="page">
             <img src="assets/profil.jpg" alt="Accéder au profil">
             <span>Accéder au profil</span>
           </a>
-        </div>
+        </div>                     
 
         <div class="card">
           <a 
