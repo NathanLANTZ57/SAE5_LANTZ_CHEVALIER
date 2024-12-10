@@ -102,6 +102,29 @@
       "FormulePayement": "Annuel",
       "IBAN": "FR76 9876 5432 1098 7654 3210 987",
       "BIC": "HGFEDCBAXXX"
+    },
+    {
+      "id": 1,
+      "nom": "lantz",
+      "prenom": "nathan",
+      "date_naissance": "2024-12-02",
+      "adresse_mail": "nathanlantz57560@gmail.com",
+      "adresse_postale": "5 B Lavalette",
+      "ville": "Abreschviller",
+      "code_postal": "57560",
+      "cotisation": 5,
+      "don": 0,
+      "formule_panier_legumes_bio": "simple-6",
+      "nb_panier_legumes_bio": 0,
+      "formule_panier_fruits_bio": false,
+      "nb_panier_fruits_bio": 0,
+      "formule_boite_oeufs_bio": false,
+      "nb_panier_oeufs_bio": 0,
+      "depot": false,
+      "domicile": true,
+      "formule_payement": "Annuel",
+      "iban": "FR7784",
+      "bic": "HGFEDCBAXXX"
     }
   ]
 }

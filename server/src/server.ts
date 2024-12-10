@@ -259,32 +259,35 @@ app.post('/api/login/employe/connect', async (req: Request, res: Response): Prom
 app.post('/api/register/adherentsabonne', async (req: Request, res: Response): Promise<void> => {
   try {
     const {
-      Nom,
-      Prénom,
-      DateDeNaissance,
-      AdresseMail,
-      AdressePostale,
-      Ville,
-      CodePostal,
-      Cotisation,
-      Don,
-      FormulePanierLegumesBio,
-      NbPanierLegumesBio,
-      FormulePanierFruitsBio,
-      NbPanierFruitsBio,
-      FormuleBoiteOeufsBio,
-      NbPanierOeufsBio,
-      Dépôt,
-      Domicile,
-      FormulePayement,
-      IBAN,
-      BIC,
+      nom,
+      prenom,
+      date_naissance,
+      adresse_mail,
+      adresse_postale,
+      ville,
+      code_postal,
+      cotisation,
+      don,
+      formule_panier_legumes_bio,
+      nb_panier_legumes_bio,
+      formule_panier_fruits_bio,
+      nb_panier_fruits_bio,
+      formule_boite_oeufs_bio,
+      nb_panier_oeufs_bio,
+      depot,
+      domicile,
+      formule_payement,
+      iban,
+      bic,
     } = req.body;
 
+    // Log des données reçues pour le debug
+    console.log('Données reçues pour la création d\'un abonné :', req.body);
+
     // Validation des champs obligatoires
-    if (!Nom || !Prénom || !AdresseMail || Cotisation !== 5 || FormulePanierLegumesBio !== 'Simple6') {
+    if (!nom || !prenom || !adresse_mail || !cotisation) {
       res.status(400).json({
-        message: 'Champs obligatoires manquants ou invalides. Assurez-vous que la cotisation est de 5 euros et la formule légumes bio est Simple6.',
+        message: 'Champs obligatoires manquants ou invalides. Veuillez vérifier vos données.',
       });
       return;
     }
@@ -293,7 +296,7 @@ app.post('/api/register/adherentsabonne', async (req: Request, res: Response): P
     const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 
     // Vérifier si l'email existe déjà
-    const existingAbonne = dbData.AdhérentsAbonnés?.find((abonne: any) => abonne.AdresseMail === AdresseMail);
+    const existingAbonne = dbData.AdhérentsAbonnés?.find((abonne: any) => abonne.adresse_mail === adresse_mail);
     if (existingAbonne) {
       res.status(409).json({ message: 'Un abonné avec cet email existe déjà.' });
       return;
@@ -302,26 +305,26 @@ app.post('/api/register/adherentsabonne', async (req: Request, res: Response): P
     // Ajouter un nouvel AdhérentAbonné
     const newAbonne = {
       id: dbData.AdhérentsAbonnés?.length ? dbData.AdhérentsAbonnés[dbData.AdhérentsAbonnés.length - 1].id + 1 : 1,
-      Nom,
-      Prénom,
-      DateDeNaissance,
-      AdresseMail,
-      AdressePostale,
-      Ville,
-      CodePostal,
-      Cotisation,
-      Don: Don || 0.0,
-      FormulePanierLegumesBio,
-      NbPanierLegumesBio: NbPanierLegumesBio || 0,
-      FormulePanierFruitsBio: FormulePanierFruitsBio || false,
-      NbPanierFruitsBio: NbPanierFruitsBio || 0,
-      FormuleBoiteOeufsBio: FormuleBoiteOeufsBio || false,
-      NbPanierOeufsBio: NbPanierOeufsBio || 0,
-      Dépôt,
-      Domicile,
-      FormulePayement,
-      IBAN,
-      BIC,
+      nom,
+      prenom,
+      date_naissance,
+      adresse_mail,
+      adresse_postale,
+      ville,
+      code_postal,
+      cotisation,
+      don: don || 0,
+      formule_panier_legumes_bio: formule_panier_legumes_bio || false,
+      nb_panier_legumes_bio: nb_panier_legumes_bio || 0,
+      formule_panier_fruits_bio: formule_panier_fruits_bio || false,
+      nb_panier_fruits_bio: nb_panier_fruits_bio || 0,
+      formule_boite_oeufs_bio: formule_boite_oeufs_bio || false,
+      nb_panier_oeufs_bio: nb_panier_oeufs_bio || 0,
+      depot: depot || false,
+      domicile: domicile || false,
+      formule_payement: formule_payement,
+      iban,
+      bic,
     };
 
     // Ajouter à la base de données
@@ -336,6 +339,7 @@ app.post('/api/register/adherentsabonne', async (req: Request, res: Response): P
       abonne: newAbonne,
     });
   } catch (error) {
+    console.error('Erreur interne du serveur :', error);
     res.status(500).json({
       message: 'Erreur interne du serveur',
       error: error instanceof Error ? error.message : 'Erreur inconnue',

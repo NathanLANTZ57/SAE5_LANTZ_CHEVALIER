@@ -1,57 +1,77 @@
 <body>
     <div class="containerPanier">
-        <app-sidebar></app-sidebar>
-
-        <div class="contentPanier">
-            <app-logo></app-logo>
-
-            <div class="imgEnTete">
-                <img src="assets/formulaire_panier.jpg" alt="Accueil">
-            </div>
-            <p>J’adhère à l‘association et je choisis la formule :</p>
-
-            <div class="formCotisation">
-                <form>
-                    <div class="option">
-                        <label for="cotisation">
-                            Cotisation de 5 €
-                        </label>
-                        <input type="checkbox" id="cotisation" name="cotisation">
-                    </div>
-                    <div class="option">
-                        <label for="cotisationDon">
-                            Cotisation de 5 € avec un don
-                        </label>
-                        <input type="checkbox" id="cotisationDon" name="cotisationDon">
-                    </div>
-                    <div class="donMontant">
-                        <label for="montantDon">
-                            Entrez le montant du don :
-                        </label>
-                        <div class="donInput">
-                            <input type="number" id="montantDon" name="montantDon" placeholder="0">
-                            <span>€</span>
-                        </div>
-                    </div>
-                </form>
-
-                <div class="buttons">
-                    <a 
-                        class="btn retour" 
-                        routerLink="/app-formulaire-panier"
-                        routerLinkActive="active"
-                        aria-current="page">
-                        <span>Retour</span>
-                    </a>
-                    <a 
-                        class="btn suivant" 
-                        routerLink="/app-formulaire-choix"
-                        routerLinkActive="active"
-                        aria-current="page">
-                        <span>Suivant</span>
-                    </a>
-                </div>     
-            </div>
+      <app-sidebar></app-sidebar>
+  
+      <div class="contentPanier">
+        <app-logo></app-logo>
+  
+        <div class="imgEnTete">
+          <img src="assets/formulaire_panier.jpg" alt="Accueil">
         </div>
+  
+        <p>J’adhère à l‘association et je choisis la formule :</p>
+  
+        <div class="formCotisation">
+          <form>
+            <div class="option">
+              <label for="cotisation">
+                Cotisation de 5 €
+              </label>
+              <input 
+                type="radio" 
+                id="cotisation" 
+                name="cotisationOption" 
+                [(ngModel)]="cotisationOption" 
+                [value]="'cotisation'" 
+                (change)="updateCotisation()">
+            </div>
+            <div class="option">
+              <label for="cotisationDon">
+                Cotisation de 5 € avec un don
+              </label>
+              <input 
+                type="radio" 
+                id="cotisationDon" 
+                name="cotisationOption" 
+                [(ngModel)]="cotisationOption" 
+                [value]="'cotisationDon'" 
+                (change)="updateCotisation()">
+            </div>
+            <div class="donMontant" *ngIf="cotisationOption === 'cotisationDon'">
+              <label for="montantDon">
+                Entrez le montant du don :
+              </label>
+              <div class="donInput">
+                <input 
+                  type="number" 
+                  id="montantDon" 
+                  [(ngModel)]="montantDon" 
+                  placeholder="0" 
+                  min="0" 
+                  (input)="updateCotisation()">
+                <span>€</span>
+              </div>
+            </div>
+          </form>
+  
+          <div class="summary">
+            <p>Total de la cotisation : <strong>{{ totalCotisation }} €</strong></p>
+          </div>
+  
+          <div class="buttons">
+            <a 
+              class="btn retour" 
+              routerLink="/app-formulaire-panier"
+              routerLinkActive="active"
+              aria-current="page">
+              <span>Retour</span>
+            </a>
+            <button class="btn suivant" (click)="onNext()">
+              <span>Suivant</span>
+            </button>
+          </div>     
+        </div>
+      </div>
     </div>
-</body>
+  </body>
+  

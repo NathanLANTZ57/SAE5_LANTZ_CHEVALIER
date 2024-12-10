@@ -1,5 +1,6 @@
 Reste à faire partie FRONT : 
 - finir la page profil
+- refaire css formulaire panier
 - régler les soucis de design + faire attention à ce que la sidebar change en fonction de qui est connecté 
 - créer espace pour personne admin, pour qu'il puisse valider ou non les inscriptions
 - faire un espace pour les adhérents pour savoir les stocks, les livraisons qui sont à préparer 
