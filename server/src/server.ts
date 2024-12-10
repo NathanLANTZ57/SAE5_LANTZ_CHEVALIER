@@ -255,6 +255,93 @@ app.post('/api/login/employe/connect', async (req: Request, res: Response): Prom
   }
 });
 
+// Route pour enregistrer un nouvel AdhérentsAbonnés
+app.post('/api/register/adherentsabonne', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {
+      Nom,
+      Prénom,
+      DateDeNaissance,
+      AdresseMail,
+      AdressePostale,
+      Ville,
+      CodePostal,
+      Cotisation,
+      Don,
+      FormulePanierLegumesBio,
+      NbPanierLegumesBio,
+      FormulePanierFruitsBio,
+      NbPanierFruitsBio,
+      FormuleBoiteOeufsBio,
+      NbPanierOeufsBio,
+      Dépôt,
+      Domicile,
+      FormulePayement,
+      IBAN,
+      BIC,
+    } = req.body;
+
+    // Validation des champs obligatoires
+    if (!Nom || !Prénom || !AdresseMail || Cotisation !== 5 || FormulePanierLegumesBio !== 'Simple6') {
+      res.status(400).json({
+        message: 'Champs obligatoires manquants ou invalides. Assurez-vous que la cotisation est de 5 euros et la formule légumes bio est Simple6.',
+      });
+      return;
+    }
+
+    // Lire la base de données JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Vérifier si l'email existe déjà
+    const existingAbonne = dbData.AdhérentsAbonnés?.find((abonne: any) => abonne.AdresseMail === AdresseMail);
+    if (existingAbonne) {
+      res.status(409).json({ message: 'Un abonné avec cet email existe déjà.' });
+      return;
+    }
+
+    // Ajouter un nouvel AdhérentAbonné
+    const newAbonne = {
+      id: dbData.AdhérentsAbonnés?.length ? dbData.AdhérentsAbonnés[dbData.AdhérentsAbonnés.length - 1].id + 1 : 1,
+      Nom,
+      Prénom,
+      DateDeNaissance,
+      AdresseMail,
+      AdressePostale,
+      Ville,
+      CodePostal,
+      Cotisation,
+      Don: Don || 0.0,
+      FormulePanierLegumesBio,
+      NbPanierLegumesBio: NbPanierLegumesBio || 0,
+      FormulePanierFruitsBio: FormulePanierFruitsBio || false,
+      NbPanierFruitsBio: NbPanierFruitsBio || 0,
+      FormuleBoiteOeufsBio: FormuleBoiteOeufsBio || false,
+      NbPanierOeufsBio: NbPanierOeufsBio || 0,
+      Dépôt,
+      Domicile,
+      FormulePayement,
+      IBAN,
+      BIC,
+    };
+
+    // Ajouter à la base de données
+    dbData.AdhérentsAbonnés = dbData.AdhérentsAbonnés || [];
+    dbData.AdhérentsAbonnés.push(newAbonne);
+
+    // Écrire dans le fichier JSON
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({
+      message: 'AdhérentAbonné enregistré avec succès.',
+      abonne: newAbonne,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
 
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {

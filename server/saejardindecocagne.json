@@ -25,7 +25,6 @@
       "email": "xav@gmail.com"
     }
   ],
-  
   "Employes": [
     {
       "id": 1,
@@ -56,6 +55,53 @@
       "name": "noemy",
       "password": "titi",
       "email": "no@gmail.com"
+    }
+  ],
+  "AdhérentsAbonnés": [
+    {
+      "Nom": "Doe",
+      "Prénom": "John",
+      "Date de naissance": "15/03/1985",
+      "Adresse mail": "john.doe@example.com",
+      "Adresse postale": "123 Main St",
+      "Ville": "Springfield",
+      "Code postal": "12345",
+      "Cotisation": 5,
+      "Don": 0,
+      "Formule panier légumes bio": "Simple6",
+      "Nb panier légumes bio": 1,
+      "Formule panier fruits bio": false,
+      "Nb panier fruits bio": 0,
+      "Formule boite oeufs bio": false,
+      "Nb panier oeufs bio": 0,
+      "Dépôt": true,
+      "Domicile": false,
+      "Formule payement": "Mensuel",
+      "IBAN": "FR76 1234 5678 9012 3456 7890 123",
+      "BIC": "ABCDEFGHXXX"
+    },
+    {
+      "id": null,
+      "Nom": "Smith",
+      "Prénom": "Alice",
+      "DateDeNaissance": "22/07/1990",
+      "AdresseMail": "alice.smith@example.com",
+      "AdressePostale": "456 Elm Street",
+      "Ville": "Greenfield",
+      "CodePostal": "67890",
+      "Cotisation": 5,
+      "Don": 15,
+      "FormulePanierLegumesBio": "Simple6",
+      "NbPanierLegumesBio": 3,
+      "FormulePanierFruitsBio": false,
+      "NbPanierFruitsBio": 0,
+      "FormuleBoiteOeufsBio": false,
+      "NbPanierOeufsBio": 0,
+      "Dépôt": false,
+      "Domicile": true,
+      "FormulePayement": "Annuel",
+      "IBAN": "FR76 9876 5432 1098 7654 3210 987",
+      "BIC": "HGFEDCBAXXX"
     }
   ]
 }
