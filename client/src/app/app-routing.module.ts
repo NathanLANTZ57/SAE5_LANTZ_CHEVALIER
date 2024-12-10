@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { FaitsDiversComponent } from './faits-divers/faits-divers.component';
 import { AccueilAdherentComponent } from './accueil-adherent/accueil-adherent.component';
 import { PanierComponent } from './panier/panier.component';
@@ -17,11 +17,15 @@ import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-dat
 import { ProfilReprogrammationPanierComponent } from './profil-reprogrammation-panier/profil-reprogrammation-panier.component';
 import { ProfilReprogrammationTypePanierComponent } from './profil-reprogrammation-type-panier/profil-reprogrammation-type-panier.component';
 import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogrammation-nombre-panier/profil-reprogrammation-nombre-panier.component';
+import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.component';
+import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.component';
 
 
 const routes: Routes = [
   { path: '', component: AccueilAdherentComponent },
   { path: 'faits-divers', component: FaitsDiversComponent },
+  { path: 'legume-saison', component: LegumeDeSaisonComponent},
+  { path: 'fruit-saison', component: FruitDeSaisonComponent},
   { path: 'app-panier', component: PanierComponent },
   { path: 'app-depots', component: DepotsComponent },
   { path: 'app-livraison', component: LivraisonComponent },
