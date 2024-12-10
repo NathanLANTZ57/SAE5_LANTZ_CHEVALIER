@@ -17,6 +17,45 @@
       "name": "Nathan Lantz",
       "password": "test",
       "email": "nth@gmail.com"
+    },
+    {
+      "id": 4,
+      "name": "xavier",
+      "password": "zuzu",
+      "email": "xav@gmail.com"
+    }
+  ],
+  
+  "Employes": [
+    {
+      "id": 1,
+      "name": "Alice Manager",
+      "password": "managerpass",
+      "email": "alice.manager@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Bob Worker",
+      "password": "worker123",
+      "email": "bob.worker@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Charlie Admin",
+      "password": "adminsecure",
+      "email": "charlie.admin@example.com"
+    },
+    {
+      "id": 4,
+      "name": "Test12",
+      "password": "test",
+      "email": "employe1@gmail.com"
+    },
+    {
+      "id": 5,
+      "name": "noemy",
+      "password": "titi",
+      "email": "no@gmail.com"
     }
   ]
 }
