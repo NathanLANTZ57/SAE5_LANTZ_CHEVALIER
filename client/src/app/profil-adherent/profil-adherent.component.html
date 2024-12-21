@@ -7,7 +7,9 @@
   <!-- En-tête avec image et nom -->
   <div class="header-profile">
     <img src="assets/ImgProfil.png" alt="Logo" class="profile-logo">
-    <h1 class="profile-name">{{ username }}</h1>
+    <h1 class="profile-name">
+      {{ adherentData.nom || 'Nom non disponible' }} {{ adherentData.prenom || '' }}
+    </h1>
   </div>
 
   <!-- Profil utilisateur -->
@@ -16,35 +18,35 @@
     <div class="user-info">
       <div class="info-item">
         <span>Nom :</span>
-        <span>Dupont</span>
+        <span>{{ adherentData.nom || 'Nom non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Prénom :</span>
-        <span>Jean</span>
+        <span>{{ adherentData.prenom || 'Prénom non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Date de naissance :</span>
-        <span>01/01/1970</span>
+        <span>{{ adherentData.date_naissance || 'Non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Adresse mail :</span>
-        <span>xxxxx</span>
+        <span>{{ adherentData.adresse_mail || 'Non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Adresse postale :</span>
-        <span>1 rue des Fleurs</span>
+        <span>{{ adherentData.adresse_postale || 'Non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Ville :</span>
-        <span>Paris</span>
+        <span>{{ adherentData.ville || 'Non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Code postal :</span>
-        <span>75000</span>
+        <span>{{ adherentData.code_postal || 'Non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Numéro de téléphone portable :</span>
-        <span>06 12 34 56 78</span>
+        <span>{{ adherentData.telephone || 'Non disponible' }}</span>
       </div>
     </div>
     <button class="edit-button">Modifier</button>
@@ -55,11 +57,11 @@
     <div class="payment-info">
       <div class="info-item">
         <span>Date du paiement de la cotisation :</span>
-        <span>01/02/2024</span>
+        <span>{{ adherentData.date_paiement_cotisation || 'Non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Statut du paiement :</span>
-        <span>Accepté</span>
+        <span>{{ adherentData.statut_paiement || 'Non disponible' }}</span>
       </div>
       <div class="info-item">
         <span>Mon abonnement :</span>
@@ -82,7 +84,6 @@
         (close)="closeModalLivraison()">
       </app-profil-modal-livraison>
 
-
       <app-profil-modal-historique-paiement
         [isOpen]="isModalHistoriquePaiementOpen"
         (close)="closeModalHistoriquePaiement()">
@@ -92,7 +93,6 @@
         <span>Historique des paiements :</span>
         <button class="voirDetails" (click)="openModalHistoriquePaiement()">Voir les détails</button>
       </div>
-     
     </div>
   </div>
 </div>

@@ -1,42 +1,48 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  // Source pour stocker l'adresse e-mail de l'utilisateur connecté
-  private usernameSource = new BehaviorSubject<string>(''); 
-  // Source pour stocker l'état de connexion (connecté/déconnecté)
+  private usernameSource = new BehaviorSubject<string>('');
   private loggedInSource = new BehaviorSubject<boolean>(false);
 
-  // Observables exposés
-  currentUsername = this.usernameSource.asObservable(); 
+  currentUsername = this.usernameSource.asObservable();
   isLoggedIn$ = this.loggedInSource.asObservable();
 
-  // Met à jour l'adresse e-mail de l'utilisateur
-  setUsername(email: string): void {
-    this.usernameSource.next(email);
+  constructor(private http: HttpClient) {}
+
+  setUsername(username: string): void {
+    this.usernameSource.next(username);
   }
 
-  // Récupère l'adresse e-mail de l'utilisateur connecté
   getUsername(): string {
-    return this.usernameSource.getValue(); // Retourne la valeur actuelle
+    return this.usernameSource.getValue();
   }
 
-  // Met à jour l'état de connexion (connecté/déconnecté)
   setLoggedIn(status: boolean): void {
     this.loggedInSource.next(status);
   }
 
-  // Vérifie si l'utilisateur est actuellement connecté
   isLoggedIn(): boolean {
-    return this.loggedInSource.getValue(); // Retourne la valeur actuelle
+    return this.loggedInSource.getValue();
   }
 
-  // Réinitialise les données utilisateur (lors de la déconnexion)
   clearUserData(): void {
     this.usernameSource.next('');
     this.loggedInSource.next(false);
   }
+
+  // Nouvelle méthode pour récupérer l'adresse e-mail en fonction du username
+  getUserEmail(username: string): Promise<string> {
+    const apiUrl = `http://localhost:3000/api/adherents?username=${encodeURIComponent(username)}`;
+    return this.http.get<any>(apiUrl).toPromise().then((user) => {
+      if (user && user.email) {
+        return user.email;
+      }
+      throw new Error('Adresse e-mail non trouvée pour cet utilisateur');
+    });
+  } 
 }

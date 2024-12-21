@@ -347,6 +347,76 @@ app.post('/api/register/adherentsabonne', async (req: Request, res: Response): P
   }
 });
 
+// Route pour récupérer les informations de l'AdhérentsAbonnés en fonction de l'email de l'adhérent connecté
+app.get('/api/adherentsabonne', async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Récupérer l'email de l'utilisateur connecté (passé via une requête query)
+    const { email } = req.query;
+
+    if (!email) {
+      res.status(400).json({ message: 'Adresse email est requise' });
+      return;
+    }
+
+    // Lire les données du fichier JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Vérifier si l'email existe dans la table Adhérents
+    const adherent = dbData.Adhérents.find(
+      (a: any) => a.email.toLowerCase() === (email as string).toLowerCase()
+    );
+
+    if (!adherent) {
+      res.status(404).json({ message: "Utilisateur non trouvé dans la table 'Adhérents'" });
+      return;
+    }
+
+    // Rechercher les informations dans la table AdhérentsAbonnés correspondant à cet email
+    const adherentAbonne = dbData.AdhérentsAbonnés.find(
+      (a: any) => a.adresse_mail?.toLowerCase() === (email as string).toLowerCase()
+    );
+
+    if (!adherentAbonne) {
+      res.status(404).json({ message: "Aucune donnée trouvée dans 'AdhérentsAbonnés' pour cet email" });
+      return;
+    }
+
+    // Retourner les données de l'AdhérentsAbonnés
+    res.status(200).json(adherentAbonne);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des informations de l\'AdhérentsAbonnés :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur', error: error instanceof Error ? error.message : 'Erreur inconnue' });
+  }
+});
+
+app.get('/api/adherents', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { username } = req.query;
+
+    if (!username) {
+      res.status(400).json({ message: 'Username est requis' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const adherent = dbData.Adhérents.find(
+      (a: any) => a.name.toLowerCase() === (username as string).toLowerCase()
+    );
+
+    if (!adherent) {
+      res.status(404).json({ message: "Utilisateur non trouvé" });
+      return;
+    }
+
+    res.status(200).json({ email: adherent.email });
+  } catch (error) {
+    console.error('Erreur lors de la récupération de l\'adresse e-mail :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
+
+
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {
   res.status(200).json({ message: 'Bienvenue sur l’API.' });
