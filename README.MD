@@ -14,7 +14,6 @@ Reste à faire partie FRONT :
 
 
 
-
 Reste à faire BACK :
 - lié la page profil avec la BDD
 - créer route API validation inscription

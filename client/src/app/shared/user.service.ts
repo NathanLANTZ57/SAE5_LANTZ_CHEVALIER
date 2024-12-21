@@ -5,17 +5,38 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  private usernameSource = new BehaviorSubject<string>(''); // Gestion du nom d'utilisateur
-  private loggedInSource = new BehaviorSubject<boolean>(false); // Gestion de l'état de connexion
+  // Source pour stocker l'adresse e-mail de l'utilisateur connecté
+  private usernameSource = new BehaviorSubject<string>(''); 
+  // Source pour stocker l'état de connexion (connecté/déconnecté)
+  private loggedInSource = new BehaviorSubject<boolean>(false);
 
-  currentUsername = this.usernameSource.asObservable(); // Observable pour le nom d'utilisateur
-  isLoggedIn$ = this.loggedInSource.asObservable(); // Observable pour l'état de connexion
+  // Observables exposés
+  currentUsername = this.usernameSource.asObservable(); 
+  isLoggedIn$ = this.loggedInSource.asObservable();
 
-  setUsername(username: string): void {
-    this.usernameSource.next(username); // Met à jour le nom d'utilisateur
+  // Met à jour l'adresse e-mail de l'utilisateur
+  setUsername(email: string): void {
+    this.usernameSource.next(email);
   }
 
+  // Récupère l'adresse e-mail de l'utilisateur connecté
+  getUsername(): string {
+    return this.usernameSource.getValue(); // Retourne la valeur actuelle
+  }
+
+  // Met à jour l'état de connexion (connecté/déconnecté)
   setLoggedIn(status: boolean): void {
-    this.loggedInSource.next(status); // Met à jour l'état de connexion
+    this.loggedInSource.next(status);
+  }
+
+  // Vérifie si l'utilisateur est actuellement connecté
+  isLoggedIn(): boolean {
+    return this.loggedInSource.getValue(); // Retourne la valeur actuelle
+  }
+
+  // Réinitialise les données utilisateur (lors de la déconnexion)
+  clearUserData(): void {
+    this.usernameSource.next('');
+    this.loggedInSource.next(false);
   }
 }

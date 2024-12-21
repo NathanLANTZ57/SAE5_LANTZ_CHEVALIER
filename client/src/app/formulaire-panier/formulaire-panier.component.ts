@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdherentDataService } from '../shared/adherent-data.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-formulaire-panier',
@@ -16,10 +17,21 @@ export class FormulairePanierComponent implements OnInit {
   ville: string = '';
   codePostal: string = '';
 
-  constructor(private adherentDataService: AdherentDataService, private router: Router) {}
+  emailUtilisateur: string = ''; // Stockage de l'e-mail de l'utilisateur connecté
+
+  constructor(
+    private adherentDataService: AdherentDataService,
+    private router: Router,
+    private userService: UserService // Injection du service UserService
+  ) {}
 
   ngOnInit(): void {
-    // Charger les données sauvegardées si elles existent
+    // Récupérer l'e-mail de l'utilisateur connecté
+    this.userService.currentUsername.subscribe((email) => {
+      this.emailUtilisateur = email;
+    });
+
+    // Charger les données sauvegardées
     this.nom = this.adherentDataService.getData('nom') || '';
     this.prenom = this.adherentDataService.getData('prenom') || '';
     this.dateNaissance = this.adherentDataService.getData('dateNaissance') || '';
@@ -29,10 +41,15 @@ export class FormulairePanierComponent implements OnInit {
     this.codePostal = this.adherentDataService.getData('codePostal') || '';
   }
 
-  // Sauvegarder les données et naviguer vers la page suivante
   onNext(): void {
     if (!this.nom || !this.prenom || !this.dateNaissance || !this.email || !this.adresse || !this.ville || !this.codePostal) {
       alert('Veuillez remplir tous les champs obligatoires.');
+      return;
+    }
+
+    // Vérifier que l'e-mail correspond à celui de l'utilisateur connecté
+    if (this.email !== this.emailUtilisateur) {
+      alert('L\'adresse e-mail saisie ne correspond pas à celle utilisée lors de la connexion.');
       return;
     }
 
@@ -49,7 +66,6 @@ export class FormulairePanierComponent implements OnInit {
     this.router.navigate(['/app-formulaire-cotisation']);
   }
 
-  // Retourner à la page précédente
   onBack(): void {
     this.router.navigate(['/app-panier']);
   }

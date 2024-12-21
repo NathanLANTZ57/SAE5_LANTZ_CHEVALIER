@@ -7,12 +7,6 @@
       "email": "john.doe@example.com"
     },
     {
-      "id": 2,
-      "name": "Jane Doe",
-      "password": "securepassword",
-      "email": "jane.doe@example.com"
-    },
-    {
       "id": 3,
       "name": "Nathan Lantz",
       "password": "test",
@@ -59,28 +53,6 @@
   ],
   "AdhérentsAbonnés": [
     {
-      "Nom": "Doe",
-      "Prénom": "John",
-      "Date de naissance": "15/03/1985",
-      "Adresse mail": "john.doe@example.com",
-      "Adresse postale": "123 Main St",
-      "Ville": "Springfield",
-      "Code postal": "12345",
-      "Cotisation": 5,
-      "Don": 0,
-      "Formule panier légumes bio": "Simple6",
-      "Nb panier légumes bio": 1,
-      "Formule panier fruits bio": false,
-      "Nb panier fruits bio": 0,
-      "Formule boite oeufs bio": false,
-      "Nb panier oeufs bio": 0,
-      "Dépôt": true,
-      "Domicile": false,
-      "Formule payement": "Mensuel",
-      "IBAN": "FR76 1234 5678 9012 3456 7890 123",
-      "BIC": "ABCDEFGHXXX"
-    },
-    {
       "id": null,
       "Nom": "Smith",
       "Prénom": "Alice",
@@ -124,6 +96,29 @@
       "domicile": true,
       "formule_payement": "Annuel",
       "iban": "FR7784",
+      "bic": "HGFEDCBAXXX"
+    },
+    {
+      "id": 2,
+      "nom": "Doe",
+      "prenom": "John",
+      "date_naissance": "1992-04-15",
+      "adresse_mail": "john.doe@example.com",
+      "adresse_postale": "5 B Lavalette",
+      "ville": "Abreschviller",
+      "code_postal": "57560",
+      "cotisation": 5,
+      "don": 0,
+      "formule_panier_legumes_bio": "simple-6",
+      "nb_panier_legumes_bio": 0,
+      "formule_panier_fruits_bio": false,
+      "nb_panier_fruits_bio": 0,
+      "formule_boite_oeufs_bio": false,
+      "nb_panier_oeufs_bio": 0,
+      "depot": false,
+      "domicile": true,
+      "formule_payement": "Trimestre",
+      "iban": "FR78451562",
       "bic": "HGFEDCBAXXX"
     }
   ]
