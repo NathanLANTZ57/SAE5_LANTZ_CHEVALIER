@@ -1,4 +1,50 @@
 {
+  "Fruits": [
+    {
+      "id": 1,
+      "categorie": "Tropical",
+      "nom": "Mangue",
+      "quantite": 50
+    },
+    {
+      "id": 2,
+      "categorie": "Agrume",
+      "nom": "Orange",
+      "quantite": 100
+    },
+    {
+      "id": 3,
+      "categorie": "Baie",
+      "nom": "Fraise",
+      "quantite": 30
+    }
+  ],
+  "Légumes": [
+    {
+      "id": 1,
+      "categorie": "Racine",
+      "nom": "Carotte",
+      "quantite": 200
+    },
+    {
+      "id": 2,
+      "categorie": "Feuille",
+      "nom": "Épinard",
+      "quantite": 75
+    },
+    {
+      "id": 3,
+      "categorie": "Solanacée",
+      "nom": "Tomate",
+      "quantite": 150
+    },
+    {
+      "id": 4,
+      "categorie": "test",
+      "nom": "aaaa",
+      "quantite": 20
+    }
+  ],
   "Adhérents": [
     {
       "id": 1,
