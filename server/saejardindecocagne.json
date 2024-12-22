@@ -17,6 +17,12 @@
       "name": "xavier",
       "password": "zuzu",
       "email": "xav@gmail.com"
+    },
+    {
+      "id": 5,
+      "name": "noemy",
+      "password": "noemy123",
+      "email": "noemychevalier@gmail.com"
     }
   ],
   "Employes": [
@@ -49,6 +55,12 @@
       "name": "noemy",
       "password": "titi",
       "email": "no@gmail.com"
+    },
+    {
+      "id": 6,
+      "name": "test",
+      "password": "test",
+      "email": "test@gmail.com"
     }
   ],
   "AdhérentsAbonnés": [
