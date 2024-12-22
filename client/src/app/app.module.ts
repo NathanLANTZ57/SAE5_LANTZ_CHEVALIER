@@ -32,6 +32,8 @@ import { ProfilReprogrammationTypePanierComponent } from './profil-reprogrammati
 import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogrammation-nombre-panier/profil-reprogrammation-nombre-panier.component';
 import { StockProduitsComponent } from './stock-produits/stock-produits.component';
 import { CommandeClientComponent } from './commande-client/commande-client.component';
+import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.component';
+import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { CommandeClientComponent } from './commande-client/commande-client.compo
     ProfilReprogrammationTypePanierComponent,
     ProfilReprogrammationNombrePanierComponent,
     StockProduitsComponent,
-    CommandeClientComponent
+    CommandeClientComponent,
+    FruitDeSaisonComponent,
+    LegumeDeSaisonComponent
   ],
   imports: [
     BrowserModule,
