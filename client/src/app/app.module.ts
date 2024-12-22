@@ -30,6 +30,8 @@ import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-dat
 import { ProfilReprogrammationPanierComponent } from './profil-reprogrammation-panier/profil-reprogrammation-panier.component';
 import { ProfilReprogrammationTypePanierComponent } from './profil-reprogrammation-type-panier/profil-reprogrammation-type-panier.component';
 import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogrammation-nombre-panier/profil-reprogrammation-nombre-panier.component';
+import { StockProduitsComponent } from './stock-produits/stock-produits.component';
+import { CommandeClientComponent } from './commande-client/commande-client.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogramma
     ProfilReprogrammationDateComponent,
     ProfilReprogrammationPanierComponent,
     ProfilReprogrammationTypePanierComponent,
-    ProfilReprogrammationNombrePanierComponent
+    ProfilReprogrammationNombrePanierComponent,
+    StockProduitsComponent,
+    CommandeClientComponent
   ],
   imports: [
     BrowserModule,

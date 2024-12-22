@@ -1,0 +1,84 @@
+<div class="containerProfil">
+    <div class="containerLogo">
+      <app-logo></app-logo>
+</div>
+  
+    <div class="imgEnTete">
+      <img src="assets/imgStocks.jpg" alt="Image stocks">
+    </div>
+  
+    <div class="title">
+      <p>Les stocks du mois</p>
+    </div>
+  
+    <div class="addButton boutonAjout">
+      <button (click)="openModal()">Ajouter un produit</button>
+    </div>
+  
+    <div class="stocksProduits">
+        <p>> Légumes</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Catégorie</th>
+            <th>Légume</th>
+            <th>Quantité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let legume of legumes">
+            <td>{{ legume.categorie }}</td>
+            <td>{{ legume.nom }}</td>
+            <td>{{ legume.quantite }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <p>> Fruits</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Catégorie</th>
+                    <th>Fruit</th>
+                    <th>Quantité</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fruit of fruits">
+                    <td>{{ fruit.categorie }}</td>
+                    <td>{{ fruit.nom }}</td>
+                    <td>{{ fruit.quantite }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+    <div class="modal-container" [class.show]="isModalOpen">
+        <div class="modal-content">
+            <h2>Ajouter un produit</h2>
+            <div class="modal-body">
+                <label for="type">Type de produit :</label>
+                <select id="type" [(ngModel)]="newProduit.type">
+                    <option value="fruit">Fruit</option>
+                    <option value="legume">Légume</option>
+                </select>
+    
+                <label for="categorie">Catégorie :</label>
+                <input id="categorie" [(ngModel)]="newProduit.categorie" type="text" />
+    
+                <label for="nom">Nom :</label>
+                <input id="nom" [(ngModel)]="newProduit.nom" type="text" />
+    
+                <label for="quantite">Quantité :</label>
+                <input id="quantite" [(ngModel)]="newProduit.quantite" type="number" />
+            </div>
+            <div class="modal-buttons">
+                <button (click)="addProduit()">Ajouter</button>
+                <button (click)="closeModal()">Annuler</button>
+            </div>
+        </div>
+    </div>
+    
+
+  

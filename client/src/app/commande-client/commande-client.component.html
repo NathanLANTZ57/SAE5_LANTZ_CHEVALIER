@@ -1,0 +1,149 @@
+<body>
+    <div class="containerCommande">
+        <app-logo></app-logo>
+
+        <div class="imgEnTete">
+            <img src="assets/imgCommande.jpg" alt="Image Commande">
+        </div>
+
+        <div class="titre">
+            <p>Les commandes</p>
+        </div>
+    </div>
+
+    <div class="commandeAVenir">
+        <h3>Point de dépôts</h3>
+        <div class="commande-box-container">
+            <div *ngFor="let commande of commandesAVenir" class="commande-box">
+                <div class="jour">
+                    <p>{{ commande.jour }}</p>
+                </div>
+
+                <div class="contenuCommande">
+                    <p><strong>Client :</strong> {{ commande.client }}</p>
+                    <p><strong>Produit :</strong> {{ commande.produit }}</p>
+                    <p><strong>Type d'abonnement:</strong> {{ commande.type_abon }}</p>
+                    <p><strong>Date :</strong> {{ commande.date }}</p>
+                </div>
+                <button>Valider</button>
+            </div>
+            
+        </div>
+    </div>
+
+ 
+
+    <div class="commandeAVenir">
+        <h3>A domicile</h3>
+        <div class="commande-box-container">
+            <div *ngFor="let commande of commandesAVenir" class="commande-box">
+                <div class="jour">
+                    <p>{{ commande.jour }}</p>
+                </div>
+                <div class="contenuCommande">
+                    <p><strong>Client :</strong> {{ commande.client }}</p>
+                    <p><strong>Produit :</strong> {{ commande.produit }}</p>
+                    <p><strong>Type d'abonnement:</strong> {{ commande.type_abon }}</p>
+                    <p><strong>Date :</strong> {{ commande.date }}</p>
+                </div>
+                <button>Valider</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="commandeReprogramme">
+        <h3>Commandes reprogrammées</h3>
+        <div class="commande-box-container">
+            <div *ngFor="let commande of commandesReprogrammees" class="commande-box-reprogrammed">
+                <div class="jour">
+                    <p>{{ commande.jour }}</p>
+                </div>
+                <div class="contenuCommande">
+                    <p><strong>Client :</strong> {{ commande.client }}</p>
+                    <p><strong>Produit :</strong> {{ commande.produit }}</p>
+                    <p><strong>Type d'abonnement:</strong> {{ commande.type_abon }}</p>
+                    <p><strong>Nouvelle date :</strong> {{ commande.nouvelleDate }}</p>
+                </div>
+                <button>Valider</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="commandeDivers">
+        <h3>Autres commandes</h3>
+        <div class="btnAjout">
+            <button (click)="openModal()">Ajouter une commande</button>
+        </div>
+        
+        <div class="commande-box-container">
+            <div *ngFor="let commande of commandesAutres" class="commande-box-autres">
+                <div class="jour">
+                    <p>{{ commande.jour }}</p>
+                </div>
+                <div class="contenuCommande">
+                    <p><strong>Client :</strong> {{ commande.client }}</p>
+                    <p><strong>Lieu :</strong> {{ commande.client }}</p>
+                    <p><strong>Produit :</strong> {{ commande.produit }}</p>
+                    <p><strong>Type d'abonnement:</strong> {{ commande.type_abon }}</p>
+                    <p><strong>Nouvelle date :</strong> {{ commande.nouvelleDate }}</p>
+                </div>
+                <button>Valider</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modale pour ajouter une commande -->
+<div *ngIf="isModalOpen" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Ajouter une commande</h2>
+        </div>
+
+        <form (ngSubmit)="addCommande()">
+            <div class="form-group">
+                <label for="client">Client :</label>
+                <input type="text" id="client" [(ngModel)]="newCommande.client" name="client" required>
+            </div>
+
+            <div class="form-group">
+                <label for="produit">Produit :</label>
+                <input type="text" id="produit" [(ngModel)]="newCommande.produit" name="produit" required>
+            </div>
+
+            <div class="form-group">
+                <label for="typeAbonnement">Lieu :</label>
+                <input type="text" id="typeAbonnement" [(ngModel)]="newCommande.lieu" name="typeAbonnement" required>
+            </div>
+
+            <div class="form-group">
+                <label for="typeAbonnement">Type d'abonnement :</label>
+                <input type="text" id="typeAbonnement" [(ngModel)]="newCommande.type_abon" name="typeAbonnement" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lieu">Type de société :</label>
+                <select id="lieu" [(ngModel)]="newCommande.societe" name="lieu" required>
+                    <option value="" disabled selected>Choisissez le type de société</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="cantine">Cantine</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date :</label>
+                <input type="date" id="date" [(ngModel)]="newCommande.date" name="date" required>
+            </div>
+
+            <div class="modal-buttons">
+                <button (click)="addCommande()">Ajouter</button>
+                <button (click)="closeModal()">Annuler</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
