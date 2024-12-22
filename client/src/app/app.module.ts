@@ -30,8 +30,6 @@ import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-dat
 import { ProfilReprogrammationPanierComponent } from './profil-reprogrammation-panier/profil-reprogrammation-panier.component';
 import { ProfilReprogrammationTypePanierComponent } from './profil-reprogrammation-type-panier/profil-reprogrammation-type-panier.component';
 import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogrammation-nombre-panier/profil-reprogrammation-nombre-panier.component';
-import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.component';
-import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.component';
 
 @NgModule({
   declarations: [
@@ -59,9 +57,7 @@ import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.compon
     ProfilReprogrammationDateComponent,
     ProfilReprogrammationPanierComponent,
     ProfilReprogrammationTypePanierComponent,
-    ProfilReprogrammationNombrePanierComponent,
-    LegumeDeSaisonComponent,
-    FruitDeSaisonComponent
+    ProfilReprogrammationNombrePanierComponent
   ],
   imports: [
     BrowserModule,

@@ -1,65 +1,71 @@
 <body>
-    <div class="containerPanier">
-        <app-sidebar></app-sidebar>
+  <div class="containerPanier">
+    <app-sidebar></app-sidebar>
 
-        <div class="contentPanier">
-            <app-logo></app-logo>
+    <div class="contentPanier">
+      <app-logo></app-logo>
 
-            <div class="imgEnTete">
-                <img src="assets/formulaire_panier.jpg" alt="Accueil">
-            </div>
-        </div>
-        <p>Je souhaite être livré(e) : (voir liste des lieux de livraison <a href="./assets/fichierdepots.png" class="link">ci-joint</a>)</p>
-
-        <div class="deliveryOptions">
-        
-            <div class="option">
-                <label for="depot">Dépôt</label>
-                <input type="text" id="depot" name="depot" placeholder="">
-            </div>
-            <div class="numeroDepot">
-                <p>Merci d'indiquer dans la zone de texte, le numéro de votre dépôt. </p>
-            </div>
-        
-            <div class="option">
-                <label for="domicile">Domicile</label>
-                <input type="checkbox" id="domicile" name="domicile">
-            </div>
-
-            <div class="buttons">
-                <a 
-                    class="btn retour" 
-                    routerLink="/app-formulaire-choix"
-                    routerLinkActive="active"
-                    aria-current="page">
-                    <span>Retour</span>
-                </a>
-                <a 
-                    class="btn suivant" 
-                    routerLink="/app-formulaire-mode-paiement"
-                    routerLinkActive="active"
-                    aria-current="page">
-                    <span>Suivant</span>
-                </a>
-            </div> 
-            
-            <div class="boutons">
-                <a 
-                class="btn semaine" 
-                routerLink="/app-formulaire-semaine-livraison"
-                routerLinkActive="active"
-                aria-current="page">
-                <span>Retour aux choix des semaines</span>
-            </a>
-            </div>
-        </div>
+      <div class="imgEnTete">
+        <img src="assets/formulaire_panier.jpg" alt="Accueil">
+      </div>
     </div>
+
+    <p>Je souhaite être livré(e) : (voir liste des lieux de livraison <a href="./assets/fichierdepots.png" class="link">ci-joint</a>)</p>
+
+    <div class="deliveryOptions">
+      <!-- Livraison par dépôt -->
+      <div class="option">
+        <label for="depot">Dépôt</label>
+        <input
+          type="text"
+          id="depot"
+          name="depot"
+          placeholder="Entrez le numéro de votre dépôt"
+          [(ngModel)]="depot"
+        />
+      </div>
+      <div class="numeroDepot">
+        <p>Merci d'indiquer dans la zone de texte, le numéro de votre dépôt.</p>
+      </div>
+
+      <!-- Livraison à domicile -->
+      <div class="option">
+        <label for="domicile">Domicile</label>
+        <input
+          type="checkbox"
+          id="domicile"
+          name="domicile"
+          [(ngModel)]="domicile"
+        />
+      </div>
+
+      <!-- Boutons navigation -->
+      <div class="buttons">
+        <a
+          class="btn retour"
+          (click)="onBack()"
+          aria-current="page"
+        >
+          <span>Retour</span>
+        </a>
+        <button
+          class="btn suivant"
+          (click)="onNext()"
+        >
+          <span>Suivant</span>
+        </button>
+      </div>
+
+      <!-- Lien vers les choix des semaines -->
+      <div class="boutons">
+        <a
+          class="btn semaine"
+          (click)="onChooseWeeks()"
+          aria-current="page"
+        >
+          <span>Retour aux choix des semaines</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </body>
-
-
-
-
-
-
-
-

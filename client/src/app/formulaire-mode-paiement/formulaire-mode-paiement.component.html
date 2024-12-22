@@ -1,48 +1,67 @@
 <body>
     <div class="containerPanier">
-        <app-sidebar></app-sidebar>
-
-        <div class="contentPanier">
-            <app-logo></app-logo>
-
-            <div class="imgEnTete">
-                <img src="assets/formulaire_panier.jpg" alt="Accueil">
-            </div>
+      <app-sidebar></app-sidebar>
+  
+      <div class="contentPanier">
+        <app-logo></app-logo>
+  
+        <div class="imgEnTete">
+          <img src="assets/formulaire_panier.jpg" alt="Accueil">
         </div>
-        <p>Choisissez votre formule de payement : <i>(les règlements se font par prélèvement automatique)</i></p>
-
-
-        <div class="subscriptionOptions">
-            <div class="option">
-                <label for="annuel">Annuel</label>
-                <input type="checkbox" id="annuel" name="annuel">
-            </div>
-            <div class="option">
-                <label for="trimestre">Trimestre</label>
-                <input type="checkbox" id="trimestre" name="trimestre">
-            </div>
-            <div class="option">
-                <label for="mensuel">Mensuel</label>
-                <input type="checkbox" id="mensuel" name="mensuel">
-            </div>
+      </div>
+  
+      <p>
+        Choisissez votre formule de paiement : <i>(les règlements se font par prélèvement automatique)</i>
+      </p>
+  
+      <div class="subscriptionOptions">
+        <div class="option">
+          <label for="annuel">Annuel</label>
+          <input
+            type="radio"
+            id="annuel"
+            name="paiementOption"
+            [(ngModel)]="paiementOption"
+            value="Annuel"
+          />
         </div>
-
-        <div class="buttons">
-            <a 
-                class="btn retour" 
-                routerLink="/app-formulaire-mode-livraison"
-                routerLinkActive="active"
-                aria-current="page">
-                <span>Retour</span>
-            </a>
-            <a 
-                class="btn suivant" 
-                routerLink="/app-formulaire-iban"
-                routerLinkActive="active"
-                aria-current="page">
-                <span>Suivant</span>
-            </a>
-        </div> 
-        
+        <div class="option">
+          <label for="trimestre">Trimestre</label>
+          <input
+            type="radio"
+            id="trimestre"
+            name="paiementOption"
+            [(ngModel)]="paiementOption"
+            value="Trimestre"
+          />
+        </div>
+        <div class="option">
+          <label for="mensuel">Mensuel</label>
+          <input
+            type="radio"
+            id="mensuel"
+            name="paiementOption"
+            [(ngModel)]="paiementOption"
+            value="Mensuel"
+          />
+        </div>
+      </div>
+  
+      <div class="buttons">
+        <a
+          class="btn retour"
+          (click)="onBack()"
+          aria-current="page"
+        >
+          <span>Retour</span>
+        </a>
+        <button
+          class="btn suivant"
+          (click)="onNext()"
+        >
+          <span>Suivant</span>
+        </button>
+      </div>
     </div>
-</body>
+  </body>
+  

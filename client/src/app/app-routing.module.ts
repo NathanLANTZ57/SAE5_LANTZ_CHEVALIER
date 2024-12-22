@@ -17,8 +17,13 @@ import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-dat
 import { ProfilReprogrammationPanierComponent } from './profil-reprogrammation-panier/profil-reprogrammation-panier.component';
 import { ProfilReprogrammationTypePanierComponent } from './profil-reprogrammation-type-panier/profil-reprogrammation-type-panier.component';
 import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogrammation-nombre-panier/profil-reprogrammation-nombre-panier.component';
+<<<<<<< HEAD
 import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.component';
 import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.component';
+=======
+import { StockProduitsComponent } from './stock-produits/stock-produits.component';
+import { CommandeClientComponent } from './commande-client/commande-client.component';
+>>>>>>> master
 
 
 const routes: Routes = [
@@ -40,7 +45,9 @@ const routes: Routes = [
   { path: 'app-profil-reprogrammation-date', component: ProfilReprogrammationDateComponent},
   { path: 'app-profil-reprogrammation-panier', component: ProfilReprogrammationPanierComponent},
   { path :'app-profil-reprogrammation-type-panier', component: ProfilReprogrammationTypePanierComponent},
-  { path: 'app-profil-reprogrammation-nombre-panier', component: ProfilReprogrammationNombrePanierComponent}
+  { path: 'app-profil-reprogrammation-nombre-panier', component: ProfilReprogrammationNombrePanierComponent},
+  { path: 'stocks-produits', component: StockProduitsComponent},
+  { path: 'commande-client', component: CommandeClientComponent}
 ];
 
 

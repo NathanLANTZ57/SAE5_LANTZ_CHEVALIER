@@ -1,3 +1,6 @@
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+
 .titre {
     margin-top: 5vw;
     margin-left: 52vh;
@@ -5,4 +8,14 @@
     font-weight: bold;
     font-family: 'Literata';
     margin-bottom: 5vw;
+}
+
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 30vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
 }
