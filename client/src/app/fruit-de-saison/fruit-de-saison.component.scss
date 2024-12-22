@@ -1,0 +1,54 @@
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+$accent-color: #5C8F36;
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 32vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 44vh;
+}
+
+.titre {
+    margin-top: 5vw;
+    margin-left: 45vh;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Literata';
+}
+
+.explication {
+    margin-left: 47vh;
+    max-width: 125vh;
+    font-size: 18px;
+    font-family: 'Arima';
+    text-align: justify;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 50px 0;
+    font-family: 'Arima';
+    font-size: 18px;
+    margin-left: 28%;
+}
+
+table,
+th,
+td {
+    border: 1px solid #A1A1A1;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+td img {
+    width: 30px;
+    vertical-align: middle;
+    margin-left: 2vh;
+}
