@@ -1,8 +1,9 @@
 .calendar-container {
+    position: relative; /* Pour que les flèches soient positionnées par rapport au calendrier */
     border: 2px solid #A1A1A1;
     padding: 2%;
     width: 100%;
-    margin-left: 52vh;
+    margin-left: 25%;
     max-width: 55%;
     border-radius: 0.5%;
 }
@@ -130,24 +131,23 @@
 
 .arrow {
     position: absolute;
-    top: 75%;
-    transform: translateY(-50%);
+    top: 59%; /* Aligne verticalement les flèches */
+    transform: translateY(-50%); /* Corrige la position verticale */
     background: none;
     border: none;
     font-size: 45px;
     cursor: pointer;
-    padding: 0 8px;
     z-index: 10;
 }
-  
+
 .arrow.left {
-    left: 55vh; 
+    left: 2%; /* Positionne la flèche gauche près du bord gauche */
 }
-  
+
 .arrow.right {
-    right: 35vh; 
+    right: 2%; /* Positionne la flèche droite près du bord droit */
 }
- 
+
 .empty {
     visibility: hidden; 
 }

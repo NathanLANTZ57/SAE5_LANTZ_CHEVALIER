@@ -1,0 +1,246 @@
+/* Styles pour l'image en-tête */
+.imgEnTete img {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    width: 135vh;
+    height: 30vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
+}
+
+/* Titre principal */
+.titre {
+    margin-top: 5vw;
+    margin-left: 45vh;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Literata';
+}
+
+/* Conteneur pour les sections */
+.commandeAVenir,
+.commandeReprogramme,
+.commandeDivers {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement vertical entre les éléments */
+    margin-left: 17%;
+}
+
+.commandeAVenir h3,
+.commandeReprogramme h3,
+.commandeDivers h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: 'Lustria';
+    margin-left: 10%;
+}
+
+/* Conteneur pour les boîtes */
+.commande-box-container {
+    display: flex;
+    flex-wrap: wrap; /* Retour à la ligne si nécessaire */
+    gap: 20px; /* Espacement entre les boîtes */
+}
+
+/* Style commun pour toutes les boîtes */
+.commande-box,
+.commande-box-reprogrammed,
+.commande-box-autres {
+    border: 1px solid #a1a1a1;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre uniforme */
+    background-color: #fff;
+    flex: 1 1 calc(30% - 20px); /* Largeur adaptative */
+    box-sizing: border-box;
+    max-width: 30%; /* Largeur maximale pour chaque boîte */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.commande-box:last-child,
+.commande-box-reprogrammed,
+.commande-box-autres{
+    margin-bottom: 15%;
+}
+
+.commande-box:hover,
+.commande-box-reprogrammed:hover,
+.commande-box-autres:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style spécifique pour les commandes reprogrammées */
+.commande-box-reprogrammed {
+    border-color: #c96565;
+    background-color: #ffe5e5;
+}
+
+/* Entête (jour) commun pour toutes les boîtes */
+.commande-box .jour,
+.commande-box-autres .jour {
+    background-color: #eeeef9;
+    padding: 10px 22px;
+    display: flex;
+    justify-content: center; /* Centré horizontalement */
+    align-items: center; /* Centré verticalement */
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Arima';
+    font-size: 16px;
+    margin-bottom: 9%;
+    color: #000;
+}
+
+.commande-box-reprogrammed .jour {
+    background-color: #32344a;
+    padding: 10px 22px;
+    display: flex;
+    justify-content: center; /* Centré horizontalement */
+    align-items: center; /* Centré verticalement */
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Arima';
+    font-size: 16px;
+    margin-bottom: 9%;
+    color: white;
+}
+
+/* Contenu de la commande */
+.contenuCommande p {
+    margin: 5px 0;
+    font-family: 'Arima';
+    font-size: 14px;
+}
+
+/* Boutons uniformisés */
+.commande-box-container button {
+    background-color: #9594FC;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Arima';
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: auto; /* Aligne le bouton à droite */
+    display: block;
+}
+
+.commande-box-container button:hover {
+    background-color: #25243d;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+
+.commandeDivers .btnAjout button {
+    margin-left: 69%;
+    padding: 10px 20px;
+    background-color: #F2BD67;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Lustria';
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+
+.commandeDivers .btnAjout button:hover {
+    background-color: #402f17;
+    color: #fff;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+.modal-content h2 {
+    background-color: #B1D9B7; /* Vert doux */
+    font-family: 'Josefin Slab';
+    color: #2F5232; /* Vert foncé pour le texte */
+    padding: 40px 40px; /* Augmente le rembourrage pour un espace plus généreux */
+    text-align: center;
+    font-size: 27px;
+    border-radius: 12px; /* Légèrement arrondi pour un effet plus doux */
+    margin-bottom: 20px; /* Plus d'espace en dessous */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
+    border: 2px solid #A3C9A8; /* Ajoute une bordure plus définie */
+}
+
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+    background-color: #4BB377;
+    color: white;
+}
+
+.modal-buttons button:last-child {
+    background-color: #ccc;
+    color: black;
+}
