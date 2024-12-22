@@ -33,6 +33,7 @@ import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogramma
 import { StockProduitsComponent } from './stock-produits/stock-produits.component';
 import { CommandeClientComponent } from './commande-client/commande-client.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
