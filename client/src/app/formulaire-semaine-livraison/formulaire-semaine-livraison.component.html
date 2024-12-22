@@ -1,66 +1,59 @@
 <body>
-    <div class="containerPanier">
-        <app-sidebar></app-sidebar>
+  <div class="containerPanier">
+    <app-sidebar></app-sidebar>
 
-        <div class="contentPanier">
-            <app-logo></app-logo>
+    <div class="contentPanier">
+      <app-logo></app-logo>
 
-            <div class="imgEnTete">
-                <img src="assets/formulaire_panier.jpg" alt="Accueil">
-            </div>
-            <p>Merci de sélectionner les cases correspondant aux semaines pendant lesquelles vous souhaitez être
-                livré(e) en paniers fruits.</p>
-        </div>
-
-        <div class="calendar-container">
-            <h1>{{ year }}</h1>
-            <p>
-                Semaines
-            </p>
-
-            <hr>
-            <table class="calendar-table">
-              <thead>
-                <tr>
-                  <th *ngFor="let month of months">{{ month }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Maximum 5 semaines par mois -->
-                <tr *ngFor="let row of [0, 1, 2, 3, 4]">
-                  <td
-                    *ngFor="let monthWeeks of weeks"
-                    [class.selected]="isSelected(monthWeeks[row])"
-                    [class.disabled]="isDisabled(monthWeeks[row])"
-                    (click)="toggleSelection(monthWeeks[row])"
-                  >
-                  <span *ngIf="monthWeeks[row] !== null && monthWeeks[row] !== 0">
-                    {{ monthWeeks[row] }}
-                  </span>
-                  
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="buttons">
-            <a 
-                class="btn retour" 
-                routerLink="/app-formulaire-choix"
-                routerLinkActive="active"
-                aria-current="page">
-                <span>Retour</span>
-            </a>
-            <a 
-                class="btn suivant" 
-                routerLink="/app-formulaire-mode-livraison"
-                routerLinkActive="active"
-                aria-current="page">
-                <span>Suivant</span>
-            </a>
-        </div>  
-            
-        
+      <div class="imgEnTete">
+        <img src="assets/formulaire_panier.jpg" alt="Accueil">
+      </div>
+      <p>Merci de sélectionner les cases correspondant aux semaines pendant lesquelles vous souhaitez être livré(e) en paniers fruits.</p>
     </div>
+
+    <div class="calendar-container">
+      <h1>{{ year }}</h1>
+      <p>Semaines</p>
+
+      <hr>
+      <table class="calendar-table">
+        <thead>
+          <tr>
+            <th *ngFor="let month of months">{{ month }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Maximum 5 semaines par mois -->
+          <tr *ngFor="let row of [0, 1, 2, 3, 4]">
+            <td
+              *ngFor="let monthWeeks of weeks"
+              [class.selected]="isSelected(monthWeeks[row])"
+              [class.disabled]="isDisabled(monthWeeks[row])"
+              (click)="toggleSelection(monthWeeks[row])"
+            >
+              <span *ngIf="monthWeeks[row] !== null && monthWeeks[row] !== 0">
+                {{ monthWeeks[row] }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="buttons">
+      <a
+        class="btn retour"
+        (click)="onBack()"
+        aria-current="page"
+      >
+        <span>Retour</span>
+      </a>
+      <button
+        class="btn suivant"
+        (click)="onNext()"
+      >
+        <span>Suivant</span>
+      </button>
+    </div>
+  </div>
 </body>

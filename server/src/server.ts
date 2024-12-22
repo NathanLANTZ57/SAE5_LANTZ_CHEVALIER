@@ -255,6 +255,167 @@ app.post('/api/login/employe/connect', async (req: Request, res: Response): Prom
   }
 });
 
+// Route pour enregistrer un nouvel AdhérentsAbonnés
+app.post('/api/register/adherentsabonne', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {
+      nom,
+      prenom,
+      date_naissance,
+      adresse_mail,
+      adresse_postale,
+      ville,
+      code_postal,
+      cotisation,
+      don,
+      formule_panier_legumes_bio,
+      nb_panier_legumes_bio,
+      formule_panier_fruits_bio,
+      nb_panier_fruits_bio,
+      formule_boite_oeufs_bio,
+      nb_panier_oeufs_bio,
+      depot,
+      domicile,
+      formule_payement,
+      iban,
+      bic,
+    } = req.body;
+
+    // Log des données reçues pour le debug
+    console.log('Données reçues pour la création d\'un abonné :', req.body);
+
+    // Validation des champs obligatoires
+    if (!nom || !prenom || !adresse_mail || !cotisation) {
+      res.status(400).json({
+        message: 'Champs obligatoires manquants ou invalides. Veuillez vérifier vos données.',
+      });
+      return;
+    }
+
+    // Lire la base de données JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Vérifier si l'email existe déjà
+    const existingAbonne = dbData.AdhérentsAbonnés?.find((abonne: any) => abonne.adresse_mail === adresse_mail);
+    if (existingAbonne) {
+      res.status(409).json({ message: 'Un abonné avec cet email existe déjà.' });
+      return;
+    }
+
+    // Ajouter un nouvel AdhérentAbonné
+    const newAbonne = {
+      id: dbData.AdhérentsAbonnés?.length ? dbData.AdhérentsAbonnés[dbData.AdhérentsAbonnés.length - 1].id + 1 : 1,
+      nom,
+      prenom,
+      date_naissance,
+      adresse_mail,
+      adresse_postale,
+      ville,
+      code_postal,
+      cotisation,
+      don: don || 0,
+      formule_panier_legumes_bio: formule_panier_legumes_bio || false,
+      nb_panier_legumes_bio: nb_panier_legumes_bio || 0,
+      formule_panier_fruits_bio: formule_panier_fruits_bio || false,
+      nb_panier_fruits_bio: nb_panier_fruits_bio || 0,
+      formule_boite_oeufs_bio: formule_boite_oeufs_bio || false,
+      nb_panier_oeufs_bio: nb_panier_oeufs_bio || 0,
+      depot: depot || false,
+      domicile: domicile || false,
+      formule_payement: formule_payement,
+      iban,
+      bic,
+    };
+
+    // Ajouter à la base de données
+    dbData.AdhérentsAbonnés = dbData.AdhérentsAbonnés || [];
+    dbData.AdhérentsAbonnés.push(newAbonne);
+
+    // Écrire dans le fichier JSON
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({
+      message: 'AdhérentAbonné enregistré avec succès.',
+      abonne: newAbonne,
+    });
+  } catch (error) {
+    console.error('Erreur interne du serveur :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour récupérer les informations de l'AdhérentsAbonnés en fonction de l'email de l'adhérent connecté
+app.get('/api/adherentsabonne', async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Récupérer l'email de l'utilisateur connecté (passé via une requête query)
+    const { email } = req.query;
+
+    if (!email) {
+      res.status(400).json({ message: 'Adresse email est requise' });
+      return;
+    }
+
+    // Lire les données du fichier JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Vérifier si l'email existe dans la table Adhérents
+    const adherent = dbData.Adhérents.find(
+      (a: any) => a.email.toLowerCase() === (email as string).toLowerCase()
+    );
+
+    if (!adherent) {
+      res.status(404).json({ message: "Utilisateur non trouvé dans la table 'Adhérents'" });
+      return;
+    }
+
+    // Rechercher les informations dans la table AdhérentsAbonnés correspondant à cet email
+    const adherentAbonne = dbData.AdhérentsAbonnés.find(
+      (a: any) => a.adresse_mail?.toLowerCase() === (email as string).toLowerCase()
+    );
+
+    if (!adherentAbonne) {
+      res.status(404).json({ message: "Aucune donnée trouvée dans 'AdhérentsAbonnés' pour cet email" });
+      return;
+    }
+
+    // Retourner les données de l'AdhérentsAbonnés
+    res.status(200).json(adherentAbonne);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des informations de l\'AdhérentsAbonnés :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur', error: error instanceof Error ? error.message : 'Erreur inconnue' });
+  }
+});
+
+app.get('/api/adherents', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { username } = req.query;
+
+    if (!username) {
+      res.status(400).json({ message: 'Username est requis' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const adherent = dbData.Adhérents.find(
+      (a: any) => a.name.toLowerCase() === (username as string).toLowerCase()
+    );
+
+    if (!adherent) {
+      res.status(404).json({ message: "Utilisateur non trouvé" });
+      return;
+    }
+
+    res.status(200).json({ email: adherent.email });
+  } catch (error) {
+    console.error('Erreur lors de la récupération de l\'adresse e-mail :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
+
 
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {
