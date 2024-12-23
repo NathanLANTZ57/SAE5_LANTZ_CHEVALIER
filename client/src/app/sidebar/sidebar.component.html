@@ -20,7 +20,7 @@
 
 
 
-    <a class="button"  routerLink="/inscription-admin" routerLinkActive="active"
+    <a class="button"  *ngIf="isLoggedIn && role === 'admin'" routerLink="/inscription-admin" routerLinkActive="active"
     ariaCurrentWhenActive="page">
     <img src="assets/inscription.png" alt="Inscription">
     <div class="faits" *ngIf="isSidebarOpen">
@@ -29,7 +29,7 @@
   </a>
 
 
-  <a class="button" routerLink="/paiement-admin" routerLinkActive="active"
+  <a class="button" *ngIf="isLoggedIn && role === 'admin'" routerLink="/paiement-admin" routerLinkActive="active"
     ariaCurrentWhenActive="page">
     <img src="assets/paiement.png" alt="Paiement">
     <div class="faits" *ngIf="isSidebarOpen">
