@@ -51,57 +51,49 @@ export class SidebarComponent implements OnInit {
   onLogin() {
     let apiUrl = '';
     let loginData: any = {};
-
-    // Déterminer l'URL de l'API et les données à envoyer selon le rôle sélectionné
+  
     if (this.role === 'adherent') {
       apiUrl = 'http://localhost:3000/api/login/adherent/connect';
-      loginData = { name: this.username, password: this.password }; // Utilise 'name' pour adherent
+      loginData = { name: this.username, password: this.password };
     } else if (this.role === 'employe') {
       apiUrl = 'http://localhost:3000/api/login/employe/connect';
-      loginData = { name: this.username, password: this.password }; // Utilise 'name' pour employe
+      loginData = { name: this.username, password: this.password };
     } else {
       apiUrl = 'http://localhost:3000/api/login/admin';
-      loginData = { username: this.username, password: this.password }; // Utilise 'username' pour admin
+      loginData = { username: this.username, password: this.password };
     }
-
+  
     this.http.post(apiUrl, loginData, { headers: { 'Content-Type': 'application/json' } })
       .subscribe(
         (response: any) => {
           console.log('Connexion réussie', response);
-
-          // Vérification du rôle dans la réponse de l'API
+  
           if (response.adherent) {
             alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Adhérent.`);
             this.isLoggedIn = true;
-            this.userService.setLoggedIn(true); // Ajout ici
-
-            // Mettre à jour le username dans le service après confirmation de la connexion réussie
-            this.userService.setUsername(this.username);
+            this.role = 'adherent';
           } else if (response.employe) {
             alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Employé.`);
             this.isLoggedIn = true;
-            this.userService.setLoggedIn(true); // Ajout ici
-
-            // Mettre à jour le username dans le service
-            this.userService.setUsername(this.username);
+            this.role = 'employe';
           } else if (response.admin) {
             alert(`Bienvenue, ${this.username}! Vous êtes connecté en tant qu'Administrateur.`);
             this.isLoggedIn = true;
-            this.userService.setLoggedIn(true); // Ajout ici
-
-            // Mettre à jour le username dans le service
-            this.userService.setUsername(this.username);
+            this.role = 'admin';
           }
-
+  
+          // Marquer la connexion comme réussie dans le service
+          this.userService.setLoggedIn(this.isLoggedIn);
+          this.userService.setUsername(this.username);
+  
           // Réinitialiser le formulaire après connexion
           this.closeModal();
           this.username = ''; // Réinitialisé après avoir été stocké dans le service
           this.password = '';
-          this.role = '';
         },
         error => {
           console.error('Erreur de connexion', error);
-
+  
           if (error.status === 401) {
             alert('Nom ou mot de passe incorrect.');
           } else {
@@ -109,23 +101,16 @@ export class SidebarComponent implements OnInit {
           }
         }
       );
-  }
+  }  
 
   onLogout(): void {
     this.isLoggedIn = false;
-  
-    // Mettre à jour l'état de connexion global dans UserService
+    this.role = ''; // Réinitialisation du rôle
     this.userService.setLoggedIn(false);
-  
-    // Réinitialiser le username dans le service
     this.userService.setUsername('');
-
-    // Redirection vers la page d'accueil
-    this.router.navigate(['/']); // Redirige vers l'accueil
-  
+    this.router.navigate(['/']);
     alert('Déconnexion réussie.');
   }
-  
 
   // Méthodes pour l'inscription
   openSignupModal() {

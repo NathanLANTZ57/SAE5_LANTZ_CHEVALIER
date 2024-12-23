@@ -416,6 +416,121 @@ app.get('/api/adherents', async (req: Request, res: Response): Promise<void> => 
   }
 });
 
+// Route pour ajouter un fruit
+app.post('/api/fruits', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { categorie, nom, quantite } = req.body;
+
+    // Validation des données reçues
+    if (!categorie || !nom || quantite === undefined) {
+      res.status(400).json({ message: 'Tous les champs sont requis : catégorie, nom, quantité.' });
+      return;
+    }
+
+    // Lire la base de données JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Ajouter le nouvel élément
+    const newFruit = {
+      id: dbData.Fruits.length ? dbData.Fruits[dbData.Fruits.length - 1].id + 1 : 1,
+      categorie,
+      nom,
+      quantite,
+    };
+
+    dbData.Fruits.push(newFruit);
+
+    // Écrire les modifications dans le fichier JSON
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({
+      message: 'Fruit ajouté avec succès.',
+      fruit: newFruit,
+    });
+  } catch (error) {
+    console.error('Erreur interne du serveur :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour ajouter un légume
+app.post('/api/legumes', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { categorie, nom, quantite } = req.body;
+
+    // Validation des données reçues
+    if (!categorie || !nom || quantite === undefined) {
+      res.status(400).json({ message: 'Tous les champs sont requis : catégorie, nom, quantité.' });
+      return;
+    }
+
+    // Lire la base de données JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Ajouter le nouvel élément
+    const newLegume = {
+      id: dbData.Légumes.length ? dbData.Légumes[dbData.Légumes.length - 1].id + 1 : 1,
+      categorie,
+      nom,
+      quantite,
+    };
+
+    dbData.Légumes.push(newLegume);
+
+    // Écrire les modifications dans le fichier JSON
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({
+      message: 'Légume ajouté avec succès.',
+      legume: newLegume,
+    });
+  } catch (error) {
+    console.error('Erreur interne du serveur :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour récupérer tous les fruits
+app.get('/api/fruits/afficher', async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Lire les données du fichier JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Retourner la liste des fruits
+    res.status(200).json(dbData.Fruits || []);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des fruits :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour récupérer tous les légumes
+app.get('/api/legumes/afficher', async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Lire les données du fichier JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Retourner la liste des légumes
+    res.status(200).json(dbData.Légumes || []);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des légumes :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+
 
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {

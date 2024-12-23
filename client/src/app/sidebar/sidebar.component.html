@@ -4,45 +4,28 @@
       <h2 class="menuTitle" *ngIf="!isSidebarOpen">{{ menuTitle }}</h2>
       <h2 class="menuTitleOuvert" *ngIf="isSidebarOpen">{{ menuTitleOuvert }}</h2>
 
-      <img 
-        class="fleche" 
-        [src]="isSidebarOpen ? 'assets/fleche_gauche.png' : 'assets/fleche_droite.png'"
-        (click)="toggleSidebar()" 
-        alt="Toggle Sidebar">
+      <img class="fleche" [src]="isSidebarOpen ? 'assets/fleche_gauche.png' : 'assets/fleche_droite.png'"
+        (click)="toggleSidebar()" alt="Toggle Sidebar">
     </div>
 
-    <img 
-      class="ligne_ouvert" 
-      [src]="isSidebarOpen ? 'assets/ligne_ouvert.png' : 'assets/ligne_ferme.png'" 
+    <img class="ligne_ouvert" [src]="isSidebarOpen ? 'assets/ligne_ouvert.png' : 'assets/ligne_ferme.png'"
       alt="Ligne blanche">
 
-    <a 
-      class="button" 
-      routerLink="/"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page">
+    <a class="button" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
       <img src="assets/accueil.png" alt="Accueil">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Accueil</p>
       </div>
     </a>
 
-    <a 
-      class="button" 
-      routerLink="/app-panier"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page">
+    <a class="button" routerLink="/app-panier" routerLinkActive="active" ariaCurrentWhenActive="page">
       <img src="assets/panier.png" alt="Panier">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Panier</p>
       </div>
     </a>
 
-    <a 
-      class="button" 
-      routerLink="/app-livraison"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page">
+    <a class="button" routerLink="/app-livraison" routerLinkActive="active" ariaCurrentWhenActive="page">
       <img src="assets/camion.png" alt="Livraison">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Livraison</p>
@@ -50,34 +33,25 @@
     </a>
 
 
-    <a 
-    class="button" 
-    routerLink="/stocks-produits"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page">
-    <img src="assets/stocks.png" alt="Stock">
-    <div class="faits" *ngIf="isSidebarOpen">
-      <p>Stock</p>
-    </div>
+    <a class="button" *ngIf="isLoggedIn && role === 'employe'" routerLink="/stocks-produits" routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+      <img src="assets/stocks.png" alt="Stock">
+      <div class="faits" *ngIf="isSidebarOpen">
+        <p>Stock</p>
+      </div>
     </a>
-    
-    <a 
-      class="button" 
-      routerLink="/commande-client"
-      routerLinkActive="active"
+
+    <a class="button" *ngIf="isLoggedIn && role === 'employe'" routerLink="/commande-client" routerLinkActive="active"
       ariaCurrentWhenActive="page">
       <img src="assets/commande.png" alt="Commande">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Commandes</p>
       </div>
     </a>
-  
 
-    <a 
-      class="button" 
-      routerLink="/faits-divers"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page">
+
+
+    <a class="button" routerLink="/faits-divers" routerLinkActive="active" ariaCurrentWhenActive="page">
       <img src="assets/faitsDivers.png" alt="Faits Divers">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Faits Divers</p>
@@ -85,11 +59,7 @@
     </a>
 
     <!-- Afficher le lien "Profil" uniquement si l'utilisateur est connecté -->
-    <a 
-      class="button" 
-      *ngIf="isLoggedIn"
-      routerLink="/app-profil-adherent"
-      routerLinkActive="active"
+    <a class="button" *ngIf="isLoggedIn" routerLink="/app-profil-adherent" routerLinkActive="active"
       ariaCurrentWhenActive="page">
       <img src="assets/pageprofil.png" alt="Profil">
       <div class="faits" *ngIf="isSidebarOpen">
@@ -106,7 +76,7 @@
 
   <div class="main-content">
     <router-outlet></router-outlet>
-  </div>  
+  </div>
 </div>
 
 <!-- Modale de Connexion -->
@@ -123,7 +93,7 @@
         <label for="username">Nom d'utilisateur</label>
         <input type="text" id="username" [(ngModel)]="username" name="username" required>
       </div>
-    
+
       <div class="form-group">
         <label for="password">Mot de passe</label>
         <input type="password" id="password" [(ngModel)]="password" name="password" required>
@@ -162,7 +132,7 @@
         <label for="signup-username">Nom d'utilisateur</label>
         <input type="text" id="signup-username" [(ngModel)]="signupUsername" name="signupUsername" required>
       </div>
-    
+
       <div class="form-group">
         <label for="signup-password">Mot de passe</label>
         <input type="password" id="signup-password" [(ngModel)]="signupPassword" name="signupPassword" required>
