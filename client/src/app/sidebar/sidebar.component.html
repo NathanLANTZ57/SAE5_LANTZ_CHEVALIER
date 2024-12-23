@@ -18,6 +18,25 @@
       </div>
     </a>
 
+
+
+    <a class="button"  routerLink="/inscription-admin" routerLinkActive="active"
+    ariaCurrentWhenActive="page">
+    <img src="assets/inscription.png" alt="Inscription">
+    <div class="faits" *ngIf="isSidebarOpen">
+      <p>Inscription</p>
+    </div>
+  </a>
+
+
+  <a class="button" routerLink="/paiement-admin" routerLinkActive="active"
+    ariaCurrentWhenActive="page">
+    <img src="assets/paiement.png" alt="Paiement">
+    <div class="faits" *ngIf="isSidebarOpen">
+      <p>Paiement</p>
+    </div>
+  </a>
+
     <a class="button" routerLink="/app-panier" routerLinkActive="active" ariaCurrentWhenActive="page">
       <img src="assets/panier.png" alt="Panier">
       <div class="faits" *ngIf="isSidebarOpen">
@@ -66,6 +85,10 @@
         <p>Profil</p>
       </div>
     </a>
+
+
+
+ 
 
     <div *ngIf="isSidebarOpen" class="deco">
       <p *ngIf="isLoggedIn" (click)="onLogout()">Déconnexion</p>

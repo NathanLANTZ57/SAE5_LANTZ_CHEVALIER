@@ -1,0 +1,112 @@
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 30vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
+}
+
+.titre {
+    margin-top: 5vw;
+    margin-left: 45vh;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Literata';
+}
+
+.containerInscriptionAdmin {
+    padding: 20px;
+}
+
+.table-container {
+    margin-top: 10%;
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: 50px 0;
+    font-family: 'Arima';
+    font-size: 18px;
+    margin-left: 21%;
+}
+
+th {
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid #A1A1A1;
+    padding: 12px;
+}
+
+td {
+    text-align: left;
+}
+
+.btn-validate {
+    background-color: #00ac4b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Arima';
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10%;
+    margin-left: 30%;
+}
+
+.btn-reject {
+    background-color: #4a0000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Arima';
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 30%;
+}
+
+.btn-validate:hover, .btn-reject:hover {
+    opacity: 0.9;
+}
+
+textarea.message-input {
+    width: 90%;
+    height: 60px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.btn-submit-message {
+    margin-top: 5%;
+    background-color: #141764;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Arima';
+    font-size: 14px;
+    margin-left: auto;
+    display: block;
+}
+
+img {
+    width: 20%;
+    height: auto;
+    margin-top: 0;
+}

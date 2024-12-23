@@ -34,6 +34,8 @@ import { StockProduitsComponent } from './stock-produits/stock-produits.componen
 import { CommandeClientComponent } from './commande-client/commande-client.component';
 import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.component';
 import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.component';
+import { InscriptionAdminComponent } from './inscription-admin/inscription-admin.component';
+import { PaiementAdminComponent } from './paiement-admin/paiement-admin.component';
 
 
 @NgModule({
@@ -66,7 +68,9 @@ import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.com
     StockProduitsComponent,
     CommandeClientComponent,
     FruitDeSaisonComponent,
-    LegumeDeSaisonComponent
+    LegumeDeSaisonComponent,
+    InscriptionAdminComponent,
+    PaiementAdminComponent
   ],
   imports: [
     BrowserModule,
