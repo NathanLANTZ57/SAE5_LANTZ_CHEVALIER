@@ -21,6 +21,8 @@ import { StockProduitsComponent } from './stock-produits/stock-produits.componen
 import { CommandeClientComponent } from './commande-client/commande-client.component';
 import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.component';
 import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.component';
+import { InscriptionAdminComponent } from './inscription-admin/inscription-admin.component';
+import { PaiementAdminComponent } from './paiement-admin/paiement-admin.component';
 
 
 const routes: Routes = [
@@ -44,7 +46,9 @@ const routes: Routes = [
   { path: 'stocks-produits', component: StockProduitsComponent},
   { path: 'commande-client', component: CommandeClientComponent},
   { path: 'legume-saison', component: LegumeDeSaisonComponent},
-  { path: 'fruit-saison', component: FruitDeSaisonComponent}
+  { path: 'fruit-saison', component: FruitDeSaisonComponent},
+  { path: 'inscription-admin', component: InscriptionAdminComponent},
+  { path: 'paiement-admin', component: PaiementAdminComponent}
 ];
 
 
