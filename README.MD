@@ -20,3 +20,11 @@ Reste à faire BACK :
 - créer table stocks, et le lié à la page des stocks
 - le lié à la BDD, faire en sorte que les infos se retrouvent dans la page profil
 - lié table employés à son formulaire et sa page profil
+
+
+
+
+
+Sidebar Admin : 
+- Pouvoir valider inscription
+- Pouvoir valider un paiement : statut du paiement change 
