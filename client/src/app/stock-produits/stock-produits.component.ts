@@ -56,13 +56,31 @@ export class StockProduitsComponent implements OnInit {
     this.newProduit = { type: 'legume', categorie: '', nom: '', quantite: '' }; // Réinitialisation
   }
 
-  // Ajouter un produit (en local pour l'instant)
+  // Ajouter un produit dans la BDD et mettre à jour la liste locale
   addProduit(): void {
-    if (this.newProduit.type === 'fruit') {
-      this.fruits.push({ ...this.newProduit });
-    } else {
-      this.legumes.push({ ...this.newProduit });
-    }
-    this.closeModal();
+    const endpoint =
+      this.newProduit.type === 'fruit'
+        ? `${this.apiUrl}/fruits` // Utilisation de la route /api/fruits
+        : `${this.apiUrl}/legumes`; // Utilisation de la route /api/legumes
+
+    this.http.post(endpoint, this.newProduit).subscribe(
+      (response: any) => {
+        console.log('Produit ajouté avec succès :', response);
+
+        // Ajouter le produit dans la liste locale
+        if (this.newProduit.type === 'fruit') {
+          this.fruits.push({ ...this.newProduit });
+        } else {
+          this.legumes.push({ ...this.newProduit });
+        }
+
+        // Réinitialiser le formulaire et fermer la modal
+        this.closeModal();
+      },
+      (error) => {
+        console.error('Erreur lors de l\'ajout du produit :', error);
+        alert('Une erreur est survenue lors de l\'ajout du produit. Veuillez réessayer.');
+      }
+    );
   }
 }
