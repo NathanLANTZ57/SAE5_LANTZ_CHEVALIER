@@ -13,54 +13,47 @@
 
             <div class="table-container">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Informations</th>
-                            <th>Message</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Jean Dupont</td>
-                            <td>
-                                <textarea class="message-input" placeholder="Écrire un message..."></textarea>
-                                <button class="btn-submit-message">Valider le message</button>
-                            </td>
-                            <td>
-                                <button class="btn-validate">
-                                    <img src="assets/valider.png" alt="Valider"/>
-                                    Valider
-                                </button>
-                               
-                                <button class="btn-reject">
-                                    <img src="assets/rejeter.png" alt="Rejeter"/>
-                                    Rejeter
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Marie Curie</td>
-                            <td>
-                                <textarea class="message-input" placeholder="Écrire un message..."></textarea>
-                                <button class="btn-submit-message">Valider le message</button>
-                            </td>
-                            <td>
-                                <button class="btn-validate">
-                                    <img src="assets/valider.png" alt="Valider"/>
-                                    Valider
-                                </button>
-                               
-                                <button class="btn-reject">
-                                    <img src="assets/rejeter.png" alt="Rejeter"/>
-                                    Rejeter
-                                </button>
-                                
-                            </td>
-                        </tr>
-                    </tbody>
+                  <thead>
+                    <tr>
+                      <th>Informations</th>
+                      <th>Message</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Adhérents -->
+                    <tr *ngFor="let adherent of pendingAdherents">
+                      <td>{{ adherent.name }} ({{ adherent.email }}) - Rôle : Adhérent</td>
+                      <td>
+                        <textarea class="message-input" placeholder="Écrire un message..."></textarea>
+                      </td>
+                      <td>
+                        <button class="btn-validate" (click)="updateAdherentStatus(adherent.id, 'validated')">
+                          <img src="assets/valider.png" alt="Valider" /> Valider
+                        </button>
+                        <button class="btn-reject" (click)="updateAdherentStatus(adherent.id, 'rejected')">
+                          <img src="assets/rejeter.png" alt="Rejeter" /> Rejeter
+                        </button>
+                      </td>
+                    </tr>
+                    <!-- Employés -->
+                    <tr *ngFor="let employee of pendingEmployees">
+                      <td>{{ employee.name }} ({{ employee.email }}) - Rôle : Employé</td>
+                      <td>
+                        <textarea class="message-input" placeholder="Écrire un message..."></textarea>
+                      </td>
+                      <td>
+                        <button class="btn-validate" (click)="updateEmployeeStatus(employee.id, 'validated')">
+                          <img src="assets/valider.png" alt="Valider" /> Valider
+                        </button>
+                        <button class="btn-reject" (click)="updateEmployeeStatus(employee.id, 'rejected')">
+                          <img src="assets/rejeter.png" alt="Rejeter" /> Rejeter
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
-            </div>
+              </div>              
         </div>
     </div>
 </body>

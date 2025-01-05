@@ -76,16 +76,13 @@ app.post('/api/login/adherent', async (req: Request, res: Response): Promise<voi
   try {
     const { name, password, email } = req.body;
 
-    // Vérifier que tous les champs requis sont présents
     if (!name || !password || !email) {
       res.status(400).json({ message: 'Nom, mot de passe et email sont requis.' });
       return;
     }
 
-    // Lire la base de données JSON
     const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 
-    // Vérifier si l'email existe déjà
     const existingAdherent = dbData.Adhérents.find((adherent: any) => adherent.email === email);
     if (existingAdherent) {
       res.status(409).json({ message: 'Un adhérent avec cet email existe déjà.' });
@@ -97,21 +94,22 @@ app.post('/api/login/adherent', async (req: Request, res: Response): Promise<voi
       res.status(409).json({ message: 'Un adhérent avec ce nom existe déjà.' });
       return;
     }
-    
-    // Ajouter un nouvel adhérent
+
+    // Ajouter un nouvel adhérent avec statut "pending"
     const newAdherent = {
       id: dbData.Adhérents.length ? dbData.Adhérents[dbData.Adhérents.length - 1].id + 1 : 1,
       name,
-      password, // Attention : en production, hachez les mots de passe avec bcrypt
+      password,
       email,
+      status: 'pending', // Nouveau champ
     };
+
     dbData.Adhérents.push(newAdherent);
 
-    // Écrire les modifications dans le fichier JSON
     fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
 
     res.status(201).json({
-      message: 'Adhérent enregistré avec succès.',
+      message: 'Adhérent enregistré avec succès. En attente de validation.',
       adherent: newAdherent,
     });
   } catch (error) {
@@ -122,7 +120,40 @@ app.post('/api/login/adherent', async (req: Request, res: Response): Promise<voi
   }
 });
 
-// Route pour connecter un adhérent
+// route qui verifie le statut de l'adherent
+app.patch('/api/adherents/:id/status', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!['validated', 'rejected'].includes(status)) {
+      res.status(400).json({ message: 'Statut invalide.' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const adherent = dbData.Adhérents.find((adherent: any) => adherent.id === parseInt(id, 10));
+
+    if (!adherent) {
+      res.status(404).json({ message: 'Adhérent non trouvé.' });
+      return;
+    }
+
+    adherent.status = status;
+
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(200).json({ message: 'Statut mis à jour avec succès.', adherent });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// route connexion adhérent
 app.post('/api/login/adherent/connect', async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, password } = req.body;
@@ -143,6 +174,12 @@ app.post('/api/login/adherent/connect', async (req: Request, res: Response): Pro
 
     if (!adherent) {
       res.status(401).json({ message: 'Nom ou mot de passe incorrect.' });
+      return;
+    }
+
+    // Vérifier si l'adhérent a été validé
+    if (adherent.status !== 'validated') {
+      res.status(403).json({ message: 'Votre compte est en attente de validation par un administrateur.' });
       return;
     }
 
@@ -168,16 +205,13 @@ app.post('/api/login/employe', async (req: Request, res: Response): Promise<void
   try {
     const { name, password, email } = req.body;
 
-    // Vérifier que tous les champs requis sont présents
     if (!name || !password || !email) {
       res.status(400).json({ message: 'Nom, mot de passe et email sont requis.' });
       return;
     }
 
-    // Lire la base de données JSON
     const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 
-    // Vérifier si l'email existe déjà
     const existingEmploye = dbData.Employes.find((employe: any) => employe.email === email);
     if (existingEmploye) {
       res.status(409).json({ message: 'Un employé avec cet email existe déjà.' });
@@ -190,20 +224,21 @@ app.post('/api/login/employe', async (req: Request, res: Response): Promise<void
       return;
     }
 
-    // Ajouter un nouvel employé
+    // Ajouter un nouvel employé avec statut "pending"
     const newEmploye = {
       id: dbData.Employes.length ? dbData.Employes[dbData.Employes.length - 1].id + 1 : 1,
       name,
-      password, // Attention : en production, hachez les mots de passe avec bcrypt
+      password,
       email,
+      status: 'pending', // Nouveau champ
     };
+
     dbData.Employes.push(newEmploye);
 
-    // Écrire les modifications dans le fichier JSON
     fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
 
     res.status(201).json({
-      message: 'Employé enregistré avec succès.',
+      message: 'Employé enregistré avec succès. En attente de validation.',
       employe: newEmploye,
     });
   } catch (error) {
@@ -213,6 +248,61 @@ app.post('/api/login/employe', async (req: Request, res: Response): Promise<void
     });
   }
 });
+
+app.patch('/api/employes/:id/status', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!['validated', 'rejected'].includes(status)) {
+      res.status(400).json({ message: 'Statut invalide.' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const employe = dbData.Employes.find((employe: any) => employe.id === parseInt(id, 10));
+
+    if (!employe) {
+      res.status(404).json({ message: 'Employé non trouvé.' });
+      return;
+    }
+
+    employe.status = status;
+
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(200).json({ message: 'Statut mis à jour avec succès.', employe });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+app.get('/api/employes/status', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { status } = req.query;
+
+    if (!status) {
+      res.status(400).json({ message: 'Le paramètre status est requis.' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const employes = dbData.Employes.filter((employe: any) => employe.status === status);
+
+    res.status(200).json(employes);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
 
 // Route pour connecter un employé
 app.post('/api/login/employe/connect', async (req: Request, res: Response): Promise<void> => {
@@ -325,6 +415,7 @@ app.post('/api/register/adherentsabonne', async (req: Request, res: Response): P
       formule_payement: formule_payement,
       iban,
       bic,
+      statut_paiement: 'en_attente', // Ajout du statut de paiement par défaut
     };
 
     // Ajouter à la base de données
@@ -335,7 +426,7 @@ app.post('/api/register/adherentsabonne', async (req: Request, res: Response): P
     fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
 
     res.status(201).json({
-      message: 'AdhérentAbonné enregistré avec succès.',
+      message: 'AdhérentAbonné enregistré avec succès. Statut du paiement : en attente.',
       abonne: newAbonne,
     });
   } catch (error) {
@@ -415,6 +506,33 @@ app.get('/api/adherents', async (req: Request, res: Response): Promise<void> => 
     res.status(500).json({ message: 'Erreur interne du serveur' });
   }
 });
+
+app.get('/api/adherents/status', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { status } = req.query;
+
+    // Vérifiez si le paramètre `status` est fourni
+    if (!status) {
+      res.status(400).json({ message: 'Le paramètre status est requis.' });
+      return;
+    }
+
+    // Lire les données de la base
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Filtrer les adhérents en fonction du statut
+    const adherents = dbData.Adhérents.filter(
+      (adherent: any) => adherent.status === status
+    );
+
+    // Retourner les adhérents filtrés
+    res.status(200).json(adherents);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des adhérents par statut :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
+
 
 // Route pour ajouter un fruit
 app.post('/api/fruits', async (req: Request, res: Response): Promise<void> => {
@@ -523,6 +641,59 @@ app.get('/api/legumes/afficher', async (req: Request, res: Response): Promise<vo
     res.status(200).json(dbData.Légumes || []);
   } catch (error) {
     console.error('Erreur lors de la récupération des légumes :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour mettre à jour le statut de paiement d'un AdhérentsAbonnés
+app.patch('/api/adherentsabonne/:id/statut_paiement', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { statut_paiement } = req.body;
+
+    if (!['pending', 'validated', 'rejected'].includes(statut_paiement)) {
+      res.status(400).json({ message: 'Statut de paiement invalide.' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const adherent = dbData.AdhérentsAbonnés.find((a: any) => a.id === parseInt(id, 10));
+
+    if (!adherent) {
+      res.status(404).json({ message: 'Adhérent non trouvé.' });
+      return;
+    }
+
+    adherent.statut_paiement = statut_paiement;
+
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+    res.status(200).json({ message: 'Statut de paiement mis à jour avec succès.', adherent });
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du statut de paiement :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
+
+// Nouvelle route pour récupérer tous les abonnés sans email
+app.get('/api/adherentsabonne/all', async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Lire les données du fichier JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Vérifier si la clé AdhérentsAbonnés existe dans les données
+    if (!dbData.AdhérentsAbonnés || dbData.AdhérentsAbonnés.length === 0) {
+      res.status(404).json({ message: 'Aucun abonné trouvé.' });
+      return;
+    }
+
+    // Retourner tous les abonnés
+    res.status(200).json(dbData.AdhérentsAbonnés);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des abonnés :', error);
     res.status(500).json({
       message: 'Erreur interne du serveur',
       error: error instanceof Error ? error.message : 'Erreur inconnue',

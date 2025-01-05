@@ -40,14 +40,15 @@ export class ProfilAdherentComponent implements OnInit {
     const apiUrl = `http://localhost:3000/api/adherentsabonne?email=${encodeURIComponent(email)}`;
     this.http.get(apiUrl).subscribe(
       (data) => {
-        console.log('Données récupérées :', data);
-        this.adherentData = data; // Met à jour les données affichées dans le profil
+        console.log('Données récupérées :', data); // Ajoutez ce log
+        this.adherentData = data; // Mettez à jour les données affichées dans le profil
       },
       (error) => {
         console.error('Erreur lors de la récupération des données de l\'adhérent :', error);
       }
     );
   }
+  
 
   // Ouvrir les modales
   openModalAbonnement() {

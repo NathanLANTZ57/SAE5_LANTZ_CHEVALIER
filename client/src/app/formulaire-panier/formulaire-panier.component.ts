@@ -27,8 +27,18 @@ export class FormulairePanierComponent implements OnInit {
 
   ngOnInit(): void {
     // Récupérer l'e-mail de l'utilisateur connecté
-    this.userService.currentUsername.subscribe((email) => {
-      this.emailUtilisateur = email;
+    this.userService.currentUsername.subscribe((username) => {
+      if (username) {
+        this.userService.getUserEmail(username).then(
+          (email) => {
+            this.emailUtilisateur = email; // Stockez l'email réel
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération de l\'email utilisateur :', error);
+            alert('Impossible de récupérer votre adresse email.');
+          }
+        );
+      }
     });
 
     // Charger les données sauvegardées
