@@ -1,78 +1,54 @@
 <body>
     <div class="containerPaiementAdmin">
-        <div class="contentPaiementAdmin">
-            <app-logo></app-logo>
-            
-            <div class="imgEnTete">
-                <img src="assets/imgPaiement.jpg" alt="Paiement">
-            </div>
-
-            <div class="titre">
-                <p>Gestion des paiements</p>
-            </div>
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Informations</th>
-                            <th>Abonnement</th>
-                            <th>Statut du paiement</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Jean Dupont</td>
-                            <td>
-                               Panier Simple 
-                            </td>
-                            <td>
-                                <div class="statut">
-                                    <img src="assets/sablier.png" alt="Rejeter"/>
-                                    <p> En attente</p>
-                                </div>
-                            </td>
-                            
-                            <td>
-                                <button class="btn-validate">
-                                    <img src="assets/valider.png" alt="Valider"/>
-                                    Valider
-                                </button>
-                               
-                                <button class="btn-reject">
-                                    <img src="assets/rejeter.png" alt="Rejeter"/>
-                                    Rejeter
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Marie Curie</td>
-                            <td>
-                                Panier Simple 
-                            </td>
-                            <td>
-                                <div class="statut">
-                                    <img src="assets/sablier.png" alt="Rejeter"/>
-                                    <p> En attente</p>
-                                </div>
-                            </td>
-                            <td>
-                                <button class="btn-validate">
-                                    <img src="assets/valider.png" alt="Valider"/>
-                                    Valider
-                                </button>
-                               
-                                <button class="btn-reject">
-                                    <img src="assets/rejeter.png" alt="Rejeter"/>
-                                    Rejeter
-                                </button>
-                                
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      <div class="contentPaiementAdmin">
+        <app-logo></app-logo>
+  
+        <div class="imgEnTete">
+          <img src="assets/imgPaiement.jpg" alt="Paiement" />
         </div>
+  
+        <div class="titre">
+          <p>Gestion des paiements</p>
+        </div>
+  
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Informations</th>
+                <th>Abonnement</th>
+                <th>Statut du paiement</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let paiement of paiements">
+                <td>{{ paiement.nom }} {{ paiement.prenom }}</td>
+                <td>{{ paiement.formule_panier_legumes_bio || 'Non spécifié' }}</td>
+                <td>
+                  <div class="statut">
+                    <img
+                      [src]="paiement.statut_paiement === 'pending' ? 'assets/sablier.png' : paiement.statut_paiement === 'validated' ? 'assets/valider.png' : 'assets/rejeter.png'"
+                      alt="Statut"
+                    />
+                    <p>
+                      {{ paiement.statut_paiement === 'en_attente' ? 'En attente' : paiement.statut_paiement === 'validated' ? 'Validé' : 'Rejeté' }}
+                    </p>
+                  </div>
+                </td>
+                <td>
+                  <button class="btn-validate" (click)="updatePaiementStatus(paiement.id, 'validated')">
+                    <img src="assets/valider.png" alt="Valider" /> Valider
+                  </button>
+                  <button class="btn-reject" (click)="updatePaiementStatus(paiement.id, 'rejected')">
+                    <img src="assets/rejeter.png" alt="Rejeter" /> Rejeter
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
+  
