@@ -63,6 +63,7 @@ $sidebar-bg-color: #b1d9b7;
     }
   }
 
+
   &.open {
     width: 35vh;
 
@@ -80,12 +81,7 @@ $sidebar-bg-color: #b1d9b7;
     }
   }
 
-  .deco p {
-    color: $main-font-color;
-    font-family: "Instrument Sans";
-    margin-top: 4.5vw;
-    margin-left: 9vh;
-  }
+ 
 }
 .modal-overlay {
   position: fixed;
@@ -220,4 +216,21 @@ $sidebar-bg-color: #b1d9b7;
       opacity: 0.9;
     }
   }
+}
+
+
+hr.ligne-ouvert {
+  border: none; /* Supprime la bordure par défaut */
+  border-top: 1px solid white; /* Ligne blanche */
+  width: 85%; /* Largeur adaptée pour la sidebar ouverte */
+  margin: 0.5vw auto; /* Centré avec des marges */
+  margin-bottom: 15%;
+}
+
+hr.ligne-ferme {
+  border: none; /* Supprime la bordure par défaut */
+  border-top: 1px solid white; /* Ligne blanche */
+  width: 85%; /* Largeur adaptée pour la sidebar fermée */
+  margin: 0.5vw auto; /* Centré avec des marges */
+  margin-bottom: 25%;
 }
