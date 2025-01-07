@@ -148,6 +148,13 @@
       "password": "test",
       "email": "test@gmail.com",
       "status": "validated"
+    },
+    {
+      "id": 7,
+      "name": "testt",
+      "password": "testtt",
+      "email": "testt@gmail.com",
+      "status": "rejected"
     }
   ],
   "AdhérentsAbonnés": [
@@ -173,7 +180,7 @@
       "formule_payement": "Trimestre",
       "iban": "FR78451562",
       "bic": "HGFEDCBAXXX",
-      "statut_paiement": "en_attente"
+      "statut_paiement": "rejected"
     },
     {
       "id": 4,
@@ -197,7 +204,7 @@
       "formule_payement": "Mensuel",
       "iban": "FR4515451521",
       "bic": "BANKGDFQ",
-      "statut_paiement": "en_attente"
+      "statut_paiement": "validated"
     }
   ]
 }
