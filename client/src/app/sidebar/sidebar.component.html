@@ -8,8 +8,10 @@
         (click)="toggleSidebar()" alt="Toggle Sidebar">
     </div>
 
-    <img class="ligne_ouvert" [src]="isSidebarOpen ? 'assets/ligne_ouvert.png' : 'assets/ligne_ferme.png'"
-      alt="Ligne blanche">
+
+
+    <hr [class]="isSidebarOpen ? 'ligne-ouvert' : 'ligne-ferme'" />
+
 
     <a class="button" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
       <img src="assets/accueil.png" alt="Accueil">
@@ -37,14 +39,24 @@
     </div>
   </a>
 
-    <a class="button" routerLink="/app-panier" routerLinkActive="active" ariaCurrentWhenActive="page">
+    <a 
+      class="button" 
+      *ngIf="isLoggedIn && (role === 'employe' || role === 'adherent')" 
+      routerLink="/app-panier" 
+      routerLinkActive="active" 
+      ariaCurrentWhenActive="page">
       <img src="assets/panier.png" alt="Panier">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Panier</p>
       </div>
     </a>
 
-    <a class="button" routerLink="/app-livraison" routerLinkActive="active" ariaCurrentWhenActive="page">
+    <a 
+      class="button" 
+      *ngIf="isLoggedIn && role === 'adherent'" 
+      routerLink="/app-livraison" 
+      routerLinkActive="active" 
+      ariaCurrentWhenActive="page">
       <img src="assets/camion.png" alt="Livraison">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Livraison</p>
@@ -68,34 +80,69 @@
       </div>
     </a>
 
-
-
-    <a class="button" routerLink="/faits-divers" routerLinkActive="active" ariaCurrentWhenActive="page">
+    <a 
+      class="button"  
+      *ngIf="isLoggedIn && role === 'adherent'"  
+      routerLink="/faits-divers" 
+      routerLinkActive="active" 
+      ariaCurrentWhenActive="page">
       <img src="assets/faitsDivers.png" alt="Faits Divers">
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Faits Divers</p>
       </div>
     </a>
 
-    <!-- Afficher le lien "Profil" uniquement si l'utilisateur est connecté -->
-    <a class="button" *ngIf="isLoggedIn" routerLink="/app-profil-adherent" routerLinkActive="active"
-      ariaCurrentWhenActive="page">
-      <img src="assets/pageprofil.png" alt="Profil">
+    <a 
+      class="button" 
+      *ngIf="isLoggedIn && (role === 'employe' || role === 'adherent')" 
+      routerLink="/app-profil-adherent" 
+      routerLinkActive="active" 
+      [attr.aria-current]="isSidebarOpen ? 'page' : null"
+      > 
+      <img src="assets/pageprofil.png" alt="Profil" />
       <div class="faits" *ngIf="isSidebarOpen">
         <p>Profil</p>
       </div>
     </a>
 
+    <a 
+        class="button" 
+        *ngIf="isLoggedIn" (click)="onLogout()"
+        [attr.aria-current]="isSidebarOpen ? 'page' : null"
+        > 
+        <img src="assets/btn_logout.png" alt="Deconnexion"/>
+        <div class="deconnexion" *ngIf="isSidebarOpen">
+          <p>Déconnexion</p>
+        </div>
+    </a>
 
+    
 
- 
+      
 
-    <div *ngIf="isSidebarOpen" class="deco">
-      <p *ngIf="isLoggedIn" (click)="onLogout()">Déconnexion</p>
-      <p *ngIf="!isLoggedIn" (click)="openModal()">Connexion</p>
-      <p *ngIf="!isLoggedIn" (click)="openSignupModal()">S'inscrire</p>
+      <a 
+        class="button" 
+        *ngIf="!isLoggedIn" (click)="openModal()"
+        [attr.aria-current]="isSidebarOpen ? 'page' : null"
+        > 
+        <img src="assets/btn_login.png" alt="Connexion"/>
+        <div class="connexion" *ngIf="isSidebarOpen">
+          <p>Connexion</p>
+        </div>
+      </a>
+
+      <a 
+        class="button" 
+        *ngIf="!isLoggedIn" (click)="openSignupModal()"
+        [attr.aria-current]="isSidebarOpen ? 'page' : null"
+        > 
+        <img src="assets/inscrire.png" alt="S'inscrire"/>
+        <div class="connexion" *ngIf="isSidebarOpen">
+          <p>S'inscrire</p>
+        </div>
+      </a>
     </div>
-  </div>
+
 
   <div class="main-content">
     <router-outlet></router-outlet>

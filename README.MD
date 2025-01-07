@@ -1,11 +1,14 @@
 Reste à faire partie FRONT : 
-- refaire css formulaire panier
-- régler les soucis de design + faire attention à ce que la sidebar change en fonction de qui est connecté 
-- lié les derniers cards d'accueil à la bonne page, et faire en sorte que ca affiche le bonne endroit 
+
 - finir le formulaire panier adhérent + employé
+
+- refaire css affichage des tournées 
+
+- lié les derniers cards d'accueil à la bonne page, et faire en sorte que ca affiche le bonne endroit 
+- faire page d'accueil admin
+
 - Optionnel - > s'il y a le temps faire un espace de planning pour les employés 
-- refaire css modal calendrier 
-- corriger sidebar
+
 
 
 

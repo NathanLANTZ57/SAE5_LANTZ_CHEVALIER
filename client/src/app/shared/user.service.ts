@@ -8,9 +8,11 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   private usernameSource = new BehaviorSubject<string>('');
   private loggedInSource = new BehaviorSubject<boolean>(false);
+  private roleSource = new BehaviorSubject<string>(''); // Nouveau BehaviorSubject pour le rôle
 
   currentUsername = this.usernameSource.asObservable();
   isLoggedIn$ = this.loggedInSource.asObservable();
+  currentRole = this.roleSource.asObservable(); // Observable pour le rôle
 
   constructor(private http: HttpClient) {}
 
@@ -30,9 +32,18 @@ export class UserService {
     return this.loggedInSource.getValue();
   }
 
+  setRole(role: string): void {
+    this.roleSource.next(role);
+  }
+
+  getRole(): string {
+    return this.roleSource.getValue();
+  }
+
   clearUserData(): void {
     this.usernameSource.next('');
     this.loggedInSource.next(false);
+    this.roleSource.next(''); // Réinitialiser le rôle
   }
 
   // Nouvelle méthode pour récupérer l'adresse e-mail en fonction du username
@@ -44,5 +55,5 @@ export class UserService {
       }
       throw new Error('Adresse e-mail non trouvée pour cet utilisateur');
     });
-  } 
+  }
 }

@@ -9,12 +9,19 @@ import { UserService } from '../shared/user.service';
 export class AccueilAdherentComponent implements OnInit {
   background = 'assets/image_arbre.jpg';
   isLoggedIn = false;
+  role = ''; // Nouvelle propriété pour le rôle
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    // Suivre l'état de connexion
     this.userService.isLoggedIn$.subscribe(status => {
-      this.isLoggedIn = status; // Suivre l'état de connexion
+      this.isLoggedIn = status;
+    });
+
+    // Suivre le rôle
+    this.userService.currentRole.subscribe(currentRole => {
+      this.role = currentRole;
     });
   }
 

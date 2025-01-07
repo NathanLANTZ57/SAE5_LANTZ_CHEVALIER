@@ -85,6 +85,7 @@ export class SidebarComponent implements OnInit {
           // Marquer la connexion comme réussie dans le service
           this.userService.setLoggedIn(this.isLoggedIn);
           this.userService.setUsername(this.username);
+          this.userService.setRole(this.role); // Stocker le rôle
   
           // Réinitialiser le formulaire après connexion
           this.closeModal();
@@ -108,6 +109,7 @@ export class SidebarComponent implements OnInit {
     this.role = ''; // Réinitialisation du rôle
     this.userService.setLoggedIn(false);
     this.userService.setUsername('');
+    this.userService.setRole('');
     this.router.navigate(['/']);
     alert('Déconnexion réussie.');
   }
