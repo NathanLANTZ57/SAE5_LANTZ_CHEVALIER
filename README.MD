@@ -19,7 +19,7 @@ Reste à faire BACK :
 - corriger bug sidebar
 
 Adhérent : 
-- changer statut paiement + livraison
+- changer statut livraison
 - interface de finition abonnement 
 
 
