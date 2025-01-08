@@ -2,8 +2,15 @@
   <div class="container">
     <main class="content">
       <app-logo></app-logo>
+
+      <div class="pasCo">
+        <p>Connectez-vous pour accéder aux fonctionnalités de l'application</p>
+      </div>
+      
       <section class="grid">
-        <div class="card">
+        
+
+        <div *ngIf="isLoggedIn && role === 'adherent'" class="card">
           <a 
             class="button" 
             routerLink="/legume-saison"
@@ -14,7 +21,62 @@
           </a>
         </div>
 
-        <div class="card">
+        <div *ngIf="isLoggedIn && role === 'employe'" class="card">
+          <a 
+            class="button" 
+            routerLink="*"
+            routerLinkActive="active"
+            aria-current="page">
+            <img src="assets/img_adherer_club.jpg" alt="Adhérer au club">
+            <span>Adhérer au club</span>
+          </a>
+        </div>
+
+        <div *ngIf="isLoggedIn && role === 'employe'" class="card">
+          <a 
+            class="button" 
+            routerLink="*"
+            routerLinkActive="active"
+            aria-current="page">
+            <img src="assets/img_planning.jpg" alt="Mon planning">
+            <span>Mon planning</span>
+          </a>
+        </div>
+
+        <div *ngIf="isLoggedIn && role === 'employe'" class="card">
+          <a 
+            class="button" 
+            routerLink="*"
+            routerLinkActive="active"
+            aria-current="page">
+            <img src="assets/legumes-de-saison.jpg" alt="Les paniers">
+            <span>Les paniers</span>
+          </a>
+        </div>
+
+        <div *ngIf="isLoggedIn && role === 'employe'" class="card">
+          <a 
+            class="button" 
+            routerLink="*"
+            routerLinkActive="active"
+            aria-current="page">
+            <img src="assets/dates-livraison.jpg" alt="Les commandes">
+            <span>Les commandes</span>
+          </a>
+        </div>
+
+        <div *ngIf="isLoggedIn && role === 'employe'" class="card">
+          <a 
+            class="button" 
+            routerLink="*"
+            routerLinkActive="active"
+            aria-current="page">
+            <img src="assets/imgStocks.jpg" alt="Les stocks">
+            <span>Les stocks</span>
+          </a>
+        </div>
+
+        <div *ngIf="isLoggedIn && role === 'adherent'" class="card">
           <a 
             class="button" 
             routerLink="/fruit-saison"
@@ -25,7 +87,7 @@
           </a>
         </div>
 
-        <div class="card">
+        <div *ngIf="isLoggedIn && role === 'adherent'" class="card">
           <a 
             class="button" 
             routerLink="/app-panier"
@@ -36,7 +98,7 @@
           </a>
         </div>
 
-        <div class="card">
+        <div *ngIf="isLoggedIn && role === 'adherent'" class="card">
           <a 
             class="button" 
             routerLink="/app-livraison"
@@ -47,7 +109,7 @@
           </a>
         </div>
 
-        <div class="card">
+        <div *ngIf="isLoggedIn && role === 'adherent'" class="card">
           <a 
             class="button" 
             routerLink="/app-depots"
@@ -58,7 +120,7 @@
           </a>
         </div>
 
-        <div class="card">
+        <div *ngIf="isLoggedIn && (role === 'employe' || role === 'adherent')"  class="card">
           <a 
             class="button" 
             routerLink="/app-profil-reprogrammation-date"
@@ -69,7 +131,7 @@
           </a>
         </div>
 
-        <div class="card">
+        <div *ngIf="isLoggedIn && (role === 'employe' || role === 'adherent')"  class="card">
           <a 
             class="button" 
             [routerLink]="isLoggedIn ? '/app-profil-adherent' : null"
@@ -81,10 +143,10 @@
           </a>
         </div>                     
 
-        <div class="card">
+        <div *ngIf="isLoggedIn && (role === 'employe' || role === 'adherent')"  class="card">
           <a 
             class="button" 
-            routerLink="*"
+            routerLink="isLoggedIn ? '/app-profil-adherent' : null"
             routerLinkActive="active"
             aria-current="page">
             <img src="assets/abonnement.jpg" alt="Mon abonnement">
@@ -92,10 +154,10 @@
           </a>
         </div>
 
-        <div class="card">
+        <div *ngIf="isLoggedIn && (role === 'employe' || role === 'adherent')"  class="card">
           <a 
             class="button" 
-            routerLink="*"
+            routerLink="/app-livraison"
             routerLinkActive="active"
             aria-current="page">
             <img src="assets/suivre-panier.jpg" alt="Suivre mon panier">

@@ -17,16 +17,12 @@ $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     font-family: 'Literata';
 }
 
-.containerInscriptionAdmin {
-    padding: 20px;
-}
-
 .table-container {
     margin-top: 10%;
 }
 
 table {
-    width: 70%;
+    width: 71%;
     border-collapse: collapse;
     margin: 50px 0;
     font-family: 'Arima';
@@ -51,9 +47,6 @@ td .statut {
     display: flex;
     align-items: center;
     justify-content: center;
-    
-   
-    
 }
 
 td .statut p {
@@ -108,5 +101,4 @@ img {
     width: 8%;
     height: auto;
     margin-top: 0;
-
 }
