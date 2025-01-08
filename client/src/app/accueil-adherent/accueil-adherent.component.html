@@ -3,7 +3,7 @@
     <main class="content">
       <app-logo></app-logo>
 
-      <div class="pasCo">
+      <div *ngIf="!isLoggedIn" class="pasCo">
         <p>Connectez-vous pour accéder aux fonctionnalités de l'application</p>
       </div>
       
