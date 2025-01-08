@@ -1,0 +1,46 @@
+<body>
+    <div class="validation-container">
+      <h1>Validation de vos informations</h1>
+  
+      <div class="imgEnTete">
+        <img src="assets/formulaire_panier.jpg" alt="Formulaire-validation">
+      </div>
+  
+      <div class="info-section">
+        <h2>Informations Personnelles</h2>
+        <p><strong>Nom :</strong> {{ adherentData.nom }}</p>
+        <p><strong>Prénom :</strong> {{ adherentData.prenom }}</p>
+        <p><strong>Date de Naissance :</strong> {{ adherentData.dateNaissance }}</p>
+        <p><strong>Email :</strong> {{ adherentData.email }}</p>
+        <p><strong>Adresse :</strong> {{ adherentData.adresse }}, {{ adherentData.ville }} - {{ adherentData.codePostal }}</p>
+      </div>
+  
+      <div class="info-section">
+        <h2>Informations Bancaires</h2>
+        <p><strong>IBAN :</strong> {{ adherentData.iban }}</p>
+        <p><strong>BIC :</strong> {{ adherentData.bic }}</p>
+      </div>
+  
+      <div class="info-section">
+        <h2>Panier et Cotisation</h2>
+        <p><strong>Cotisation Totale :</strong> {{ adherentData.totalCotisation }} €</p>
+        <p><strong>Don :</strong> {{ adherentData.montantDon || 'Aucun' }}</p>
+        <p><strong>Panier Légumes Bio :</strong> 
+          {{ adherentData.panierLegumes ? adherentData.nbPanierLegumes + ' panier(s)' : 'Non sélectionné' }}
+        </p>
+        <p><strong>Panier Fruits Bio :</strong> 
+          {{ adherentData.panierFruits ? adherentData.nbPanierFruits + ' panier(s)' : 'Non sélectionné' }}
+        </p>
+        <p><strong>Boîtes d'Oeufs :</strong> 
+          {{ adherentData.boiteOeuf ? adherentData.nbBoiteOeuf + ' boîte(s)' : 'Non sélectionné' }}
+        </p>
+        <p><strong>Livraison à domicile :</strong> {{ adherentData.domicile ? 'Oui' : 'Non' }}</p>
+      </div>
+  
+      <div class="buttons">
+        <button class="btn confirm" (click)="onConfirm()">Soumettre</button>
+        <button class="btn cancel" (click)="onCancel()">Annuler</button>
+      </div>
+    </div>
+  </body>
+  

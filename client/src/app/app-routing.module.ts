@@ -23,7 +23,7 @@ import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.com
 import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.component';
 import { InscriptionAdminComponent } from './inscription-admin/inscription-admin.component';
 import { PaiementAdminComponent } from './paiement-admin/paiement-admin.component';
-
+import { FormulaireValidationComponent } from './formulaire-validation/formulaire-validation.component';
 
 const routes: Routes = [
   { path: '', component: AccueilAdherentComponent },
@@ -48,7 +48,8 @@ const routes: Routes = [
   { path: 'legume-saison', component: LegumeDeSaisonComponent},
   { path: 'fruit-saison', component: FruitDeSaisonComponent},
   { path: 'inscription-admin', component: InscriptionAdminComponent},
-  { path: 'paiement-admin', component: PaiementAdminComponent}
+  { path: 'paiement-admin', component: PaiementAdminComponent},
+  { path: 'formulaire-validation', component: FormulaireValidationComponent}
 ];
 
 

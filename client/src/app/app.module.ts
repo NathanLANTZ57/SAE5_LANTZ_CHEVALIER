@@ -36,6 +36,7 @@ import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.compon
 import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.component';
 import { InscriptionAdminComponent } from './inscription-admin/inscription-admin.component';
 import { PaiementAdminComponent } from './paiement-admin/paiement-admin.component';
+import { FormulaireValidationComponent } from './formulaire-validation/formulaire-validation.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { PaiementAdminComponent } from './paiement-admin/paiement-admin.componen
     FruitDeSaisonComponent,
     LegumeDeSaisonComponent,
     InscriptionAdminComponent,
-    PaiementAdminComponent
+    PaiementAdminComponent,
+    FormulaireValidationComponent
   ],
   imports: [
     BrowserModule,

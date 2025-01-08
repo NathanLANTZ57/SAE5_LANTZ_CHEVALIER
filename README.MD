@@ -16,7 +16,6 @@ Reste à faire partie FRONT :
 Reste à faire BACK :
 
 - Calendrier lié à la bdd 
-- corriger bug sidebar
 
 Adhérent : 
 - changer statut livraison
