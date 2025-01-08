@@ -205,6 +205,30 @@
       "iban": "FR4515451521",
       "bic": "BANKGDFQ",
       "statut_paiement": "validated"
+    },
+    {
+      "id": 5,
+      "nom": "chevalier",
+      "prenom": "emily",
+      "date_naissance": "2004-03-22",
+      "adresse_mail": "emily@gmail.com",
+      "adresse_postale": "5 B Lavalette",
+      "ville": "Abreschviller",
+      "code_postal": "57560",
+      "cotisation": 35,
+      "don": 30,
+      "formule_panier_legumes_bio": "simple-6",
+      "nb_panier_legumes_bio": 0,
+      "formule_panier_fruits_bio": false,
+      "nb_panier_fruits_bio": 0,
+      "formule_boite_oeufs_bio": false,
+      "nb_panier_oeufs_bio": 0,
+      "depot": false,
+      "domicile": true,
+      "formule_payement": "Trimestre",
+      "iban": "FR5415150",
+      "bic": "HGFEDCBAXXX",
+      "statut_paiement": "en_attente"
     }
   ]
 }
