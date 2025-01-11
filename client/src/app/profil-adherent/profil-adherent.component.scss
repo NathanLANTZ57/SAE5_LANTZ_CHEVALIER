@@ -6,16 +6,16 @@
 }
 
 .profile-logo {
-    width: 12%; /* Taille fixe de l'image */
-    height: 12%; /* Proportion carrée */
-    border-radius: 50%; /* Forme ronde */
-    border: 2px solid #a1a1a1; /* Bordure grise */
+    width: 12%; 
+    height: 12%; 
+    border-radius: 50%; 
+    border: 2px solid #a1a1a1; 
     margin-right: 2vh;
 }
 
 .profile-name {
     font-family: 'Milonga', serif;
-    font-size: 2em; /* Taille du texte */
+    font-size: 2em; 
     font-weight: bold;
     margin-top: 5vh;
     margin-left: 2vh;
@@ -25,7 +25,7 @@
     max-width: 800px;
     width: 100%;
     border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
     padding: 25px 30px;
     margin-left: 26%;
     margin-top: 10vh;
@@ -33,23 +33,21 @@
     border: 1px solid #a1a1a1;
 }
 
-/* Informations utilisateur */
 .user-info,
 .payment-info {
     margin-bottom: 20px;
 }
 
-/* Style des éléments d'information */
 .info-item {
     display: flex;
-    justify-content: space-between; /* Équilibre entre la clé et la valeur */
+    justify-content: space-between; 
     padding: 15px 0;
-    border-bottom: 1px solid #eaeaea; /* Ligne douce entre les éléments */
+    border-bottom: 1px solid #eaeaea; 
     font-size: 1rem;
 }
 
 .info-item:last-child {
-    border-bottom: none; /* Supprime la dernière bordure */
+    border-bottom: none;
 }
 
 .info-item span:first-child {
@@ -64,12 +62,12 @@
 
 .edit-button {
     display: inline-block;
-    margin: 20px 0 0; /* Espacement au-dessus */
-    padding: 10px 20px; /* Taille du bouton */
-    background-color: #ADE8FD; /* Bleu pour attirer l'attention */
-    color: #085D70; /* Texte blanc */
+    margin: 20px 0 0; 
+    padding: 10px 20px; 
+    background-color: #ADE8FD; 
+    color: #085D70;
     border: none;
-    border-radius: 5px; /* Coins arrondis */
+    border-radius: 5px; 
     font-size: 1rem;
     font-family: 'Arima';
     font-weight: bold;
@@ -79,7 +77,7 @@
 }
 
 .edit-button:hover {
-    background-color: #085D70; /* Bleu plus foncé au survol */
+    background-color: #085D70; 
     color: #ADE8FD;
 }
 

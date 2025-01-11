@@ -8,11 +8,11 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   private usernameSource = new BehaviorSubject<string>('');
   private loggedInSource = new BehaviorSubject<boolean>(false);
-  private roleSource = new BehaviorSubject<string>(''); // Nouveau BehaviorSubject pour le rôle
+  private roleSource = new BehaviorSubject<string>(''); 
 
   currentUsername = this.usernameSource.asObservable();
   isLoggedIn$ = this.loggedInSource.asObservable();
-  currentRole = this.roleSource.asObservable(); // Observable pour le rôle
+  currentRole = this.roleSource.asObservable(); 
 
   constructor(private http: HttpClient) {}
 
@@ -43,10 +43,9 @@ export class UserService {
   clearUserData(): void {
     this.usernameSource.next('');
     this.loggedInSource.next(false);
-    this.roleSource.next(''); // Réinitialiser le rôle
+    this.roleSource.next(''); 
   }
 
-  // Nouvelle méthode pour récupérer l'adresse e-mail en fonction du username
   getUserEmail(username: string): Promise<string> {
     const apiUrl = `http://localhost:3000/api/adherents?username=${encodeURIComponent(username)}`;
     return this.http.get<any>(apiUrl).toPromise().then((user) => {

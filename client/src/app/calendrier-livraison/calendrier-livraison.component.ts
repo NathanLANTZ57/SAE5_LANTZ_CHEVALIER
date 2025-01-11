@@ -6,39 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendrier-livraison.component.scss'],
 })
 export class CalendrierLivraisonComponent implements OnInit {
-  currentDate: Date = new Date(); // Date actuelle
-  daysInMonth: number[] = []; // Liste des jours dans le mois
-  firstDayIndex: number = 0; // Index du premier jour (lundi = 0, etc.)
-  dayNames: string[] = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']; // Noms des jours
-  monthName: string = ''; // Nom du mois actuel en français
+  currentDate: Date = new Date();
+  daysInMonth: number[] = []; 
+  firstDayIndex: number = 0; 
+  dayNames: string[] = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']; 
+  monthName: string = ''; 
 
-  // Modal
-  isModalOpen: boolean = false; // État du modal
-  selectedDay: number | null = null; // Jour sélectionné
-  selectedDayLabel: string = ''; // Texte affiché dans le modal
+  isModalOpen: boolean = false; 
+  selectedDay: number | null = null; 
+  selectedDayLabel: string = ''; 
 
   ngOnInit(): void {
     this.generateCalendar(this.currentDate);
   }
 
-  // Génère le calendrier pour une date donnée
   generateCalendar(date: Date): void {
     const year = date.getFullYear();
     const month = date.getMonth();
 
-    // Calcul du nombre de jours dans le mois
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     this.daysInMonth = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
-    // Calcul de l'index du premier jour (pour aligner le début du calendrier)
     const firstDay = new Date(year, month, 1);
-    this.firstDayIndex = (firstDay.getDay() + 6) % 7; // Ajustement pour démarrer à lundi
+    this.firstDayIndex = (firstDay.getDay() + 6) % 7; 
 
-    // Obtenir le nom du mois en français
     this.monthName = new Intl.DateTimeFormat('fr-FR', { month: 'long' }).format(date);
   }
 
-  // Change le mois affiché
   changeMonth(offset: number): void {
     const newMonth = new Date(
       this.currentDate.getFullYear(),
@@ -58,8 +52,6 @@ export class CalendrierLivraisonComponent implements OnInit {
     );
   }
 
-
-  // Ouvrir le modal
   openModal(day: number): void {
     this.selectedDay = day;
     const date = new Date(
@@ -68,7 +60,6 @@ export class CalendrierLivraisonComponent implements OnInit {
       day
     );
   
-    // Formate le jour et le mois pour affichage
     const dayName = date.toLocaleDateString('fr-FR', { weekday: 'long' });
     const formattedDayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
   

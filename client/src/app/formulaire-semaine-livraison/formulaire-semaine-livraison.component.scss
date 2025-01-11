@@ -40,77 +40,76 @@ p {
 }
   
 .calendar-table {
-    border-collapse: separate; /* Permet d'ajouter de l'espacement entre les colonnes */
-    border-spacing: 3vh; /* Augmente l'espace entre les mois */
+    border-collapse: separate; 
+    border-spacing: 3vh; 
     margin-left: 1vh;
 }
   
 .calendar-table th,
 .calendar-table td {
-    padding: 12px; /* Ajoute de l'espace interne dans les cellules */
+    padding: 12px;
     text-align: center;
     font-size: 17.5px;
     cursor: pointer;
 }
   
-/* Couleurs spécifiques pour chaque mois */
 .calendar-table th:nth-child(1) {
-    background-color: #FFCCCC; /* Janvier - Rose clair */
+    background-color: #FFCCCC; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(2) {
-    background-color: #FFDD99; /* Février - Orange clair */
+    background-color: #FFDD99; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(3) {
-    background-color: #FFFF99; /* Mars - Jaune */
+    background-color: #FFFF99; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(4) {
-    background-color: #CCFFCC; /* Avril - Vert clair */
+    background-color: #CCFFCC; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(5) {
-    background-color: #CCFFFF; /* Mai - Cyan clair */
+    background-color: #CCFFFF; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(6) {
-    background-color: #CCCCFF; /* Juin - Bleu clair */
+    background-color: #CCCCFF; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(7) {
-    background-color: #E0CCFF; /* Juillet - Violet clair */
+    background-color: #E0CCFF; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(8) {
-    background-color: #FFCCE5; /* Août - Rose pastel */
+    background-color: #FFCCE5; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(9) {
-    background-color: #FFD9CC; /* Septembre - Orange doux */
+    background-color: #FFD9CC; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(10) {
-    background-color: #FFCC99; /* Octobre - Saumon */
+    background-color: #FFCC99;
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(11) {
-    background-color: #FF9999; /* Novembre - Rouge doux */
+    background-color: #FF9999; 
     border-radius: 2vh;
 }
 
 .calendar-table th:nth-child(12) {
-    background-color: #FFCCCC; /* Décembre - Rose clair */
+    background-color: #FFCCCC; 
     border-radius: 2vh;
 }
 

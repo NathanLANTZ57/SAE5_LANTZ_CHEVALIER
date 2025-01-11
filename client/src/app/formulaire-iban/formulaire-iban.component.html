@@ -10,7 +10,6 @@
     <div class="form-container">
       <p>Entrer un IBAN et un BIC, <i>(taper vos numéros sans espace)</i></p>
       <form [formGroup]="ibanForm" (ngSubmit)="onSubmit()">
-        <!-- Champ IBAN -->
         <div class="form-group">
           <label for="iban">IBAN :</label>
           <input
@@ -31,7 +30,6 @@
           </div>
         </div>
 
-        <!-- Champ BIC -->
         <div class="form-group">
           <label for="bic">BIC :</label>
           <input

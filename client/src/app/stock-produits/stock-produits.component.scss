@@ -68,7 +68,7 @@ td {
 
 
 .modal-container {
-    display: none; /* Par défaut, la modale est masquée */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
@@ -81,7 +81,7 @@ td {
 }
   
 .modal-container.show {
-    display: flex; /* Affiche la modale lorsque la classe .show est appliquée */
+    display: flex; 
 }
   
 .modal-content {
@@ -94,16 +94,16 @@ td {
 }
 
 .modal-content h2 {
-    background-color: #B1D9B7; /* Vert doux */
+    background-color: #B1D9B7; 
     font-family: 'Josefin Slab';
-    color: #2F5232; /* Vert foncé pour le texte */
-    padding: 40px 40px; /* Augmente le rembourrage pour un espace plus généreux */
+    color: #2F5232; 
+    padding: 40px 40px; 
     text-align: center;
     font-size: 27px;
-    border-radius: 12px; /* Légèrement arrondi pour un effet plus doux */
-    margin-bottom: 20px; /* Plus d'espace en dessous */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
-    border: 2px solid #A3C9A8; /* Ajoute une bordure plus définie */
+    border-radius: 12px; 
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #A3C9A8; 
 }
 
 

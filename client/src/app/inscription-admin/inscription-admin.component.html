@@ -21,7 +21,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- Adhérents -->
                     <tr *ngFor="let adherent of pendingAdherents">
                       <td>{{ adherent.name }} ({{ adherent.email }}) - Rôle : Adhérent</td>
                       <td>
@@ -36,7 +35,6 @@
                         </button>
                       </td>
                     </tr>
-                    <!-- Employés -->
                     <tr *ngFor="let employee of pendingEmployees">
                       <td>{{ employee.name }} ({{ employee.email }}) - Rôle : Employé</td>
                       <td>

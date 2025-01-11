@@ -14,15 +14,9 @@
         <p><strong>Email :</strong> {{ adherentData.email }}</p>
         <p><strong>Adresse :</strong> {{ adherentData.adresse }}, {{ adherentData.ville }} - {{ adherentData.codePostal }}</p>
       </div>
-  
+
       <div class="info-section">
-        <h2>Informations Bancaires</h2>
-        <p><strong>IBAN :</strong> {{ adherentData.iban }}</p>
-        <p><strong>BIC :</strong> {{ adherentData.bic }}</p>
-      </div>
-  
-      <div class="info-section">
-        <h2>Panier et Cotisation</h2>
+        <h2>Abonnement(s) choisi(s)</h2>
         <p><strong>Cotisation Totale :</strong> {{ adherentData.totalCotisation }} €</p>
         <p><strong>Don :</strong> {{ adherentData.montantDon || 'Aucun' }}</p>
         <p><strong>Panier Légumes Bio :</strong> 
@@ -37,6 +31,13 @@
         <p><strong>Livraison à domicile :</strong> {{ adherentData.domicile ? 'Oui' : 'Non' }}</p>
       </div>
   
+      <div class="info-section">
+        <h2>Informations Bancaires</h2>
+        <p><strong>IBAN :</strong> {{ adherentData.iban }}</p>
+        <p><strong>BIC :</strong> {{ adherentData.bic }}</p>
+      </div>
+  
+      
       <div class="buttons">
         <button class="btn confirm" (click)="onConfirm()">Soumettre</button>
         <button class="btn cancel" (click)="onCancel()">Annuler</button>

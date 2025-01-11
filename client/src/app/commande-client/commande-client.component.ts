@@ -73,7 +73,7 @@ export class CommandeClientComponent {
     }
   ];
 
-  isModalOpen: boolean = false; // État de la modale
+  isModalOpen: boolean = false;
 
   newCommande = {
     jour: '',
@@ -111,20 +111,15 @@ export class CommandeClientComponent {
 
   addCommande(): void {
     if (this.newCommande.client && this.newCommande.produit) {
-      // Si le champ "nouvelleDate" est vide, utilisez la date initiale
       this.newCommande.nouvelleDate = this.newCommande.date;
   
-      // Si le champ "jour" est vide, définissez un jour par défaut (ex. : "Lundi")
       if (!this.newCommande.jour) {
         const jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
         const dateObj = new Date(this.newCommande.date);
-        this.newCommande.jour = jours[dateObj.getDay() - 1]; // Calcule le jour de la semaine
+        this.newCommande.jour = jours[dateObj.getDay() - 1]; 
       }
+        this.commandesAutres.push({ ...this.newCommande });
   
-      // Ajoutez la commande à la liste
-      this.commandesAutres.push({ ...this.newCommande });
-  
-      // Réinitialisez la commande et fermez la modale
       this.closeModal();
     }
   }

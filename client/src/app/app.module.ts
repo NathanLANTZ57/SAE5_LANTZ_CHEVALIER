@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importer FormsModule pour ngModel
-import { HttpClientModule } from '@angular/common/http'; // Importer HttpClientModule pour les requêtes HTTP
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +37,12 @@ import { LegumeDeSaisonComponent } from './legume-de-saison/legume-de-saison.com
 import { InscriptionAdminComponent } from './inscription-admin/inscription-admin.component';
 import { PaiementAdminComponent } from './paiement-admin/paiement-admin.component';
 import { FormulaireValidationComponent } from './formulaire-validation/formulaire-validation.component';
+import { FormulairePanierEmployeComponent } from './formulaire-panier-employe/formulaire-panier-employe.component';
+import { PanierEmployeComponent } from './panier-employe/panier-employe.component';
+import { FormulaireChoixPanierEmployeComponent } from './formulaire-choix-panier-employe/formulaire-choix-panier-employe.component';
+import { FormulaireValidationEmployeComponent } from './formulaire-validation-employe/formulaire-validation-employe.component';
+import { FormulaireValideEmployeComponent } from './formulaire-valide-employe/formulaire-valide-employe.component';
+import { AccueilAdminComponent } from './accueil-admin/accueil-admin.component';
 
 
 @NgModule({
@@ -72,7 +78,13 @@ import { FormulaireValidationComponent } from './formulaire-validation/formulair
     LegumeDeSaisonComponent,
     InscriptionAdminComponent,
     PaiementAdminComponent,
-    FormulaireValidationComponent
+    FormulaireValidationComponent,
+    FormulairePanierEmployeComponent,
+    PanierEmployeComponent,
+    FormulaireChoixPanierEmployeComponent,
+    FormulaireValidationEmployeComponent,
+    FormulaireValideEmployeComponent,
+    AccueilAdminComponent
   ],
   imports: [
     BrowserModule,

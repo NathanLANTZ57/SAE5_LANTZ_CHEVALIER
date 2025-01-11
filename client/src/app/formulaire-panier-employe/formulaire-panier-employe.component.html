@@ -1,0 +1,103 @@
+<body>
+    <div class="containerFormulaireEmploye">
+  
+      <div class="contentFormulaireEmploye">
+        <app-logo></app-logo>
+  
+        <div class="imgEnTete">
+          <img src="assets/formulaire_panier.jpg" alt="Accueil">
+        </div>
+        <p>Remplissez ce formulaire pour rejoindre nos jardins et devenir adhérent dès aujourd’hui !</p>
+  
+        <div class="formulairePanier">
+          <form>
+            <label for="nom">Nom</label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              placeholder="Entrez votre nom"
+              required
+              [(ngModel)]="nom"
+            />
+  
+            <label for="prenom">Prénom</label>
+            <input
+              type="text"
+              id="prenom"
+              name="prenom"
+              placeholder="Entrez votre prénom"
+              required
+              [(ngModel)]="prenom"
+            />
+  
+            <label for="date_naissance">Date de naissance</label>
+            <input
+              type="date"
+              id="date_naissance"
+              name="date_naissance"
+              required
+              [(ngModel)]="dateNaissance"
+            />
+  
+            <label for="email">Adresse mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Entrez votre email"
+              required
+              [(ngModel)]="email"
+            />
+            <div *ngIf="email && email !== emailUtilisateur" class="error">
+              <p>L'adresse e-mail doit correspondre à celle utilisée pour l'utilisateur connecté</p>
+            </div>
+  
+            <label for="adresse">Adresse postale</label>
+            <input
+              type="text"
+              id="adresse"
+              name="adresse"
+              placeholder="Entrez votre adresse postale"
+              required
+              [(ngModel)]="adresse"
+            />
+  
+            <label for="ville">Ville</label>
+            <input
+              type="text"
+              id="ville"
+              name="ville"
+              placeholder="Entrez votre ville"
+              required
+              [(ngModel)]="ville"
+            />
+  
+            <label for="code_postal">Code postal</label>
+            <input
+              type="text"
+              id="code_postal"
+              name="code_postal"
+              placeholder="Entrez votre code postal"
+              required
+              [(ngModel)]="codePostal"
+            />
+  
+            <div class="buttons">
+              <a class="btn retour" (click)="onBack()" aria-current="page">
+                <span>Retour</span>
+              </a>
+              <button 
+                class="btn suivant" 
+                [disabled]="email && email !== emailUtilisateur"
+                (click)="onNext()"
+            >
+                <span>Suivant</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+  

@@ -1,0 +1,85 @@
+$main-font-color: #2F5232;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+$sidebar-bg-color: #B1D9B7;
+
+.imgEnTete img {
+    box-shadow: $box-shadow;
+    width: 135vh;
+    height: 30vw;
+    border-radius: 5%;
+    margin-top: 7vw;
+    margin-left: 45vh;
+}
+
+.titre {
+    margin-top: 5vw;
+    margin-left: 45vh;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Literata';
+}
+
+.partie_1 h3 {
+    margin-left: 47vh;
+    max-width: 125vh;
+    font-size: 22px;
+    font-family: 'Lustria';
+    text-align: justify;
+    font-weight: lighter;
+}
+
+.lesPaniers p {
+    margin-left: 49vh;
+    max-width: 125vh;
+    font-size: 16px;
+    font-family: 'Arima';
+    text-align: justify;
+}
+
+.partie_1 h4 {
+    font-size: 18px;
+    margin-left: 21.5rem;
+    margin-top: 3.5rem;
+    font-family: 'Lustria';
+    font-weight: lighter;
+    color: #2F5232;
+    text-decoration: underline;
+}
+
+.partie_1 h5, 
+.partie_2 h5 {
+    margin-left: 22.5rem;
+    color: #2F5232;
+    font-family: 'Arima';
+    font-size: 16px;
+}
+
+.partie_2 h4 {
+    font-size: 18px;
+    margin-left: 21.5rem;
+    margin-top: 10rem;
+    font-family: 'Lustria';
+    font-weight: lighter;
+    color: #2F5232;
+    text-decoration: underline;
+}
+
+.employe {
+    margin-left: 40rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+}
+
+.employe a {
+    color: $main-font-color;
+    text-decoration: none;
+}
+
+.employe span {
+    background-color: $sidebar-bg-color;
+    padding: 2%;
+    font-size: 22px;
+    font-family: 'Arima';
+    border-radius: 3%;
+}
+

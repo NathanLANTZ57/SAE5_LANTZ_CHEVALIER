@@ -1,14 +1,5 @@
 $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
-.validation-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-}
-
 .imgEnTete img {
     box-shadow: $box-shadow;
     width: 135vh;
@@ -18,48 +9,68 @@ $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     margin-left: 45vh;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+h2 {
+    font-size: 18px;
+    margin-bottom: 6vh;
+    font-family: 'Literata', serif;
+    margin-left: 47vh;
+    margin-top: 7vh;
+    color: #2F5232;
 }
 
 .info-section {
-    margin-bottom: 20px;
-}
-
-.info-section h2 {
-    color: #0056b3;
-    margin-bottom: 10px;
-}
-
-p {
+    font-family: 'Arima';
     font-size: 16px;
-    line-height: 1.5;
-}
-
-strong {
-    font-weight: bold;
+    border: 1px solid #a1a1a1;
+    margin-left: 21rem;
+    max-width: 61%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 6rem;
 }
 
 .buttons {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 5vh; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%; 
+    font-family: 'Arima';
+}
+
+.cancel, .confirm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    padding: 10px;
+    font-size: 16px;
+    color: white; 
     text-align: center;
-    margin-top: 20px;
-}
-
-.buttons .btn {
-    margin: 0 10px;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
+    text-decoration: none;
+    margin-top: 5rem;
 }
 
-.buttons .btn.confirm {
-    background-color: #28a745;
-    color: white;
+.cancel {
+    background-color: #66201C;
+    margin-left: 5.5rem;
+    margin-right: 2rem;
 }
 
-.buttons .btn.cancel {
-    background-color: #dc3545;
-    color: white;
+.confirm {
+    background-color: #17760E;
+}
+
+.cancel a, .confirm a {
+    color: white; 
+    text-decoration: none; 
+}
+
+.button .btn:hover {
+    opacity: 0.9;
 }

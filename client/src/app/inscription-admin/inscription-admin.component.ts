@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InscriptionAdminComponent implements OnInit {
   pendingAdherents: any[] = [];
-  pendingEmployees: any[] = []; // Nouveau tableau pour les employés
+  pendingEmployees: any[] = []; 
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getPendingAdherents();
-    this.getPendingEmployees(); // Charger les employés en attente
+    this.getPendingEmployees(); 
   }
 
   getPendingEmployees(): void {
@@ -32,7 +32,7 @@ export class InscriptionAdminComponent implements OnInit {
     this.http.patch(`http://localhost:3000/api/employes/${id}/status`, { status }).subscribe(
       (response: any) => {
         alert(`Statut mis à jour: ${status}`);
-        this.getPendingEmployees(); // Rafraîchir la liste
+        this.getPendingEmployees(); 
       },
       (error) => {
         console.error('Erreur lors de la mise à jour du statut', error);
@@ -55,7 +55,7 @@ export class InscriptionAdminComponent implements OnInit {
     this.http.patch(`http://localhost:3000/api/adherents/${id}/status`, { status }).subscribe(
       (response: any) => {
         alert(`Statut mis à jour: ${status}`);
-        this.getPendingAdherents(); // Rafraîchir la liste
+        this.getPendingAdherents(); 
       },
       (error) => {
         console.error('Erreur lors de la mise à jour du statut', error);

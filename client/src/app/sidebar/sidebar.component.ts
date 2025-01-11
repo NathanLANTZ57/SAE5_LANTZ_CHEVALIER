@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserService } from '../shared/user.service'; // Import du service UserService
+import { UserService } from '../shared/user.service'; 
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
   isLoggedIn = false;
   username = '';
   password = '';
-  role = ''; // Peut être "adherent" ou "employe"
+  role = ''; 
   menuTitle = 'Menu';
   menuTitleOuvert = 'Tableau de bord';
   menuItems = [
@@ -25,14 +25,13 @@ export class SidebarComponent implements OnInit {
     { link: '/profil', label: 'Profil', icon: 'assets/pageprofil.png' },
   ];
 
-  // Variables pour l'inscription
   showSignupModal = false;
   signupUsername = '';
   signupPassword = '';
   signupEmail = '';
-  signupRole = ''; // Peut être "adherent" ou "employe"
+  signupRole = ''; 
 
-  constructor(private http: HttpClient, private userService: UserService, private router: Router) {} // Injection du service
+  constructor(private http: HttpClient, private userService: UserService, private router: Router) {} 
 
   ngOnInit(): void {}
 
@@ -82,14 +81,12 @@ export class SidebarComponent implements OnInit {
             this.role = 'admin';
           }
   
-          // Marquer la connexion comme réussie dans le service
           this.userService.setLoggedIn(this.isLoggedIn);
           this.userService.setUsername(this.username);
-          this.userService.setRole(this.role); // Stocker le rôle
+          this.userService.setRole(this.role); 
   
-          // Réinitialiser le formulaire après connexion
           this.closeModal();
-          this.username = ''; // Réinitialisé après avoir été stocké dans le service
+          this.username = ''; 
           this.password = '';
         },
         error => {
@@ -106,7 +103,7 @@ export class SidebarComponent implements OnInit {
 
   onLogout(): void {
     this.isLoggedIn = false;
-    this.role = ''; // Réinitialisation du rôle
+    this.role = ''; 
     this.userService.setLoggedIn(false);
     this.userService.setUsername('');
     this.userService.setRole('');
@@ -114,7 +111,6 @@ export class SidebarComponent implements OnInit {
     alert('Déconnexion réussie.');
   }
 
-  // Méthodes pour l'inscription
   openSignupModal() {
     this.showSignupModal = true;
   }
@@ -127,21 +123,20 @@ export class SidebarComponent implements OnInit {
     let apiUrl = '';
     let signupData: any = {};
 
-    // Déterminer l'URL de l'API et les données à envoyer selon le rôle sélectionné
     if (this.signupRole === 'adherent') {
       apiUrl = 'http://localhost:3000/api/login/adherent';
       signupData = { 
         name: this.signupUsername, 
         password: this.signupPassword, 
         email: this.signupEmail 
-      }; // Utilise 'name' pour adherent
+      }; 
     } else if (this.signupRole === 'employe') {
       apiUrl = 'http://localhost:3000/api/login/employe';
       signupData = { 
         name: this.signupUsername, 
         password: this.signupPassword, 
         email: this.signupEmail 
-      }; // Utilise 'name' pour employe
+      }; 
     } else {
       alert('Veuillez sélectionner un rôle valide pour l\'inscription.');
       return;
@@ -153,7 +148,6 @@ export class SidebarComponent implements OnInit {
           console.log('Inscription réussie', response);
           alert(`Inscription réussie pour ${this.signupUsername}! (${this.signupRole})`);
 
-          // Réinitialiser le formulaire après inscription
           this.closeSignupModal();
           this.signupUsername = '';
           this.signupPassword = '';

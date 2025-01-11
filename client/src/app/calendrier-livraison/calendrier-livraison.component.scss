@@ -1,5 +1,5 @@
 .calendar-container {
-    position: relative; /* Pour que les flèches soient positionnées par rapport au calendrier */
+    position: relative; 
     border: 2px solid #A1A1A1;
     padding: 2%;
     width: 100%;
@@ -131,8 +131,8 @@
 
 .arrow {
     position: absolute;
-    top: 59%; /* Aligne verticalement les flèches */
-    transform: translateY(-50%); /* Corrige la position verticale */
+    top: 59%; 
+    transform: translateY(-50%); 
     background: none;
     border: none;
     font-size: 45px;
@@ -141,11 +141,11 @@
 }
 
 .arrow.left {
-    left: 2%; /* Positionne la flèche gauche près du bord gauche */
+    left: 2%; 
 }
 
 .arrow.right {
-    right: 2%; /* Positionne la flèche droite près du bord droit */
+    right: 2%;
 }
 
 .empty {
@@ -171,25 +171,25 @@
   
 .modal-content {
     background: white;
-    padding: 0; /* Supprime le padding pour éviter les espaces blancs */
+    padding: 0; 
     border-radius: 1vh;
     text-align: center;
     height: auto;
     width: 30%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    overflow: hidden; /* Évite que les contenus dépassent */
+    overflow: hidden; 
 }
 
 .modal-content h3 {
-    margin: 0; /* Supprime toutes les marges */
+    margin: 0;
     background-color: #B1D9B7;
-    padding: 3rem; /* Ajuste la hauteur intérieure */
-    border-radius: 1vh 1vh 0 0; /* Arrondi uniquement les coins supérieurs */
+    padding: 3rem;
+    border-radius: 1vh 1vh 0 0; 
     font-family: 'Love Ya Like A Sister';
     font-weight: lighter;
     color: #2F5232;
     font-size: 24px;
-    border-bottom: 1px solid #A1A1A1; /* Ligne pour la séparation visuelle */
+    border-bottom: 1px solid #A1A1A1;
 }
 
   

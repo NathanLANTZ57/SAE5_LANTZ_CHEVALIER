@@ -54,7 +54,7 @@ $sidebar-bg-color: #b1d9b7;
     color: $main-font-color;
     text-decoration: none;
     font-family: "Instrument Sans";
-    margin-left: 3.5vw; // Marges par défaut (fermé)
+    margin-left: 3.5vw; 
     margin-bottom: 5vw;
 
     img {
@@ -150,7 +150,7 @@ $sidebar-bg-color: #b1d9b7;
   }
 
   label {
-    width: 10vw; /* Largeur pour aligner les labels */
+    width: 10vw; 
     color: #76b946;
     font-family: "Josefin Slab";
     font-weight: bold;
@@ -170,7 +170,7 @@ $sidebar-bg-color: #b1d9b7;
 
   .radio-group {
     display: flex;
-    align-items: flex-start; /* Aligne la question avec les options radio */
+    align-items: flex-start; 
     margin: 1.5rem 0;
 
     p {
@@ -183,7 +183,7 @@ $sidebar-bg-color: #b1d9b7;
 
     .radio-options {
       display: flex;
-      flex-direction: column; /* Empile les options radio */
+      flex-direction: column; 
       margin: 0.5rem 0.5rem;
     }
 
@@ -220,17 +220,17 @@ $sidebar-bg-color: #b1d9b7;
 
 
 hr.ligne-ouvert {
-  border: none; /* Supprime la bordure par défaut */
-  border-top: 1px solid white; /* Ligne blanche */
-  width: 85%; /* Largeur adaptée pour la sidebar ouverte */
-  margin: 0.5vw auto; /* Centré avec des marges */
+  border: none; 
+  border-top: 1px solid white; 
+  width: 85%; 
+  margin: 0.5vw auto; 
   margin-bottom: 15%;
 }
 
 hr.ligne-ferme {
-  border: none; /* Supprime la bordure par défaut */
-  border-top: 1px solid white; /* Ligne blanche */
-  width: 85%; /* Largeur adaptée pour la sidebar fermée */
-  margin: 0.5vw auto; /* Centré avec des marges */
+  border: none; 
+  border-top: 1px solid white; 
+  width: 85%; 
+  margin: 0.5vw auto; 
   margin-bottom: 25%;
 }
