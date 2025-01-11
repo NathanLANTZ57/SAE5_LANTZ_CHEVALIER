@@ -1,7 +1,5 @@
 Reste à faire partie FRONT : 
 
-- finir le formulaire panier adhérent + employé
-
 - refaire css affichage des tournées 
 
 - lié les derniers cards d'accueil à la bonne page, et faire en sorte que ca affiche le bonne endroit 

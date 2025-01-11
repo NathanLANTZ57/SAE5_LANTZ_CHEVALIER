@@ -9,16 +9,12 @@ $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     margin-left: 45vh;
 }
 
-h2 {
-    font-size: 18px;
-    margin-bottom: 6vh;
-    font-family: 'Literata', serif;
-    margin-left: 47vh;
-    margin-top: 7vh;
-    color: #2F5232;
+.ChoixValidation {
+    font-family: 'Arima';
+    margin-top: 6rem;
 }
 
-.info-section {
+.ChoixValidationAbonnement p {
     font-family: 'Arima';
     font-size: 16px;
     border: 1px solid #a1a1a1;
@@ -26,7 +22,6 @@ h2 {
     max-width: 61%;
     padding: 10px 20px;
     border-radius: 5px;
-    margin-top: 6rem;
 }
 
 .buttons {
@@ -40,7 +35,7 @@ h2 {
     font-family: 'Arima';
 }
 
-.cancel, .confirm {
+.abandonner, .enregistrer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,17 +51,17 @@ h2 {
     margin-top: 5rem;
 }
 
-.cancel {
+.abandonner {
     background-color: #66201C;
     margin-left: 5.5rem;
     margin-right: 2rem;
 }
 
-.confirm {
+.enregistrer {
     background-color: #17760E;
 }
 
-.cancel a, .confirm a {
+.abandonner a, .enregistrer a {
     color: white; /* Assure que les liens sont blancs */
     text-decoration: none; /* Supprime le soulignement */
 }

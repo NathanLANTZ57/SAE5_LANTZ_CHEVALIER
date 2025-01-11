@@ -24,6 +24,11 @@ import { FruitDeSaisonComponent } from './fruit-de-saison/fruit-de-saison.compon
 import { InscriptionAdminComponent } from './inscription-admin/inscription-admin.component';
 import { PaiementAdminComponent } from './paiement-admin/paiement-admin.component';
 import { FormulaireValidationComponent } from './formulaire-validation/formulaire-validation.component';
+import { FormulairePanierEmployeComponent } from './formulaire-panier-employe/formulaire-panier-employe.component';
+import { PanierEmployeComponent } from './panier-employe/panier-employe.component';
+import { FormulaireChoixPanierEmployeComponent } from './formulaire-choix-panier-employe/formulaire-choix-panier-employe.component';
+import { FormulaireValidationEmployeComponent } from './formulaire-validation-employe/formulaire-validation-employe.component';
+import { FormulaireValideEmployeComponent } from './formulaire-valide-employe/formulaire-valide-employe.component';
 
 const routes: Routes = [
   { path: '', component: AccueilAdherentComponent },
@@ -49,7 +54,12 @@ const routes: Routes = [
   { path: 'fruit-saison', component: FruitDeSaisonComponent},
   { path: 'inscription-admin', component: InscriptionAdminComponent},
   { path: 'paiement-admin', component: PaiementAdminComponent},
-  { path: 'formulaire-validation', component: FormulaireValidationComponent}
+  { path: 'formulaire-validation', component: FormulaireValidationComponent},
+  { path: 'formulaire-panier-employe', component: FormulairePanierEmployeComponent},
+  { path: 'panier-employe', component: PanierEmployeComponent},
+  { path: 'formulaire-choix-panier-employe', component: FormulaireChoixPanierEmployeComponent},
+  { path: 'formulaire-validation-employe', component: FormulaireValidationEmployeComponent},
+  { path: 'formulaire-valide-employe', component: FormulaireValideEmployeComponent}
 ];
 
 

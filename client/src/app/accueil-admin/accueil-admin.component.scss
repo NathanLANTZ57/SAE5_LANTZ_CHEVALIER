@@ -1,0 +1,38 @@
+.AccueilAdmin {
+    padding: 20px;
+    gap: 20px;
+}
+
+.InscriptionAdmin, .PaiementAdmin {
+    width: 100%; /* Les divs occupent toute la largeur */
+    margin-bottom: 20px; /* Espacement entre les deux divs */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #ccc;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #056f07;
+    color: white; /* Rendre le texte du header visible */
+    font-weight: bold;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+p {
+    margin-top: 10px;
+    font-size: 14px;
+}

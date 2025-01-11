@@ -1,0 +1,46 @@
+<div class="containerChoixPanierEmploye">
+
+    <div class="contentChoixPanierEmploye">
+      <app-logo></app-logo>
+  
+      <div class="imgEnTete">
+        <img src="assets/formulaire_panier.jpg" alt="Photo panier légume">
+      </div>
+      <p>J'opte pour la formule Panier légumes Bio :</p>
+  
+      <div class="formChoixPanierEmploye">
+        <form>
+          <div class="option">
+            <label for="panierSolidaire">Panier solidaire</label>
+            <input type="checkbox" id="panierSolidaire" name="panierSolidaire">
+          </div>
+          <div class="option">
+            <label for="panierSimple">Panier simple</label>
+            <input type="checkbox" id="panierSimple" name="panierSimple">
+          </div>
+        </form>
+      </div>
+  
+      <!-- Conteneur pour les boutons -->
+      <div class="buttons">
+        <div class="retour">
+          <a 
+            class="button" 
+            routerLink="/formulaire-panier-employe"
+            routerLinkActive="active"
+            aria-current="page">
+            <span>Retour</span>
+          </a>
+        </div>
+        <div class="suivant">
+          <a 
+            class="button" 
+            routerLink="/formulaire-validation-employe"
+            routerLinkActive="active"
+            aria-current="page">
+            <span>Suivant</span>
+          </a>
+        </div>
+    </div>
+</div>
+  

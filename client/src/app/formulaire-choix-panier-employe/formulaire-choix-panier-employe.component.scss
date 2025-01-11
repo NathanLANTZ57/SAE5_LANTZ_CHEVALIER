@@ -9,24 +9,31 @@ $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     margin-left: 45vh;
 }
 
-h2 {
+p {
     font-size: 18px;
     margin-bottom: 6vh;
     font-family: 'Literata', serif;
     margin-left: 47vh;
     margin-top: 7vh;
-    color: #2F5232;
 }
 
-.info-section {
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5vh;
+}
+
+.option label {
+    flex: 1;
+    margin-left: 22.5rem;
     font-family: 'Arima';
-    font-size: 16px;
-    border: 1px solid #a1a1a1;
-    margin-left: 21rem;
-    max-width: 61%;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 6rem;
+}
+
+.option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 62%;
 }
 
 .buttons {
@@ -40,7 +47,7 @@ h2 {
     font-family: 'Arima';
 }
 
-.cancel, .confirm {
+.retour, .suivant {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,17 +63,17 @@ h2 {
     margin-top: 5rem;
 }
 
-.cancel {
+.retour {
     background-color: #66201C;
     margin-left: 5.5rem;
     margin-right: 2rem;
 }
 
-.confirm {
+.suivant {
     background-color: #17760E;
 }
 
-.cancel a, .confirm a {
+.retour a, .suivant a {
     color: white; /* Assure que les liens sont blancs */
     text-decoration: none; /* Supprime le soulignement */
 }
