@@ -13,12 +13,11 @@ export class FormulaireChoixComponent implements OnInit {
   nbPanierFruits: number = 0;
   boiteOeuf: boolean = false;
   nbBoiteOeuf: number = 0;
-  numbers: number[] = Array.from({ length: 20 }, (_, i) => i + 1); // Liste de 1 à 20 pour la sélection
+  numbers: number[] = Array.from({ length: 20 }, (_, i) => i + 1); 
 
   constructor(private adherentDataService: AdherentDataService, private router: Router) {}
 
   ngOnInit(): void {
-    // Charger les données enregistrées si elles existent
     this.panierLegumes = this.adherentDataService.getData('panierLegumes') || '';
     this.panierFruits = this.adherentDataService.getData('panierFruits') || false;
     this.nbPanierFruits = this.adherentDataService.getData('nbPanierFruits') || 0;
@@ -26,7 +25,6 @@ export class FormulaireChoixComponent implements OnInit {
     this.nbBoiteOeuf = this.adherentDataService.getData('nbBoiteOeuf') || 0;
   }
 
-  // Sauvegarder les données et passer à la page suivante
   onNext(): void {
     this.adherentDataService.setData('panierLegumes', this.panierLegumes);
     this.adherentDataService.setData('panierFruits', this.panierFruits);
@@ -34,7 +32,6 @@ export class FormulaireChoixComponent implements OnInit {
     this.adherentDataService.setData('boiteOeuf', this.boiteOeuf);
     this.adherentDataService.setData('nbBoiteOeuf', this.nbBoiteOeuf);
 
-    // Naviguer vers la page suivante
     this.router.navigate(['/app-formulaire-mode-livraison']);
   }
 }

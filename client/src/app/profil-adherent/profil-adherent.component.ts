@@ -11,21 +11,18 @@ export class ProfilAdherentComponent implements OnInit {
   isModalAbonnementOpen: boolean = false;
   isModalLivraisonOpen: boolean = false;
   isModalHistoriquePaiementOpen: boolean = false;
-  username: string = ''; // Variable pour stocker le username
-  adherentData: any = {}; // Stocke les données de l'adhérent
+  username: string = ''; 
+  adherentData: any = {};
 
   constructor(private userService: UserService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    // Abonnez-vous pour obtenir le username depuis le service
     this.userService.currentUsername.subscribe((username) => {
       this.username = username;
 
-      // Récupérer l'adresse e-mail de l'utilisateur connecté
       if (this.username) {
         this.userService.getUserEmail(this.username).then(
           (email) => {
-            // Appeler l'API pour récupérer les données de l'adhérent
             this.fetchAdherentData(email);
           },
           (error) => {
@@ -40,8 +37,8 @@ export class ProfilAdherentComponent implements OnInit {
     const apiUrl = `http://localhost:3000/api/adherentsabonne?email=${encodeURIComponent(email)}`;
     this.http.get(apiUrl).subscribe(
       (data) => {
-        console.log('Données récupérées :', data); // Ajoutez ce log
-        this.adherentData = data; // Mettez à jour les données affichées dans le profil
+        console.log('Données récupérées :', data); 
+        this.adherentData = data; 
       },
       (error) => {
         console.error('Erreur lors de la récupération des données de l\'adhérent :', error);
@@ -49,8 +46,6 @@ export class ProfilAdherentComponent implements OnInit {
     );
   }
   
-
-  // Ouvrir les modales
   openModalAbonnement() {
     this.isModalAbonnementOpen = true;
   }
@@ -63,7 +58,6 @@ export class ProfilAdherentComponent implements OnInit {
     this.isModalHistoriquePaiementOpen = true;
   }
 
-  // Fermer les modales
   closeModalAbonnement() {
     this.isModalAbonnementOpen = false;
   }

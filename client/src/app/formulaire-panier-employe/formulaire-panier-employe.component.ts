@@ -18,21 +18,20 @@ export class FormulairePanierEmployeComponent implements OnInit {
     ville: string = '';
     codePostal: string = '';
   
-    emailUtilisateur: string = ''; // Stockage de l'e-mail de l'utilisateur connecté
+    emailUtilisateur: string = ''; 
   
     constructor(
       private adherentDataService: AdherentDataService,
       private router: Router,
-      private userService: UserService // Injection du service UserService
+      private userService: UserService 
     ) {}
   
     ngOnInit(): void {
-      // Récupérer l'e-mail de l'utilisateur connecté
       this.userService.currentUsername.subscribe((username) => {
         if (username) {
           this.userService.getUserEmail(username).then(
             (email) => {
-              this.emailUtilisateur = email; // Stockez l'email réel
+              this.emailUtilisateur = email; 
             },
             (error) => {
               console.error('Erreur lors de la récupération de l\'email utilisateur :', error);
@@ -42,7 +41,6 @@ export class FormulairePanierEmployeComponent implements OnInit {
         }
       });
   
-      // Charger les données sauvegardées
       this.nom = this.adherentDataService.getData('nom') || '';
       this.prenom = this.adherentDataService.getData('prenom') || '';
       this.dateNaissance = this.adherentDataService.getData('dateNaissance') || '';
@@ -58,13 +56,11 @@ export class FormulairePanierEmployeComponent implements OnInit {
         return;
       }
   
-      // Vérifier que l'e-mail correspond à celui de l'utilisateur connecté
       if (this.email !== this.emailUtilisateur) {
         alert('L\'adresse e-mail saisie ne correspond pas à celle utilisée lors de la connexion.');
         return;
       }
   
-      // Sauvegarder les données dans le service
       this.adherentDataService.setData('nom', this.nom);
       this.adherentDataService.setData('prenom', this.prenom);
       this.adherentDataService.setData('dateNaissance', this.dateNaissance);
@@ -73,7 +69,6 @@ export class FormulairePanierEmployeComponent implements OnInit {
       this.adherentDataService.setData('ville', this.ville);
       this.adherentDataService.setData('codePostal', this.codePostal);
   
-      // Naviguer vers la page suivante
       this.router.navigate(['/formulaire-choix-panier-employe']);
     }
   

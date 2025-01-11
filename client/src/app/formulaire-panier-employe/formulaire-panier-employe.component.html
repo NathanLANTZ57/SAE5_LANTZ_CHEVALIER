@@ -49,7 +49,6 @@
               required
               [(ngModel)]="email"
             />
-            <!-- Afficher un message d'erreur si l'adresse e-mail ne correspond pas -->
             <div *ngIf="email && email !== emailUtilisateur" class="error">
               <p>L'adresse e-mail doit correspondre à celle utilisée pour l'utilisateur connecté</p>
             </div>

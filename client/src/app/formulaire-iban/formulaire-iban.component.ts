@@ -57,11 +57,9 @@ export class FormulaireIbanComponent {
     this.submitted = true;
 
     if (this.ibanForm.valid) {
-      // Enregistrer les données dans le service
       this.adherentDataService.setData('iban', this.iban?.value);
       this.adherentDataService.setData('bic', this.bic?.value);
 
-      // Rediriger vers la page de validation
       this.router.navigate(['/formulaire-validation']);
     } else {
       alert('Le formulaire contient des erreurs. Veuillez corriger les champs en rouge.');

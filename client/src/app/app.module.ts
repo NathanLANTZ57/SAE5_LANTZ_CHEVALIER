@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importer FormsModule pour ngModel
-import { HttpClientModule } from '@angular/common/http'; // Importer HttpClientModule pour les requêtes HTTP
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

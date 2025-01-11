@@ -33,12 +33,12 @@ p {
 
 .buttons {
     display: flex;
-    justify-content: space-between; /* Espacement entre les boutons */
-    align-items: center; /* Aligne les boutons verticalement */
-    margin-top: 5vh; /* Espacement au-dessus des boutons */
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5vh; 
     margin-left: auto;
     margin-right: auto;
-    width: 50%; /* Ajustez cette largeur selon vos besoins */
+    width: 50%; 
     font-family: 'Arima';
 }
 
@@ -46,10 +46,10 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45%; /* Ajuste la largeur des boutons */
+    width: 45%; 
     padding: 10px;
     font-size: 16px;
-    color: white; /* Met le texte en blanc */
+    color: white; 
     text-align: center;
     border: none;
     border-radius: 15px;
@@ -69,8 +69,8 @@ p {
 }
 
 .retour a, .suivant a {
-    color: white; /* Assure que les liens sont blancs */
-    text-decoration: none; /* Supprime le soulignement */
+    color: white; 
+    text-decoration: none; 
 }
 
 .button .btn:hover {

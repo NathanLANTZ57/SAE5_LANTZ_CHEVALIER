@@ -9,7 +9,7 @@ import { UserService } from '../shared/user.service';
 export class AccueilAdherentComponent implements OnInit {
   background = 'assets/image_arbre.jpg';
   isLoggedIn = false;
-  role = ''; // Nouvelle propriété pour le rôle
+  role = ''; 
 
   constructor(private userService: UserService) {}
 

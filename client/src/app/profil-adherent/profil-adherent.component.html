@@ -1,10 +1,8 @@
 <div class="containerProfil">
-  <!-- Logo -->
   <div class="containerLogo">
     <app-logo></app-logo>
   </div>
 
-  <!-- En-tête avec image et nom -->
   <div class="header-profile">
     <img src="assets/ImgProfil.png" alt="Logo" class="profile-logo">
     <h1 class="profile-name">
@@ -12,9 +10,7 @@
     </h1>
   </div>
 
-  <!-- Profil utilisateur -->
   <div class="profile-content">
-    <!-- Informations utilisateur -->
     <div class="user-info">
       <div class="info-item">
         <span>Nom :</span>
@@ -48,7 +44,6 @@
     <button class="edit-button">Modifier</button>
   </div>
 
-  <!-- Informations de paiement -->
   <div class="profile-content">
     <div class="payment-info">
       <div class="info-item">
@@ -64,7 +59,6 @@
         <button class="voirDetails" (click)="openModalAbonnement()">Voir les détails</button>
       </div>
 
-      <!-- Inclusion de la modale abonnement -->
       <app-profil-modal-abonnement
         [isOpen]="isModalAbonnementOpen"
         (close)="closeModalAbonnement()">

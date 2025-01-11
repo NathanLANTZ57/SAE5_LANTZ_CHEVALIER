@@ -1,4 +1,3 @@
-/* Styles pour l'image en-tête */
 .imgEnTete img {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     width: 135vh;
@@ -8,7 +7,6 @@
     margin-left: 45vh;
 }
 
-/* Titre principal */
 .titre {
     margin-top: 5vw;
     margin-left: 45vh;
@@ -17,13 +15,12 @@
     font-family: 'Literata';
 }
 
-/* Conteneur pour les sections */
 .commandeAVenir,
 .commandeReprogramme,
 .commandeDivers {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Espacement vertical entre les éléments */
+    gap: 20px; 
     margin-left: 17%;
 }
 
@@ -36,25 +33,23 @@
     margin-left: 10%;
 }
 
-/* Conteneur pour les boîtes */
 .commande-box-container {
     display: flex;
-    flex-wrap: wrap; /* Retour à la ligne si nécessaire */
-    gap: 20px; /* Espacement entre les boîtes */
+    flex-wrap: wrap;
+    gap: 20px; 
 }
 
-/* Style commun pour toutes les boîtes */
 .commande-box,
 .commande-box-reprogrammed,
 .commande-box-autres {
     border: 1px solid #a1a1a1;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre uniforme */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     background-color: #fff;
-    flex: 1 1 calc(30% - 20px); /* Largeur adaptative */
+    flex: 1 1 calc(30% - 20px);
     box-sizing: border-box;
-    max-width: 30%; /* Largeur maximale pour chaque boîte */
+    max-width: 30%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -72,20 +67,18 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Style spécifique pour les commandes reprogrammées */
 .commande-box-reprogrammed {
     border-color: #c96565;
     background-color: #ffe5e5;
 }
 
-/* Entête (jour) commun pour toutes les boîtes */
 .commande-box .jour,
 .commande-box-autres .jour {
     background-color: #eeeef9;
     padding: 10px 22px;
     display: flex;
-    justify-content: center; /* Centré horizontalement */
-    align-items: center; /* Centré verticalement */
+    justify-content: center; 
+    align-items: center; 
     text-align: center;
     border-radius: 5px;
     font-family: 'Arima';
@@ -98,8 +91,8 @@
     background-color: #32344a;
     padding: 10px 22px;
     display: flex;
-    justify-content: center; /* Centré horizontalement */
-    align-items: center; /* Centré verticalement */
+    justify-content: center;
+    align-items: center; 
     text-align: center;
     border-radius: 5px;
     font-family: 'Arima';
@@ -108,14 +101,12 @@
     color: white;
 }
 
-/* Contenu de la commande */
 .contenuCommande p {
     margin: 5px 0;
     font-family: 'Arima';
     font-size: 14px;
 }
 
-/* Boutons uniformisés */
 .commande-box-container button {
     background-color: #9594FC;
     border: none;
@@ -125,7 +116,7 @@
     font-family: 'Arima';
     font-size: 14px;
     margin-top: 10px;
-    margin-left: auto; /* Aligne le bouton à droite */
+    margin-left: auto;
     display: block;
 }
 
@@ -183,16 +174,16 @@
 
 
 .modal-content h2 {
-    background-color: #B1D9B7; /* Vert doux */
+    background-color: #B1D9B7;
     font-family: 'Josefin Slab';
-    color: #2F5232; /* Vert foncé pour le texte */
-    padding: 40px 40px; /* Augmente le rembourrage pour un espace plus généreux */
+    color: #2F5232; 
+    padding: 40px 40px; 
     text-align: center;
     font-size: 27px;
-    border-radius: 12px; /* Légèrement arrondi pour un effet plus doux */
-    margin-bottom: 20px; /* Plus d'espace en dessous */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
-    border: 2px solid #A3C9A8; /* Ajoute une bordure plus définie */
+    border-radius: 12px; 
+    margin-bottom: 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #A3C9A8; 
 }
 
 
