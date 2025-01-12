@@ -230,5 +230,19 @@
       "bic": "HGFEDCBAXXX",
       "statut_paiement": "en_attente"
     }
+  ],
+  "EmployésAbonnés": [
+    {
+      "id": 1,
+      "nom": "lantz",
+      "prenom": "nathan",
+      "date_naissance": "2004-03-20",
+      "adresse_mail": "alice.manager@example.com",
+      "adresse_postale": "5 B Lavalette",
+      "ville": "Abreschviller",
+      "code_postal": "57560",
+      "formule_panier": "panierSimple",
+      "statut_paiement": "en_attente"
+    }
   ]
 }

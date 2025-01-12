@@ -55,4 +55,14 @@ export class UserService {
       throw new Error('Adresse e-mail non trouvée pour cet utilisateur');
     });
   }
+
+  getUserEmailEmploye(username: string): Promise<string> {
+    const apiUrl = `http://localhost:3000/api/employes?username=${encodeURIComponent(username)}`;
+    return this.http.get<any>(apiUrl).toPromise().then((user) => {
+      if (user && user.email) {
+        return user.email;
+      }
+      throw new Error('Adresse e-mail non trouvée pour cet utilisateur');
+    });
+  }
 }
