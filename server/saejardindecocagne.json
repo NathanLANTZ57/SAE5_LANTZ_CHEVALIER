@@ -104,6 +104,13 @@
       "password": "test",
       "email": "titouan.lakou@gmail.com",
       "status": "validated"
+    },
+    {
+      "id": 9,
+      "name": "julio soares",
+      "password": "test",
+      "email": "julio.soares@gmail.com",
+      "status": "validated"
     }
   ],
   "Employes": [
@@ -229,6 +236,30 @@
       "iban": "FR5415150",
       "bic": "HGFEDCBAXXX",
       "statut_paiement": "en_attente"
+    },
+    {
+      "id": 6,
+      "nom": "lantz",
+      "prenom": "nathan",
+      "date_naissance": "2004-03-22",
+      "adresse_mail": "julio.soares@gmail.com",
+      "adresse_postale": "5 B Lavalette",
+      "ville": "Abreschviller",
+      "code_postal": "57560",
+      "cotisation": 20,
+      "don": 15,
+      "formule_panier_legumes_bio": "simple-hebdo",
+      "nb_panier_legumes_bio": 0,
+      "formule_panier_fruits_bio": false,
+      "nb_panier_fruits_bio": 0,
+      "formule_boite_oeufs_bio": false,
+      "nb_panier_oeufs_bio": 0,
+      "depot": false,
+      "domicile": true,
+      "formule_payement": "Trimestre",
+      "iban": "FR6743647238",
+      "bic": "BANKGDFQ",
+      "statut_paiement": "validated"
     }
   ],
   "EmployésAbonnés": [
