@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profil-reprogrammation-nombre-panier.component.scss']
 })
 export class ProfilReprogrammationNombrePanierComponent implements OnInit {
+  selectPanier(selectPanier: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor() { }
 

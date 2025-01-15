@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TrajetLivraisonComponent } from './trajet-livraison.component';
 
 describe('TrajetLivraisonComponent', () => {
