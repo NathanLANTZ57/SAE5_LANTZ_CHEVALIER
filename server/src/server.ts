@@ -462,7 +462,7 @@ app.get('/api/adherentsabonne', async (req: Request, res: Response): Promise<voi
       return;
     }
 
-    // Rechercher les informations dans la table AdhérentsAbonnés correspondant à cet email
+    // Rechercher les informations dans la table AdhérentsAbonnés correspondant à cet emaill
     const adherentAbonne = dbData.AdhérentsAbonnés.find(
       (a: any) => a.adresse_mail?.toLowerCase() === (email as string).toLowerCase()
     );
