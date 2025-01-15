@@ -480,6 +480,7 @@ app.get('/api/adherentsabonne', async (req: Request, res: Response): Promise<voi
   }
 });
 
+// Requete pour avoir l'username de l'adherent
 app.get('/api/adherents', async (req: Request, res: Response): Promise<void> => {
   try {
     const { username } = req.query;
@@ -506,6 +507,35 @@ app.get('/api/adherents', async (req: Request, res: Response): Promise<void> => 
     res.status(500).json({ message: 'Erreur interne du serveur' });
   }
 });
+
+// requete pour avoir l'username de l'employe
+app.get('/api/employes', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { username } = req.query;
+
+    if (!username) {
+      res.status(400).json({ message: 'Username est requis' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const employe = dbData.Employes.find(
+      (e: any) => e.name.toLowerCase() === (username as string).toLowerCase()
+    );
+
+    if (!employe) {
+      res.status(404).json({ message: "Employé non trouvé" });
+      return;
+    }
+
+    res.status(200).json({ email: employe.email });
+  } catch (error) {
+    console.error('Erreur lors de la récupération de l\'adresse e-mail :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
+
 
 app.get('/api/adherents/status', async (req: Request, res: Response): Promise<void> => {
   try {
@@ -701,7 +731,158 @@ app.get('/api/adherentsabonne/all', async (req: Request, res: Response): Promise
   }
 });
 
+// Route pour enregistrer un nouvel EmployéAbonné
+app.post('/api/register/employesabonne', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {
+      nom,
+      prenom,
+      date_naissance,
+      adresse_mail,
+      adresse_postale,
+      ville,
+      code_postal,
+      formule_panier,
+      statut_paiement,
+    } = req.body;
 
+    // Validation des champs obligatoires
+    if (!nom || !prenom || !adresse_mail || !formule_panier) {
+      res.status(400).json({
+        message: 'Champs obligatoires manquants ou invalides. Veuillez vérifier vos données.',
+      });
+      return;
+    }
+
+    // Lire la base de données JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Vérifier si l'email existe déjà
+    const existingAbonne = dbData.EmployésAbonnés?.find((abonne: any) => abonne.adresse_mail === adresse_mail);
+    if (existingAbonne) {
+      res.status(409).json({ message: 'Un abonné avec cet email existe déjà.' });
+      return;
+    }
+
+    // Ajouter un nouvel EmployéAbonné
+    const newAbonne = {
+      id: dbData.EmployésAbonnés?.length ? dbData.EmployésAbonnés[dbData.EmployésAbonnés.length - 1].id + 1 : 1,
+      nom,
+      prenom,
+      date_naissance,
+      adresse_mail,
+      adresse_postale,
+      ville,
+      code_postal,
+      formule_panier,
+      statut_paiement: statut_paiement || 'en_attente', // Par défaut, statut "en_attente"
+    };
+
+    // Ajouter à la base de données
+    dbData.EmployésAbonnés = dbData.EmployésAbonnés || [];
+    dbData.EmployésAbonnés.push(newAbonne);
+
+    // Écrire dans le fichier JSON
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({
+      message: 'EmployéAbonné enregistré avec succès.',
+      abonne: newAbonne,
+    });
+  } catch (error) {
+    console.error('Erreur interne du serveur :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour récupérer les informations d’un EmployéAbonné par email
+app.get('/api/employesabonne', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email } = req.query;
+
+    if (!email) {
+      res.status(400).json({ message: 'Adresse email est requise.' });
+      return;
+    }
+
+    // Lire les données du fichier JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Trouver l'abonné correspondant
+    const employeAbonne = dbData.EmployésAbonnés?.find(
+      (abonne: any) => abonne.adresse_mail?.toLowerCase() === (email as string).toLowerCase()
+    );
+
+    if (!employeAbonne) {
+      res.status(404).json({ message: 'Aucun EmployéAbonné trouvé avec cet email.' });
+      return;
+    }
+
+    res.status(200).json(employeAbonne);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des informations :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour récupérer tous les EmployésAbonnés
+app.get('/api/employesabonne/all', async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Lire les données du fichier JSON
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Vérifier si la clé EmployésAbonnés existe dans les données
+    if (!dbData.EmployésAbonnés || dbData.EmployésAbonnés.length === 0) {
+      res.status(404).json({ message: 'Aucun EmployéAbonné trouvé.' });
+      return;
+    }
+
+    // Retourner tous les employés abonnés
+    res.status(200).json(dbData.EmployésAbonnés);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des employés abonnés :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
+  }
+});
+
+// Route pour mettre à jour le statut de paiement d’un EmployéAbonné
+app.patch('/api/employesabonne/:id/statut_paiement', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { statut_paiement } = req.body;
+
+    if (!['en_attente', 'validé', 'rejeté'].includes(statut_paiement)) {
+      res.status(400).json({ message: 'Statut de paiement invalide.' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const employe = dbData.EmployésAbonnés.find((e: any) => e.id === parseInt(id, 10));
+
+    if (!employe) {
+      res.status(404).json({ message: 'EmployéAbonné non trouvé.' });
+      return;
+    }
+
+    employe.statut_paiement = statut_paiement;
+
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+    res.status(200).json({ message: 'Statut de paiement mis à jour avec succès.', employe });
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du statut de paiement :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
 
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {
