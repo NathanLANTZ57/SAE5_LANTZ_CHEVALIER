@@ -1,19 +1,19 @@
-Reste à faire partie FRONT : 
+A FAIRE TOUT DE SUITE :
+- Refaire css affichage des tournées 
+- Relié le calendrier à la BDD
+- Permettre à ce qu'un abonnée puisse changer la date de livraison 
+- Faire la partie commande
+- Faire Test
+- Finir pipeline
 
-- refaire css affichage des tournées 
 
+FRONT END : 
 - lié les derniers cards d'accueil à la bonne page, et faire en sorte que ca affiche le bonne endroit 
 - faire page d'accueil admin
 
-- Optionnel - > s'il y a le temps faire un espace de planning pour les employés 
 
 
-
-
-
-Reste à faire BACK :
-
-- Calendrier lié à la bdd 
+BACK END :
 
 Adhérent : 
 - changer statut livraison
@@ -22,6 +22,5 @@ Adhérent :
 
 Employé : 
 - lié table employés à son formulaire et sa page profil
-- faire la partie commande
 - changer statut paiement + livraison
 - interface de finition abonnement 
