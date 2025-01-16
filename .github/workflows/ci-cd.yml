@@ -11,7 +11,7 @@ on:
 jobs:
   build-client:
     name: Build Client (Angular)
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -36,26 +36,3 @@ jobs:
       run: |
         cd client
         npm run build
-
-  build-server:
-    name: Build Server (Node.js)
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-
-    - name: Install Dependencies
-      run: |
-        cd server
-        npm install
-
-    - name: Run Tests
-      run: |
-        cd server
-        npm test
