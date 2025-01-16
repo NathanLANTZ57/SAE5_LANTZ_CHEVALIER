@@ -10,8 +10,8 @@ on:
 
 jobs:
   build-client:
-    name: Build & Test Client (Angular)
-    runs-on: windows-latest
+    name: Build Client (Angular)
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -27,19 +27,19 @@ jobs:
         cd client
         npm install
 
-    - name: Run Unit Tests with Firefox
+    - name: Run Tests
       run: |
         cd client
-        npm run test -- --watch=false --browsers=FirefoxHeadless
+        npm test
 
     - name: Build Angular App
       run: |
         cd client
-        npm run build -- --prod
+        npm run build
 
   build-server:
     name: Build Server (Node.js)
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -54,3 +54,8 @@ jobs:
       run: |
         cd server
         npm install
+
+    - name: Run Tests
+      run: |
+        cd server
+        npm test
