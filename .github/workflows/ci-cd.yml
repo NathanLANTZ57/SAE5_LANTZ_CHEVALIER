@@ -1,4 +1,4 @@
-name: CI/CD Pipeline Without Tests
+name: CI/CD Pipeline Angular and Server Build
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-client:
-    name: Build Client (Angular)
+    name: Build Client
     runs-on: windows-latest
 
     steps:
@@ -36,13 +36,25 @@ jobs:
         cd client
         npm install
 
+    - name: Install Firefox for Tests
+      run: |
+        choco install firefox --version=latest
+      shell: powershell
+
+    - name: Run Angular Tests (Firefox)
+      env:
+        FIREFOX_BIN: "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+      run: |
+        cd client
+        npm test -- --watch=false --browsers=FirefoxHeadless
+
     - name: Build Angular App
       run: |
         cd client
         npm run build
 
   build-server:
-    name: Build Server (Node.js)
+    name: Build Server (Node.js without Tests)
     runs-on: windows-latest
 
     steps:
