@@ -948,6 +948,105 @@ app.delete('/api/trajets-livraison/:id', async (req: Request, res: Response): Pr
   }
 });
 
+// Ajouter un jour de livraison
+app.post('/api/jours-livraison', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { date, tournee, frequence } = req.body;
+
+    if (!date || !tournee || !frequence) {
+      res.status(400).json({ message: 'La date, la tournée et la fréquence sont obligatoires.' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const newJourLivraison = {
+      id: dbData.JoursLivraison.length ? dbData.JoursLivraison[dbData.JoursLivraison.length - 1].id + 1 : 1,
+      date,
+      tournee,
+      frequence,
+    };
+
+    dbData.JoursLivraison.push(newJourLivraison);
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({ message: 'Jour de livraison ajouté avec succès.', jour: newJourLivraison });
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur interne du serveur', error: error instanceof Error ? error.message : 'Erreur inconnue' });
+  }
+});
+
+
+// Récupérer les jours de livraison pour un mois donné
+app.get('/api/jours-livraison', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { year, month } = req.query;
+
+    if (!year || !month) {
+      res.status(400).json({ message: 'Année et mois requis (ex : ?year=2025&month=01).' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+    const jours = dbData.JoursLivraison.filter((jour: any) =>
+      new Date(jour.date).getFullYear() === parseInt(year as string, 10) &&
+      new Date(jour.date).getMonth() === parseInt(month as string, 10) - 1
+    );
+
+    res.status(200).json(jours);
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur interne du serveur', error: error instanceof Error ? error.message : 'Erreur inconnue' });
+  }
+});
+
+// Supprimer un jour de livraison
+app.delete('/api/jours-livraison/:id', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+    const index = dbData.JoursLivraison.findIndex((jour: any) => jour.id === parseInt(id, 10));
+
+    if (index === -1) {
+      res.status(404).json({ message: 'Jour de livraison non trouvé.' });
+      return;
+    }
+
+    dbData.JoursLivraison.splice(index, 1);
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(200).json({ message: 'Jour de livraison supprimé avec succès.' });
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur interne du serveur', error: error instanceof Error ? error.message : 'Erreur inconnue' });
+  }
+});
+
+
+// Modifier un jour de livraison
+app.patch('/api/jours-livraison/:id', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { date, tournee, frequence } = req.body;
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+    const jour = dbData.JoursLivraison.find((jour: any) => jour.id === parseInt(id, 10));
+
+    if (!jour) {
+      res.status(404).json({ message: 'Jour de livraison non trouvé.' });
+      return;
+    }
+
+    if (date) jour.date = date;
+    if (tournee) jour.tournee = tournee;
+    if (frequence) jour.frequence = frequence;
+
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+    res.status(200).json({ message: 'Jour de livraison mis à jour avec succès.', jour });
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur interne du serveur', error: error instanceof Error ? error.message : 'Erreur inconnue' });
+  }
+});
+
 
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {

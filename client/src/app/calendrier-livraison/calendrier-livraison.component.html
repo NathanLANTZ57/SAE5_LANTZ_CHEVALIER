@@ -6,6 +6,24 @@
     <span class="month">{{ monthName | titlecase }}</span>
   </div>
 
+  <div class="controls">
+    <label>
+      Tournée :
+      <select [(ngModel)]="selectedTournee" (change)="updateCalendar()">
+        <option value="all">Afficher tous les tours</option>
+        <option *ngFor="let tournee of tournees" [value]="tournee">{{ tournee }}</option>
+      </select>
+    </label>
+
+    <label>
+      Fréquence :
+      <select [(ngModel)]="selectedFrequency" (change)="updateCalendar()">
+        <option value="all">Afficher toutes les fréquences</option>
+        <option *ngFor="let freq of frequencies" [value]="freq">{{ freq }}</option>
+      </select>
+    </label>
+  </div>
+
   <div class="days-grid">
     <div class="day-name" *ngFor="let day of dayNames">
       {{ day }}
@@ -17,9 +35,17 @@
       class="day"
       *ngFor="let day of daysInMonth"
       [class.today]="isToday(day)"
+      [class.holiday]="isHoliday(day)"
+      [class.closed]="isClosedWeek(day)"
+      [ngClass]="{
+        'delivery-day': isFilteredDeliveryDay(day),
+        'toutes-les-semaines': isFilteredDeliveryDay(day) && getFrequency(day) === 'Toutes les semaines',
+        'toutes-les-2-semaines': isFilteredDeliveryDay(day) && getFrequency(day) === 'Toutes les 2 semaines',
+        'toutes-les-3-semaines': isFilteredDeliveryDay(day) && getFrequency(day) === 'Toutes les 3 semaines'
+      }"
       (click)="openModal(day)"
     >
-      {{ day | number: '2.0' }}
+      {{ day }}
     </div>
   </div>
 
@@ -27,45 +53,17 @@
 
   <div class="modal" [class.show]="isModalOpen">
     <div class="modal-content">
-      <h3>Quel est l'activité du jour ?</h3>
+      <h3>Modifier le jour de livraison</h3>
+      <p><strong>{{ selectedDayLabel | titlecase }} :</strong></p>
       <p>
-        <strong>{{ selectedDayLabel | titlecase }} :</strong>
+        <label>
+          <input type="checkbox" [(ngModel)]="isCustomDelivery" />
+          Définir ce jour comme jour de livraison
+        </label>
       </p>
-
-      <div *ngIf="selectedDayLabel.startsWith('Lundi') || selectedDayLabel.startsWith('Mercredi')">      
-        <div class="activity-details">
-          <div class="icon-container">
-            <img src="assets/preparation_colis.png">
-          </div>
-          <p>Journée dédiée à la préparation des commandes pour les livraisons.</p>
-        </div>
-      </div>
-      <div *ngIf="selectedDayLabel.startsWith('Mardi') || selectedDayLabel.startsWith('Jeudi') || selectedDayLabel.startsWith('Vendredi')">
-        <div class="activity-details">
-          <div class="icon-container">
-            <img src="assets/colis_livraison.png">
-          </div>
-          <p>Journée dédiée aux livraisons.</p>
-        </div>
-      </div>
-      <div 
-        *ngIf="!selectedDayLabel.startsWith('Lundi') && 
-        !selectedDayLabel.startsWith('Mardi') &&
-        !selectedDayLabel.startsWith('Mercredi') &&
-        !selectedDayLabel.startsWith('Jeudi') &&
-        !selectedDayLabel.startsWith('Vendredi')"
-        class="aucuneActivite"
-      >
-        
-        <div class="activity-details">
-          <div class="icon-container">
-            <img src="assets/aucune_activite_calendrier.png">
-          </div>
-          <p>Aucune activité prévue pour ce jour.</p>
-        </div>
-      </div>
-
+      <button (click)="saveDayConfiguration()">Enregistrer</button>
       <button (click)="closeModal()">Retour au calendrier</button>
+      <button *ngIf="isCustomDelivery" class="delete-btn" (click)="deleteDelivery()">Supprimer la tournée</button>
     </div>
   </div>
 </div>
