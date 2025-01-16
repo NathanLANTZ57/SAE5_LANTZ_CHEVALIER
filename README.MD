@@ -5,6 +5,7 @@ A FAIRE TOUT DE SUITE :
 - Faire la partie commande
 - Faire Test
 - Finir pipeline
+- Lié les trajets à la bdd et pouvoir les ajoutés ou supprimés
 
 
 FRONT END : 
