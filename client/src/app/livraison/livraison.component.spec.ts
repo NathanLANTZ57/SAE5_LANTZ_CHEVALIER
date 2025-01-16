@@ -4,6 +4,8 @@ import { LivraisonComponent } from './livraison.component';
 import { LogoComponent } from '../logo/logo.component';
 import { CalendrierLivraisonComponent } from '../calendrier-livraison/calendrier-livraison.component';
 import { TrajetLivraisonComponent } from '../trajet-livraison/trajet-livraison.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LivraisonComponent', () => {
   let component: LivraisonComponent;
@@ -13,7 +15,16 @@ describe('LivraisonComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ 
         LivraisonComponent, 
-        LogoComponent ]
+        LogoComponent,
+        TrajetLivraisonComponent,
+        CalendrierLivraisonComponent
+      ],
+        
+      imports: [
+        RouterTestingModule, 
+        HttpClientModule 
+      ],
+        
     }).compileComponents();
   });
 
