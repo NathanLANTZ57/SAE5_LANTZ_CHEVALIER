@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AdherentDataService } from '../shared/adherent-data.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireIbanComponent', () => {
   let component: FormulaireIbanComponent;
@@ -22,7 +23,7 @@ describe('FormulaireIbanComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ FormulaireIbanComponent ],
+      declarations: [ FormulaireIbanComponent, LogoComponent ],
       imports: [ ReactiveFormsModule, RouterTestingModule ],
       providers: [
         { provide: AdherentDataService, useValue: mockAdherentDataService }

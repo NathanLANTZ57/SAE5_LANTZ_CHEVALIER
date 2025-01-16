@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { PaiementAdminComponent } from './paiement-admin.component';
 import { HttpClient } from '@angular/common/http';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('PaiementAdminComponent', () => {
   let component: PaiementAdminComponent;
@@ -10,7 +11,7 @@ describe('PaiementAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PaiementAdminComponent],
+      declarations: [PaiementAdminComponent, LogoComponent],
       imports: [HttpClientTestingModule],
       providers: [HttpClient],
     }).compileComponents();

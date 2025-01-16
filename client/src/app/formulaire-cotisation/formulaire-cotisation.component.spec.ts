@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AdherentDataService } from '../shared/adherent-data.service';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireCotisationComponent', () => {
   let component: FormulaireCotisationComponent;
@@ -22,7 +23,7 @@ describe('FormulaireCotisationComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [FormulaireCotisationComponent],
+      declarations: [FormulaireCotisationComponent, LogoComponent],
       imports: [FormsModule, RouterTestingModule],
       providers: [
         { provide: AdherentDataService, useValue: mockAdherentDataService },
@@ -139,7 +140,7 @@ describe('FormulaireCotisationComponent', () => {
     const donationInput = fixture.debugElement.query(
       By.css('.donMontant input[type="number"]')
     );
-    expect(donationInput).toBeTruthy(); // Vérifie que le champ est affiché
+    expect(donationInput).toBeTruthy(); 
   });
 
   it('should not render the donation input field when cotisation is selected', () => {
@@ -149,6 +150,6 @@ describe('FormulaireCotisationComponent', () => {
     const donationInput = fixture.debugElement.query(
       By.css('.donMontant input[type="number"]')
     );
-    expect(donationInput).toBeNull(); // Vérifie que le champ est masqué
+    expect(donationInput).toBeNull(); 
   });
 });

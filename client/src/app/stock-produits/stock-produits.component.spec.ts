@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { StockProduitsComponent } from './stock-produits.component';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('StockProduitsComponent', () => {
   let component: StockProduitsComponent;
@@ -11,7 +12,7 @@ describe('StockProduitsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StockProduitsComponent],
+      declarations: [StockProduitsComponent, LogoComponent],
       imports: [HttpClientTestingModule, FormsModule],
     }).compileComponents();
   });

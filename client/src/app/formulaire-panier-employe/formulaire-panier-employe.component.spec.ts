@@ -7,6 +7,7 @@ import { UserService } from '../shared/user.service';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulairePanierEmployeComponent', () => {
   let component: FormulairePanierEmployeComponent;
@@ -37,7 +38,7 @@ describe('FormulairePanierEmployeComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ FormulairePanierEmployeComponent ],
+      declarations: [ FormulairePanierEmployeComponent, LogoComponent ],
       imports: [ FormsModule, RouterTestingModule ],
       providers: [
         { provide: EmployeDataService, useValue: mockEmployeDataService },

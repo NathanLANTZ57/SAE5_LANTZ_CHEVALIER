@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { ProfilAdherentComponent } from './profil-adherent.component';
 import { UserService } from '../shared/user.service';
 import { of } from 'rxjs';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('ProfilAdherentComponent', () => {
   let component: ProfilAdherentComponent;
@@ -17,7 +18,7 @@ describe('ProfilAdherentComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ProfilAdherentComponent],
+      declarations: [ProfilAdherentComponent, LogoComponent],
       imports: [HttpClientTestingModule],
       providers: [{ provide: UserService, useValue: mockUserService }],
     }).compileComponents();
@@ -27,7 +28,6 @@ describe('ProfilAdherentComponent', () => {
     fixture = TestBed.createComponent(ProfilAdherentComponent);
     component = fixture.componentInstance;
 
-    // Initialisation des données simulées
     component.adherentData = {
       nom: 'Dupont',
       prenom: 'Jean',
@@ -38,11 +38,11 @@ describe('ProfilAdherentComponent', () => {
       code_postal: '75000',
     };
 
-    fixture.detectChanges(); // Applique les modifications au DOM
+    fixture.detectChanges(); 
   });
 
   afterEach(() => {
-    fixture.destroy(); // Nettoie après chaque test
+    fixture.destroy(); 
   });
 
   it('should create the component', () => {
@@ -51,20 +51,19 @@ describe('ProfilAdherentComponent', () => {
 
   it('should fetch adherent data on initialization', async () => {
     spyOn(component, 'fetchAdherentData').and.callThrough();
-    await component.ngOnInit(); // Appeler manuellement la méthode ngOnInit
+    await component.ngOnInit(); 
 
     expect(mockUserService.getUserEmail).toHaveBeenCalled();
     expect(component.fetchAdherentData).toHaveBeenCalledWith('testuser@example.com');
   });
 
   it('should display adherent information correctly', () => {
-    fixture.detectChanges(); // Applique les modifications au DOM
+    fixture.detectChanges(); 
 
     const nameElement = fixture.debugElement.query(By.css('.profile-name')).nativeElement.textContent.trim();
-    expect(nameElement).toBe('Dupont Jean'); // Vérifie que le nom complet est affiché correctement
-
+    expect(nameElement).toBe('Dupont Jean');
     const emailElement = fixture.debugElement.queryAll(By.css('.info-item span'))[3].nativeElement.textContent.trim();
-    expect(emailElement).toBe('Jean'); // Vérifie que l'email est affiché correctement
+    expect(emailElement).toBe('Jean'); 
   });
 
   it('should open and close the abonnement modal', () => {
@@ -92,19 +91,19 @@ describe('ProfilAdherentComponent', () => {
   });
 
   it('should display default text when adherent data is missing', () => {
-    component.adherentData = {}; // Suppression des données adhérent
+    component.adherentData = {}; 
     fixture.detectChanges();
 
     const nameElement = fixture.debugElement.query(By.css('.profile-name')).nativeElement.textContent.trim();
-    expect(nameElement).toBe('Nom non disponible'); // Vérifie que le texte par défaut est affiché
+    expect(nameElement).toBe('Nom non disponible'); 
 
     const emailElement = fixture.debugElement.queryAll(By.css('.info-item span'))[3]?.nativeElement?.textContent?.trim();
-    expect(emailElement).toBe('Prénom non disponible'); // Vérifie que l'email n'est pas affiché
+    expect(emailElement).toBe('Prénom non disponible'); 
   });
 
   it('should display the logo component', () => {
     const logoElement = fixture.debugElement.query(By.css('app-logo'));
-    expect(logoElement).toBeTruthy(); // Vérifie que le composant du logo est affiché
+    expect(logoElement).toBeTruthy(); 
   });
 
   it('should render all modal components', () => {

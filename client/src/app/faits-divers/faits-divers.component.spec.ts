@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FaitsDiversComponent } from './faits-divers.component';
 import { By } from '@angular/platform-browser';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FaitsDiversComponent', () => {
   let component: FaitsDiversComponent;
@@ -8,7 +9,7 @@ describe('FaitsDiversComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FaitsDiversComponent ]
+      declarations: [ FaitsDiversComponent, LogoComponent ]
     })
     .compileComponents();
   });

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LivraisonComponent } from './livraison.component';
+import { LogoComponent } from '../logo/logo.component';
+import { CalendrierLivraisonComponent } from '../calendrier-livraison/calendrier-livraison.component';
+import { TrajetLivraisonComponent } from '../trajet-livraison/trajet-livraison.component';
 
 describe('LivraisonComponent', () => {
   let component: LivraisonComponent;
@@ -8,7 +11,9 @@ describe('LivraisonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LivraisonComponent ]
+      declarations: [ 
+        LivraisonComponent, 
+        LogoComponent ]
     }).compileComponents();
   });
 

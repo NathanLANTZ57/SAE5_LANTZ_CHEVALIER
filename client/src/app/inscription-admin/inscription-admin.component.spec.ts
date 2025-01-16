@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { InscriptionAdminComponent } from './inscription-admin.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('InscriptionAdminComponent', () => {
   let component: InscriptionAdminComponent;
@@ -9,7 +10,7 @@ describe('InscriptionAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InscriptionAdminComponent],
+      declarations: [InscriptionAdminComponent, LogoComponent],
       imports: [HttpClientTestingModule]
     }).compileComponents();
 

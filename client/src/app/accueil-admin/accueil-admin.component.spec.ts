@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AccueilAdminComponent } from './accueil-admin.component';
 import { By } from '@angular/platform-browser';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('AccueilAdminComponent', () => {
   let component: AccueilAdminComponent;
@@ -8,7 +9,7 @@ describe('AccueilAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccueilAdminComponent ]
+      declarations: [ AccueilAdminComponent, LogoComponent ]
     })
     .compileComponents();
   });

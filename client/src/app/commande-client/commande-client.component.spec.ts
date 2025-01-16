@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommandeClientComponent } from './commande-client.component';
 import { By } from '@angular/platform-browser';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('CommandeClientComponent', () => {
   let component: CommandeClientComponent;
@@ -8,7 +9,7 @@ describe('CommandeClientComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommandeClientComponent ]
+      declarations: [ CommandeClientComponent, LogoComponent ]
     })
     .compileComponents();
   });

@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AdherentDataService } from '../shared/adherent-data.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireSemaineLivraisonComponent', () => {
   let component: FormulaireSemaineLivraisonComponent;
@@ -17,7 +18,7 @@ describe('FormulaireSemaineLivraisonComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ FormulaireSemaineLivraisonComponent ],
+      declarations: [ FormulaireSemaineLivraisonComponent, LogoComponent ],
       imports: [ RouterTestingModule ],
       providers: [
         { provide: AdherentDataService, useValue: mockAdherentDataService }

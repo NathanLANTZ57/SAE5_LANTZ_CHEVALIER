@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EmployeDataService } from '../shared/employe-data.service';
 import { of, throwError } from 'rxjs';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireValideEmployeComponent', () => {
   let component: FormulaireValideEmployeComponent;
@@ -27,7 +28,7 @@ describe('FormulaireValideEmployeComponent', () => {
     });
 
     await TestBed.configureTestingModule({
-      declarations: [FormulaireValideEmployeComponent],
+      declarations: [FormulaireValideEmployeComponent, LogoComponent],
       imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [{ provide: EmployeDataService, useValue: mockEmployeDataService }]
     }).compileComponents();

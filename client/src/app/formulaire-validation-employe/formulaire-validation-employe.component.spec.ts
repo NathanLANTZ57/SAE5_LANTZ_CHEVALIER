@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EmployeDataService } from '../shared/employe-data.service';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireValidationEmployeComponent', () => {
   let component: FormulaireValidationEmployeComponent;
@@ -17,7 +18,7 @@ describe('FormulaireValidationEmployeComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ FormulaireValidationEmployeComponent ],
+      declarations: [ FormulaireValidationEmployeComponent, LogoComponent ],
       imports: [ RouterTestingModule ],
       providers: [
         { provide: EmployeDataService, useValue: mockEmployeDataService }

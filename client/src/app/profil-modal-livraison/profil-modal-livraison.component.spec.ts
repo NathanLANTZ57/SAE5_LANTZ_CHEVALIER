@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ProfilModalLivraisonComponent } from './profil-modal-livraison.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('ProfilModalLivraisonComponent', () => {
   let component: ProfilModalLivraisonComponent;
@@ -8,7 +9,7 @@ describe('ProfilModalLivraisonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfilModalLivraisonComponent],
+      declarations: [ProfilModalLivraisonComponent, LogoComponent],
     }).compileComponents();
   });
 

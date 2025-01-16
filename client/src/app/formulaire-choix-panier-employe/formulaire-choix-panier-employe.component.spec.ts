@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EmployeDataService } from '../shared/employe-data.service';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireChoixPanierEmployeComponent', () => {
   let component: FormulaireChoixPanierEmployeComponent;
@@ -18,7 +19,7 @@ describe('FormulaireChoixPanierEmployeComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ FormulaireChoixPanierEmployeComponent ],
+      declarations: [ FormulaireChoixPanierEmployeComponent, LogoComponent ],
       imports: [ FormsModule, RouterTestingModule ],
       providers: [
         { provide: EmployeDataService, useValue: mockEmployeDataService }

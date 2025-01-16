@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AccueilAdherentComponent } from './accueil-adherent.component';
 import { UserService } from '../shared/user.service';
 import { of } from 'rxjs';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('AccueilAdherentComponent', () => {
   let component: AccueilAdherentComponent;
@@ -12,12 +13,11 @@ describe('AccueilAdherentComponent', () => {
     mockUserService = jasmine.createSpyObj('UserService', ['isLoggedIn$', 'currentRole']);
 
     await TestBed.configureTestingModule({
-      declarations: [ AccueilAdherentComponent ],
+      declarations: [ AccueilAdherentComponent, LogoComponent ], 
       providers: [
         { provide: UserService, useValue: mockUserService }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('AccueilAdherentComponent', () => {
     mockUserService.isLoggedIn$ = of(true);
     mockUserService.currentRole = of('adherent');
 
-    fixture.detectChanges();
+    fixture.detectChanges(); 
   });
 
   it('should create', () => {
@@ -40,7 +40,7 @@ describe('AccueilAdherentComponent', () => {
   });
 
   it('should alert user if not logged in when checking login status', () => {
-    spyOn(window, 'alert');
+    spyOn(window, 'alert'); 
     component.isLoggedIn = false;
 
     component.checkLoginStatus();

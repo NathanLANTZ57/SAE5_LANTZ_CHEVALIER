@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { FormulaireModeLivraisonComponent } from './formulaire-mode-livraison.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireModeLivraisonComponent', () => {
   let component: FormulaireModeLivraisonComponent;
@@ -11,7 +12,7 @@ describe('FormulaireModeLivraisonComponent', () => {
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      declarations: [FormulaireModeLivraisonComponent],
+      declarations: [FormulaireModeLivraisonComponent, LogoComponent],
       providers: [
         { provide: Router, useValue: mockRouter } 
       ]

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ProfilReprogrammationDateComponent } from './profil-reprogrammation-date.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('ProfilReprogrammationDateComponent', () => {
   let component: ProfilReprogrammationDateComponent;
@@ -8,7 +9,7 @@ describe('ProfilReprogrammationDateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfilReprogrammationDateComponent],
+      declarations: [ProfilReprogrammationDateComponent, LogoComponent],
     }).compileComponents();
   });
 

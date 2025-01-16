@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AdherentDataService } from '../shared/adherent-data.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireValidationComponent', () => {
   let component: FormulaireValidationComponent;
@@ -38,7 +39,7 @@ describe('FormulaireValidationComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [FormulaireValidationComponent],
+      declarations: [FormulaireValidationComponent, LogoComponent],
       imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [{ provide: AdherentDataService, useValue: mockAdherentDataService }]
     }).compileComponents();

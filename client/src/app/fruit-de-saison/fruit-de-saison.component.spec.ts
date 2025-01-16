@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FruitDeSaisonComponent } from './fruit-de-saison.component';
+import { LogoComponent } from '../logo/logo.component';
 
 
 describe('FruitDeSaisonComponent', () => {
@@ -9,7 +10,7 @@ describe('FruitDeSaisonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FruitDeSaisonComponent ]
+      declarations: [ FruitDeSaisonComponent, LogoComponent ]
     }).compileComponents();
   });
 

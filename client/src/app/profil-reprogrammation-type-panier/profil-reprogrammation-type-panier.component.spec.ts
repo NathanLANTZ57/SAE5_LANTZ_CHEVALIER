@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ProfilReprogrammationTypePanierComponent } from './profil-reprogrammation-type-panier.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('ProfilReprogrammationTypePanierComponent', () => {
   let component: ProfilReprogrammationTypePanierComponent;
@@ -8,7 +9,7 @@ describe('ProfilReprogrammationTypePanierComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfilReprogrammationTypePanierComponent],
+      declarations: [ProfilReprogrammationTypePanierComponent, LogoComponent],
     }).compileComponents();
   });
 

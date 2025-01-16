@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormulaireChoixComponent } from './formulaire-choix.component';
 import { AdherentDataService } from '../shared/adherent-data.service';
 import { By } from '@angular/platform-browser';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulaireChoixComponent', () => {
   let component: FormulaireChoixComponent;
@@ -15,7 +16,7 @@ describe('FormulaireChoixComponent', () => {
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      declarations: [FormulaireChoixComponent],
+      declarations: [FormulaireChoixComponent,LogoComponent],
       imports: [FormsModule],
       providers: [
         { provide: Router, useValue: mockRouter },

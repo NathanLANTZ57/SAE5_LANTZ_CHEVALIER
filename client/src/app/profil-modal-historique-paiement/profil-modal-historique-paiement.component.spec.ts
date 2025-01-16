@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ProfilModalHistoriquePaiementComponent } from './profil-modal-historique-paiement.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('ProfilModalHistoriquePaiementComponent', () => {
   let component: ProfilModalHistoriquePaiementComponent;
@@ -8,7 +9,7 @@ describe('ProfilModalHistoriquePaiementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfilModalHistoriquePaiementComponent],
+      declarations: [ProfilModalHistoriquePaiementComponent, LogoComponent],
     }).compileComponents();
   });
 

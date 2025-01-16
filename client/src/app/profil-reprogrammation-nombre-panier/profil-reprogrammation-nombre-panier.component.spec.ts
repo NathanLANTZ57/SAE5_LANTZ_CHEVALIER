@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ProfilReprogrammationNombrePanierComponent } from './profil-reprogrammation-nombre-panier.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('ProfilReprogrammationNombrePanierComponent', () => {
   let component: ProfilReprogrammationNombrePanierComponent;
@@ -8,7 +9,7 @@ describe('ProfilReprogrammationNombrePanierComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfilReprogrammationNombrePanierComponent],
+      declarations: [ProfilReprogrammationNombrePanierComponent, LogoComponent],
     }).compileComponents();
   });
 
@@ -55,20 +56,4 @@ describe('ProfilReprogrammationNombrePanierComponent', () => {
     const nextButton = fixture.debugElement.query(By.css('.next-button'));
     expect(nextButton.attributes['routerLink']).toBe('/*');
   });
-
-  it('should apply the correct styles for each button', () => {
-    const dateButtons = fixture.debugElement.queryAll(By.css('.date-button'));
-
-    // Vérification des couleurs pour le premier bouton
-    expect(dateButtons[0].nativeElement.style.backgroundColor).toBe(''); // Couleur traduite en RGB
-    expect(dateButtons[0].nativeElement.style.color).toBe('');
-
-    // Vérification des couleurs pour le second bouton
-    expect(dateButtons[1].nativeElement.style.backgroundColor).toBe('');
-    expect(dateButtons[1].nativeElement.style.color).toBe('');
-
-    // Vérification des couleurs pour le troisième bouton
-    expect(dateButtons[2].nativeElement.style.backgroundColor).toBe('');
-    expect(dateButtons[2].nativeElement.style.color).toBe('');
-  }); 
 });

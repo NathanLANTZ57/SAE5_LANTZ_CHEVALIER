@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { PanierEmployeComponent } from './panier-employe.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('PanierEmployeComponent', () => {
   let component: PanierEmployeComponent;
@@ -8,7 +9,7 @@ describe('PanierEmployeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PanierEmployeComponent],
+      declarations: [PanierEmployeComponent, LogoComponent],
     }).compileComponents();
   });
 

@@ -7,6 +7,7 @@ import { UserService } from '../shared/user.service';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('FormulairePanierComponent', () => {
   let component: FormulairePanierComponent;
@@ -39,7 +40,7 @@ describe('FormulairePanierComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [FormulairePanierComponent],
+      declarations: [FormulairePanierComponent, LogoComponent],
       imports: [FormsModule, RouterTestingModule],
       providers: [
         { provide: AdherentDataService, useValue: mockAdherentDataService },

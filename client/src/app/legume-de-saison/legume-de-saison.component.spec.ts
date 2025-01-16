@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LegumeDeSaisonComponent } from './legume-de-saison.component';
+import { LogoComponent } from '../logo/logo.component';
 
 describe('LegumeDeSaisonComponent', () => {
   let component: LegumeDeSaisonComponent;
@@ -8,7 +9,7 @@ describe('LegumeDeSaisonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LegumeDeSaisonComponent ]
+      declarations: [ LegumeDeSaisonComponent, LogoComponent ]
     }).compileComponents();
   });
 
