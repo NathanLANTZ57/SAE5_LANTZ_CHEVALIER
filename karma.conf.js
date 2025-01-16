@@ -57,8 +57,7 @@ module.exports = function(config) {
     browsers: ['Firefox'],
     plugins: [
       'karma-firefox-launcher',
-      'karma-jasmine',
-      'karma-chrome-launcher' // Inclure uniquement si nécessaire
+      'karma-jasmine'
     ],
 
 

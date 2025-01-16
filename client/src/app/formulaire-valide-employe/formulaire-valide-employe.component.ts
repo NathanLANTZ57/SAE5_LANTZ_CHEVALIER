@@ -18,10 +18,8 @@ export class FormulaireValideEmployeComponent implements OnInit {
   ngOnInit(): void {}
 
   onSave(): void {
-    // Récupérer les données stockées dans le service EmployeDataService
     const employeData = this.employeDataService.getAllData();
 
-    // Vérifier que toutes les données nécessaires sont présentes
     if (
       !employeData.nom ||
       !employeData.prenom ||
@@ -36,7 +34,6 @@ export class FormulaireValideEmployeComponent implements OnInit {
       return;
     }
 
-    // Construire le payload pour l'API
     const payload = {
       nom: employeData.nom,
       prenom: employeData.prenom,
@@ -46,16 +43,14 @@ export class FormulaireValideEmployeComponent implements OnInit {
       ville: employeData.ville,
       code_postal: employeData.codePostal,
       formule_panier: employeData.formulePanier,
-      statut_paiement: 'en_attente' // Par défaut
+      statut_paiement: 'en_attente'
     };
 
-    // Envoyer une requête POST à l'API pour enregistrer l'abonnement
     this.http.post('http://localhost:3000/api/register/employesabonne', payload).subscribe(
       (response) => {
         console.log('Enregistrement réussi :', response);
         alert('Votre abonnement a été enregistré avec succès !');
-        // Rediriger vers une autre page après succès, si nécessaire
-        this.router.navigate(['/profil']); // Modifier selon vos besoins
+        this.router.navigate(['/profil']); 
       },
       (error) => {
         console.error('Erreur lors de l\'enregistrement :', error);

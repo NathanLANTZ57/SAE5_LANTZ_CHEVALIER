@@ -1,114 +1,75 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-// import { InscriptionAdminComponent } from './inscription-admin.component';
-// import { By } from '@angular/platform-browser';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { InscriptionAdminComponent } from './inscription-admin.component';
 
-// describe('InscriptionAdminComponent', () => {
-//   let component: InscriptionAdminComponent;
-//   let fixture: ComponentFixture<InscriptionAdminComponent>;
-//   let httpMock: HttpTestingController;
+describe('InscriptionAdminComponent', () => {
+  let component: InscriptionAdminComponent;
+  let fixture: ComponentFixture<InscriptionAdminComponent>;
+  let httpMock: HttpTestingController;
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ InscriptionAdminComponent ],
-//       imports: [ HttpClientTestingModule ]
-//     })
-//     .compileComponents();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [InscriptionAdminComponent],
+      imports: [HttpClientTestingModule]
+    }).compileComponents();
 
-//     httpMock = TestBed.inject(HttpTestingController);
-//   });
+    httpMock = TestBed.inject(HttpTestingController);
+  });
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(InscriptionAdminComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(InscriptionAdminComponent);
+    component = fixture.componentInstance;
+  });
 
-//   afterEach(() => {
-//     httpMock.verify();
-//   });
+  afterEach(() => {
+    httpMock.verify(); // Vérifie qu'aucune requête n'est laissée ouverte
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
+  it('should create', () => {
+    fixture.detectChanges();
 
-//   it('should fetch pending adherents on initialization', () => {
-//     const mockAdherents = [
-//       { id: 1, name: 'Jean Dupont', email: 'jean@example.com' },
-//       { id: 2, name: 'Marie Curie', email: 'marie@example.com' }
-//     ];
+    // Simuler les requêtes HTTP initiales
+    httpMock.expectOne('http://localhost:3000/api/adherents/status?status=pending').flush([]);
+    httpMock.expectOne('http://localhost:3000/api/employes/status?status=pending').flush([]);
 
-//     component.ngOnInit();
+    expect(component).toBeTruthy();
+  });
 
-//     const req = httpMock.expectOne('http://localhost:3000/api/adherents/status?status=pending');
-//     expect(req.request.method).toBe('GET');
-//     req.flush(mockAdherents);
+  it('should update adherent status and refresh list', () => {
+    const mockAdherentId = 1;
+    const mockStatus = 'validated';
 
-//     expect(component.pendingAdherents).toEqual(mockAdherents);
-//   });
+    component.updateAdherentStatus(mockAdherentId, mockStatus);
 
-//   it('should fetch pending employees on initialization', () => {
-//     const mockEmployees = [
-//       { id: 1, name: 'Albert Einstein', email: 'albert@example.com' },
-//       { id: 2, name: 'Isaac Newton', email: 'isaac@example.com' }
-//     ];
+    const req = httpMock.expectOne(`http://localhost:3000/api/adherents/${mockAdherentId}/status`);
+    expect(req.request.method).toBe('PATCH');
+    expect(req.request.body).toEqual({ status: mockStatus });
 
-//     component.ngOnInit();
+    req.flush({}); // Simuler une réponse vide pour la mise à jour
 
-//     const req = httpMock.expectOne('http://localhost:3000/api/employes/status?status=pending');
-//     expect(req.request.method).toBe('GET');
-//     req.flush(mockEmployees);
+    const refreshReq = httpMock.expectOne('http://localhost:3000/api/adherents/status?status=pending');
+    expect(refreshReq.request.method).toBe('GET');
+    refreshReq.flush([]); // Simuler une liste vide après mise à jour
 
-//     expect(component.pendingEmployees).toEqual(mockEmployees);
-//   });
+    expect(component.pendingAdherents).toEqual([]);
+  });
 
-//   it('should update adherent status and refresh list', () => {
-//     const mockAdherentId = 1;
-//     const mockStatus = 'validated';
+  it('should update employee status and refresh list', () => {
+    const mockEmployeeId = 1;
+    const mockStatus = 'rejected';
 
-//     component.updateAdherentStatus(mockAdherentId, mockStatus);
+    component.updateEmployeeStatus(mockEmployeeId, mockStatus);
 
-//     const req = httpMock.expectOne(`http://localhost:3000/api/adherents/${mockAdherentId}/status`);
-//     expect(req.request.method).toBe('PATCH');
-//     expect(req.request.body).toEqual({ status: mockStatus });
+    const req = httpMock.expectOne(`http://localhost:3000/api/employes/${mockEmployeeId}/status`);
+    expect(req.request.method).toBe('PATCH');
+    expect(req.request.body).toEqual({ status: mockStatus });
 
-//     req.flush({});
+    req.flush({}); // Simuler une réponse vide pour la mise à jour
 
-//     const refreshReq = httpMock.expectOne('http://localhost:3000/api/adherents/status?status=pending');
-//     expect(refreshReq.request.method).toBe('GET');
-//     refreshReq.flush([]);
+    const refreshReq = httpMock.expectOne('http://localhost:3000/api/employes/status?status=pending');
+    expect(refreshReq.request.method).toBe('GET');
+    refreshReq.flush([]); // Simuler une liste vide après mise à jour
 
-//     expect(component.pendingAdherents).toEqual([]);
-//   });
-
-//   it('should update employee status and refresh list', () => {
-//     const mockEmployeeId = 1;
-//     const mockStatus = 'rejected';
-
-//     component.updateEmployeeStatus(mockEmployeeId, mockStatus);
-
-//     const req = httpMock.expectOne(`http://localhost:3000/api/employes/${mockEmployeeId}/status`);
-//     expect(req.request.method).toBe('PATCH');
-//     expect(req.request.body).toEqual({ status: mockStatus });
-
-//     req.flush({});
-
-//     const refreshReq = httpMock.expectOne('http://localhost:3000/api/employes/status?status=pending');
-//     expect(refreshReq.request.method).toBe('GET');
-//     refreshReq.flush([]);
-
-//     expect(component.pendingEmployees).toEqual([]);
-//   });
-
-//   it('should render adherent table rows correctly', () => {
-//     component.pendingAdherents = [
-//       { id: 1, name: 'Jean Dupont', email: 'jean@example.com' }
-//     ];
-//     fixture.detectChanges();
-
-//     const tableRows = fixture.debugElement.queryAll(By.css('tbody tr'));
-//     expect(tableRows.length).toBe(1);
-//     expect(tableRows[0].nativeElement.textContent).toContain('Jean Dupont');
-//     expect(tableRows[0].nativeElement.textContent).toContain('jean@example.com');
-//   });
-// });
+    expect(component.pendingEmployees).toEqual([]);
+  });
+});
