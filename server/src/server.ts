@@ -884,6 +884,71 @@ app.patch('/api/employesabonne/:id/statut_paiement', async (req: Request, res: R
   }
 });
 
+// récuperer les trajets de livraison
+app.get('/api/trajets-livraison', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { day } = req.query;
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+    const trajets = dbData.TrajetsLivraison || [];
+    const filteredTrajets = day ? trajets.filter((t: any) => t.day === day) : trajets;
+    res.status(200).json(filteredTrajets);
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de la récupération des trajets.' });
+  }
+});
+
+// ajouter un trajet de livraison
+app.post('/api/trajets-livraison', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { day, type, locations } = req.body;
+
+    if (!day || !type || !locations || !Array.isArray(locations)) {
+      res.status(400).json({ message: 'Les champs day, type et locations sont requis.' });
+      return;
+    }
+
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const newTrajet = {
+      id: dbData.TrajetsLivraison.length
+        ? dbData.TrajetsLivraison[dbData.TrajetsLivraison.length - 1].id + 1
+        : 1,
+      day,
+      type,
+      locations
+    };
+
+    dbData.TrajetsLivraison.push(newTrajet);
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({ message: 'Trajet ajouté avec succès.', trajet: newTrajet });
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de l’ajout du trajet.' });
+  }
+});
+
+// Supprimer un trajet de livraison 
+app.delete('/api/trajets-livraison/:id', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    const index = dbData.TrajetsLivraison.findIndex((t: any) => t.id === parseInt(id, 10));
+    if (index === -1) {
+      res.status(404).json({ message: 'Trajet non trouvé.' });
+      return;
+    }
+
+    dbData.TrajetsLivraison.splice(index, 1);
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(200).json({ message: 'Trajet supprimé avec succès.' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de la suppression du trajet.' });
+  }
+});
+
+
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {
   res.status(200).json({ message: 'Bienvenue sur l’API.' });

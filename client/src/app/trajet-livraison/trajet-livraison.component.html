@@ -8,75 +8,108 @@
         <img class="marker-icon" src="assets/marker-icon.png" alt="Icône de point de dépôt" />
         <span class="pointDepot">Points de dépôt</span>
       </li>
-      
       <li><span class="legend-line"></span> Trajet</li>
     </ul>
   </div>
 
-  <div class="days">
-    <div 
-      class="day-container" 
-      (mouseenter)="showTuesdayOptions = true" 
-      (mouseleave)="showTuesdayOptions = false">
-      <button class="day-button mardi">
-        Mardi
-        <img src="assets/ordinateur.png" alt="Icône ordinateur" class="button-icon">
-      </button>
-        <div class="sub-menuMar" *ngIf="showTuesdayOptions">
-            <button class="sub-menu-epinalMar" (click)="showTrajet('epinalMardi')">Epinal</button>
-            <button class="sub-menu-dinozeMar" (click)="showTrajet('dinoze')">Dinozé</button>
-            <button class="sub-menu-golbeyMar" (click)="showTrajet('golbeyMardi')">Golbey</button>
-        </div>
-    </div>
-
-    <div 
-      class="day-container" 
-      (mouseenter)="showWesdayOptions = true" 
-      (mouseleave)="showWesdayOptions = false">
-      <button class="day-button mercredi">
-        Mercredi
-        <img src="assets/crayon.png" alt="Icône crayon" class="button-icon">
-      </button>
-        <div class="sub-menuMer" *ngIf="showWesdayOptions">
-            <button class="sub-menu-epinalMer" (click)="showTrajet('epinalMercredi')">Epinal</button>
-            <button class="sub-menu-golMer" (click)="showTrajet('golbey')">Golbey</button>
-            <button class="sub-menu-naborMer" (click)="showTrajet('stNarbordMer')">Saint-Narbord</button>
-            <button class="sub-menu-remirMer" (click)="showTrajet('remiremontMer')">Remiremont</button>
-            <button class="sub-menu-raonMer" (click)="showTrajet('raonAuxBois')">Raon aux bois</button>
-            <button class="sub-menu-docellesMer" (click)="showTrajet('docellesMer')">Docelles</button>
-            <button class="sub-menu-thaonMer" (click)="showTrajet('thaon')">Thaon</button>
-        </div>
-    </div>
-
+  <div class="days-container">
+    <!-- Mardi -->
     <div class="day-container" 
-    (mouseenter)="showThudayOptions = true" 
-    (mouseleave)="showThudayOptions = false">
-        <button class="day-button jeudi">
-            Jeudi
-            <img src="assets/salle_reunion.png" alt="Icône salle de réunion" class="button-icon">
+         (mouseenter)="showTuesdayOptions = true" 
+         (mouseleave)="showTuesdayOptions = false">
+      <button class="day-button mardi">Mardi</button>
+      <div class="sub-menu" *ngIf="showTuesdayOptions" 
+           (mouseenter)="showTuesdayOptions = true" 
+           (mouseleave)="showTuesdayOptions = false">
+        <button class="sub-menu-item" *ngFor="let trajet of trajetsMardi" (click)="showTrajet(trajet.type)">
+          {{ trajet.type }}
         </button>
-        <div class="sub-menuJeudi" *ngIf="showThudayOptions">
-            <button class="sub-menu-charmes" (click)="showTrajet('charmes')">Charmes</button>
-        </div>
+      </div>
     </div>
 
-
+    <!-- Mercredi -->
     <div class="day-container" 
-    (mouseenter)="showFridayOptions = true" 
-    (mouseleave)="showFridayOptions = false">
-        <button class="day-button vendredi">
-            Vendredi
-            <img src="assets/tasse_cafe.png" alt="Icône tasse de café" class="button-icon">
+         (mouseenter)="showWednesdayOptions = true" 
+         (mouseleave)="showWednesdayOptions = false">
+      <button class="day-button mercredi">Mercredi</button>
+      <div class="sub-menu" *ngIf="showWednesdayOptions" 
+           (mouseenter)="showWednesdayOptions = true" 
+           (mouseleave)="showWednesdayOptions = false">
+        <button class="sub-menu-item" *ngFor="let trajet of trajetsMercredi" (click)="showTrajet(trajet.type)">
+          {{ trajet.type }}
         </button>
-
-        <div class="sub-menuVen" *ngIf="showFridayOptions">
-            <button class="sub-menu-epinalVen" (click)="showTrajet('epinalVen')">Epinal</button>
-            <button class="sub-menu-golbey" (click)="showTrajet('golbey')">Golbey</button>
-            <button class="sub-menu-bruyereVen" (click)="showTrajet('bruyereVen')">Bruyères</button>
-            <button class="sub-menu-gerardmerVen" (click)="showTrajet('gerardmerVen')">Gérardmer</button>
-            <button class="sub-menu-leTholyVen" (click)="showTrajet('leTholyVen')">Le Tholy</button>
-            <button class="sub-menu-thaon" (click)="showTrajet('thaon')">Thaon</button>
-        </div>
+      </div>
     </div>
+
+    <!-- Jeudi -->
+    <div class="day-container" 
+         (mouseenter)="showThursdayOptions = true" 
+         (mouseleave)="showThursdayOptions = false">
+      <button class="day-button jeudi">Jeudi</button>
+      <div class="sub-menu" *ngIf="showThursdayOptions" 
+           (mouseenter)="showThursdayOptions = true" 
+           (mouseleave)="showThursdayOptions = false">
+        <button class="sub-menu-item" *ngFor="let trajet of trajetsJeudi" (click)="showTrajet(trajet.type)">
+          {{ trajet.type }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Vendredi -->
+    <div class="day-container" 
+         (mouseenter)="showFridayOptions = true" 
+         (mouseleave)="showFridayOptions = false">
+      <button class="day-button vendredi">Vendredi</button>
+      <div class="sub-menu" *ngIf="showFridayOptions" 
+           (mouseenter)="showFridayOptions = true" 
+           (mouseleave)="showFridayOptions = false">
+        <button class="sub-menu-item" *ngFor="let trajet of trajetsVendredi" (click)="showTrajet(trajet.type)">
+          {{ trajet.type }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <button (click)="openAddModal()">Ajouter un trajet</button>
+</div>
+
+<div class="trajet-list">
+  <h3>Liste des trajets</h3>
+  <div *ngFor="let trajet of trajets">
+    <span>{{ trajet.type }} ({{ trajet.day }})</span>
+    <button class="delete-button" (click)="deleteTrajet(trajet.id)">Supprimer</button>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="{ active: isModalOpen }">
+  <div class="modal-content">
+    <h3>Ajouter un Trajet</h3>
+    <form (ngSubmit)="addTrajet()">
+      <label for="day">Jour</label>
+      <select id="day" [(ngModel)]="newTrajet.day" name="day" required>
+        <option value="Mardi">Mardi</option>
+        <option value="Mercredi">Mercredi</option>
+        <option value="Jeudi">Jeudi</option>
+        <option value="Vendredi">Vendredi</option>
+      </select>
+
+      <label for="type">Type</label>
+      <input id="type" [(ngModel)]="newTrajet.type" name="type" placeholder="Nom du trajet" required />
+
+      <label for="locations">Localisation</label>
+      <div class="location" *ngFor="let loc of newTrajet.locations; let i = index">
+        <input [(ngModel)]="loc.name" placeholder="Nom" name="locationName{{ i }}" required />
+        <input [(ngModel)]="loc.address" placeholder="Adresse" name="locationAddress{{ i }}" required />
+        <input [(ngModel)]="loc.coords[0]" placeholder="Latitude" type="number" name="locationLat{{ i }}" required />
+        <input [(ngModel)]="loc.coords[1]" placeholder="Longitude" type="number" name="locationLng{{ i }}" required />
+        <button type="button" class="delete-location-button" (click)="removeLocation(i)">Supprimer</button>
+      </div>
+      <button type="button" class="add-location-button" (click)="addLocation()">Ajouter une localisation</button>
+
+      <button type="submit" class="submit-button">Ajouter</button>
+      <button type="button" class="cancel-button" (click)="closeAddModal()">Annuler</button>
+    </form>
   </div>
 </div>
