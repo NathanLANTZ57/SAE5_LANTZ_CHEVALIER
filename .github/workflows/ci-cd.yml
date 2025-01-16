@@ -17,21 +17,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Cache Node Modules
+    - name: Cache Node Modules (Client)
       uses: actions/cache@v3
       with:
         path: client/node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-client-node-modules-${{ hashFiles('client/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-node-modules-
+          ${{ runner.os }}-client-node-modules-
 
-    - name: Setup Node.js
+    - name: Setup Node.js (Client)
       uses: actions/setup-node@v3
       with:
         node-version: 16
         cache: 'npm'
 
-    - name: Install Dependencies
+    - name: Install Dependencies (Client)
       run: |
         cd client
         npm install
@@ -39,4 +39,36 @@ jobs:
     - name: Build Angular App
       run: |
         cd client
+        npm run build
+
+  build-server:
+    name: Build Server (Node.js)
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Cache Node Modules (Server)
+      uses: actions/cache@v3
+      with:
+        path: server/node_modules
+        key: ${{ runner.os }}-server-node-modules-${{ hashFiles('server/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-server-node-modules-
+
+    - name: Setup Node.js (Server)
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+
+    - name: Install Dependencies (Server)
+      run: |
+        cd server
+        npm install
+
+    - name: Build Server
+      run: |
+        cd server
         npm run build
