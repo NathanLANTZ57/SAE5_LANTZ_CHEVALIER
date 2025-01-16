@@ -39,4 +39,4 @@ jobs:
     - name: Build Angular App
       run: |
         cd client
-        npm run build -- --maxWorkers=2
+        npm run build
