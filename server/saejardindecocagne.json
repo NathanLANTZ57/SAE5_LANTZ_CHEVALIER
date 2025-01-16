@@ -629,5 +629,49 @@
         }
       ]
     }
+  ],
+  "JoursLivraison": [
+    {
+      "id": 1,
+      "date": "2025-01-16",
+      "tournee": "Tour 1",
+      "frequence": "Toutes les semaines"
+    },
+    {
+      "id": 2,
+      "date": "2025-01-17",
+      "tournee": "Tour 2",
+      "frequence": "Toutes les 2 semaines"
+    },
+    {
+      "id": 4,
+      "date": "2025-01-25",
+      "tournee": "Tour 3",
+      "frequence": "Toutes les semaines"
+    },
+    {
+      "id": 5,
+      "date": "2025-01-02",
+      "tournee": "Tour 1",
+      "frequence": "Toutes les semaines"
+    },
+    {
+      "id": 6,
+      "date": "2025-01-13",
+      "tournee": "Tour 1",
+      "frequence": "Toutes les 2 semaines"
+    },
+    {
+      "id": 7,
+      "date": "2025-02-20",
+      "tournee": "Tour 1",
+      "frequence": "Toutes les 3 semaines"
+    },
+    {
+      "id": 8,
+      "date": "2025-01-24",
+      "tournee": "Tour 2",
+      "frequence": "Toutes les 2 semaines"
+    }
   ]
 }
