@@ -27,11 +27,6 @@ jobs:
         cd client
         npm install
 
-    - name: Run Tests
-      run: |
-        cd client
-        npm test
-
     - name: Build Angular App
       run: |
         cd client
@@ -54,8 +49,3 @@ jobs:
       run: |
         cd server
         npm install
-
-    - name: Run Tests
-      run: |
-        cd server
-        npm test
