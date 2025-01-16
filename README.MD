@@ -1,5 +1,7 @@
 A FAIRE TOUT DE SUITE :
-- Refaire css affichage des tournées 
+- Refaire css affichage des tournées
+
+- Faire les tests sur le code des livraisons et calendriers pour pouvoir merge sur le master
 
 FRONT END : 
 - lié les derniers cards d'accueil à la bonne page, et faire en sorte que ca affiche le bonne endroit 
