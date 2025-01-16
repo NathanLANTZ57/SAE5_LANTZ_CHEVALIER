@@ -1,4 +1,4 @@
-name: CI/CD Pipeline Angular and Server Build
+name: CI/CD Pipeline 
 
 on:
   push:
@@ -10,14 +10,14 @@ on:
 
 jobs:
   build-client:
-    name: Build Client
+    name: Build Client 
     runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Cache Node Modules (Client)
+    - name: Cache Node Modules
       uses: actions/cache@v3
       with:
         path: client/node_modules
@@ -25,23 +25,23 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-client-node-modules-
 
-    - name: Setup Node.js (Client)
+    - name: Setup Node.js 
       uses: actions/setup-node@v3
       with:
         node-version: 16
         cache: 'npm'
 
-    - name: Install Dependencies (Client)
+    - name: Install Dependencies 
       run: |
         cd client
         npm install
 
     - name: Install Firefox for Tests
       run: |
-        choco install firefox --version=latest
+        choco install firefox -y
       shell: powershell
 
-    - name: Run Angular Tests (Firefox)
+    - name: Run Angular Tests 
       env:
         FIREFOX_BIN: "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
       run: |
@@ -61,7 +61,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Cache Node Modules (Server)
+    - name: Cache Node Modules 
       uses: actions/cache@v3
       with:
         path: server/node_modules
@@ -69,13 +69,13 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-server-node-modules-
 
-    - name: Setup Node.js (Server)
+    - name: Setup Node.js 
       uses: actions/setup-node@v3
       with:
         node-version: 16
         cache: 'npm'
 
-    - name: Install Dependencies (Server)
+    - name: Install Dependencies 
       run: |
         cd server
         npm install
