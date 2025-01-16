@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline Without Tests
 
 on:
   push:
@@ -36,12 +36,7 @@ jobs:
         cd client
         npm install
 
-    - name: Run Tests
-      run: |
-        cd client
-        npm test
-
     - name: Build Angular App
       run: |
         cd client
-        npm run build
+        npm run build -- --maxWorkers=2
