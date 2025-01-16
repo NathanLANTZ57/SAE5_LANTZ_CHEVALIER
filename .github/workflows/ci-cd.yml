@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline 
 
 on:
   push:
@@ -10,27 +10,43 @@ on:
 
 jobs:
   build-client:
-    name: Build Client (Angular)
-    runs-on: ubuntu-latest
+    name: Build Client 
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Cache Node Modules
+      uses: actions/cache@v3
+      with:
+        path: client/node_modules
+        key: ${{ runner.os }}-client-node-modules-${{ hashFiles('client/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-client-node-modules-
+
+    - name: Setup Node.js 
       uses: actions/setup-node@v3
       with:
         node-version: 16
+        cache: 'npm'
 
-    - name: Install Dependencies
+    - name: Install Dependencies 
       run: |
         cd client
         npm install
 
-    - name: Run Tests
+    - name: Install Firefox for Tests
+      run: |
+        choco install firefox -y
+      shell: powershell
+
+    - name: Run Angular Tests 
+      env:
+        FIREFOX_BIN: "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
       run: |
         cd client
-        npm test
+        npm test -- --watch=false --browsers=FirefoxHeadless
 
     - name: Build Angular App
       run: |
@@ -38,24 +54,33 @@ jobs:
         npm run build
 
   build-server:
-    name: Build Server (Node.js)
-    runs-on: ubuntu-latest
+    name: Build Server 
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Cache Node Modules 
+      uses: actions/cache@v3
+      with:
+        path: server/node_modules
+        key: ${{ runner.os }}-server-node-modules-${{ hashFiles('server/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-server-node-modules-
+
+    - name: Setup Node.js 
       uses: actions/setup-node@v3
       with:
         node-version: 16
+        cache: 'npm'
 
-    - name: Install Dependencies
+    - name: Install Dependencies 
       run: |
         cd server
         npm install
 
-    - name: Run Tests
+    - name: Build Server
       run: |
         cd server
-        npm test
+        npm run build

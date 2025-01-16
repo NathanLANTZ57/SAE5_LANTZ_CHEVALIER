@@ -9,6 +9,12 @@ import { UserService } from '../shared/user.service';
   styleUrls: ['./formulaire-panier.component.scss']
 })
 export class FormulairePanierComponent implements OnInit {
+  errorMessage(errorMessage: any) {
+    throw new Error('Method not implemented.');
+  }
+  validateEmail() {
+    throw new Error('Method not implemented.');
+  }
   nom: string = '';
   prenom: string = '';
   dateNaissance: string = '';
