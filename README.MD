@@ -53,9 +53,9 @@ Contient tout le code côté serveur, développé avec **Node.js**.
 
 ## 🐳 Lancement du projet via Docker
 
-1. Clonez le projet complet depuis GitHub :  
+1. Clonez le projet complet depuis GitHub ou alors télécharger le dossier en ZIP :  
    ```bash
-   git clone https://github.com/NathanLANTZ57/SAE5_LANTZ_CHEVALIER.git ou alors télécharger le dossier en ZIP
+   git clone https://github.com/NathanLANTZ57/SAE5_LANTZ_CHEVALIER.git
    ```
 2. Accédez à la racine du projet (le dossier contenant `.github`, `client`, et `server`).  
 3. Ouvrez un terminal PowerShell.  
