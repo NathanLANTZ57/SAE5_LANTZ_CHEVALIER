@@ -26,6 +26,7 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/package*.json ./
 COPY saejardindecocagne.json /app/
+COPY swagger.json /app/
 
 # Installer uniquement les dépendances nécessaires à la production
 RUN npm install --only=production

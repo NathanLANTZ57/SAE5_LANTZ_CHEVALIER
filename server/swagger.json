@@ -1,0 +1,957 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API SAE5 Jardin de Cocagne",
+    "description": "API complète pour la gestion des utilisateurs, adhérents, employés, abonnements, trajets et livraisons.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/NATHANLANTZ57560/SAE5/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "paths": {
+    "/login/admin": {
+      "post": {
+        "summary": "Authentification administrateur",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login_admin_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authentification réussie"
+          },
+          "400": {
+            "description": "Identifiants manquants"
+          },
+          "401": {
+            "description": "Échec de l'authentification"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/login/adherent": {
+      "post": {
+        "summary": "Enregistrement d'un nouvel adhérent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login_adherent_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Adhérent enregistré avec succès"
+          },
+          "400": {
+            "description": "Champs requis manquants"
+          },
+          "409": {
+            "description": "L'adhérent existe déjà"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/adherents/{id}/status": {
+      "patch": {
+        "summary": "Mise à jour du statut de l'adhérent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/id_status_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Statut mis à jour avec succès"
+          },
+          "400": {
+            "description": "Statut invalide"
+          },
+          "404": {
+            "description": "Adhérent non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/login/adherent/connect": {
+      "post": {
+        "summary": "Connexion de l'adhérent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/adherent_connect_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Connexion réussie"
+          },
+          "400": {
+            "description": "Champs requis manquants"
+          },
+          "401": {
+            "description": "Identifiants incorrects"
+          },
+          "403": {
+            "description": "Compte en attente de validation"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/login/employe": {
+      "post": {
+        "summary": "Enregistrement d'un nouvel employé",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login_employe_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Employé enregistré avec succès"
+          },
+          "400": {
+            "description": "Champs requis manquants"
+          },
+          "409": {
+            "description": "L'employé existe déjà"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/employes/{id}/status": {
+      "patch": {
+        "summary": "Mise à jour du statut de l'employé",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/id_status_body_1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Statut mis à jour avec succès"
+          },
+          "400": {
+            "description": "Statut invalide"
+          },
+          "404": {
+            "description": "Employé non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/employes/status": {
+      "get": {
+        "summary": "Récupération des employés par statut",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des employés récupérée avec succès"
+          },
+          "400": {
+            "description": "Paramètre status manquant"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/login/employe/connect": {
+      "post": {
+        "summary": "Connexion de l'employé",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/employe_connect_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Connexion réussie"
+          },
+          "400": {
+            "description": "Champs requis manquants"
+          },
+          "401": {
+            "description": "Identifiants incorrects"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/adherents": {
+      "get": {
+        "summary": "Récupération du nom d'utilisateur de l'adhérent",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nom d'utilisateur récupéré avec succès"
+          },
+          "400": {
+            "description": "Nom d'utilisateur manquant"
+          },
+          "404": {
+            "description": "Utilisateur non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/adherentsabonne": {
+      "get": {
+        "summary": "Récupération des informations d'un adhérent abonné",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Informations récupérées avec succès"
+          },
+          "400": {
+            "description": "Email manquant"
+          },
+          "404": {
+            "description": "Adhérent abonné non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/adherentsabonne/all": {
+      "get": {
+        "summary": "Récupération de tous les adhérents abonnés",
+        "responses": {
+          "200": {
+            "description": "Liste récupérée avec succès"
+          },
+          "404": {
+            "description": "Aucun adhérent trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/register/adherentsabonne": {
+      "post": {
+        "summary": "Enregistrement d'un nouvel adhérent abonné",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/register_adherentsabonne_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Adhérent abonné enregistré avec succès"
+          },
+          "400": {
+            "description": "Champs manquants"
+          },
+          "409": {
+            "description": "Conflit - Email déjà utilisé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/trajets-livraison": {
+      "get": {
+        "summary": "Récupération des trajets de livraison",
+        "parameters": [
+          {
+            "name": "day",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trajets récupérés avec succès"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      },
+      "post": {
+        "summary": "Création d'un nouveau trajet de livraison",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/trajetslivraison_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Trajet créé avec succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/trajets-livraison/{id}": {
+      "delete": {
+        "summary": "Suppression d'un trajet de livraison",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trajet supprimé avec succès"
+          },
+          "404": {
+            "description": "Trajet non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/jours-livraison": {
+      "get": {
+        "summary": "Récupération des jours de livraison pour un mois donné",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jours de livraison récupérés avec succès"
+          },
+          "400": {
+            "description": "Paramètres manquants"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      },
+      "post": {
+        "summary": "Création d'un nouveau jour de livraison",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jourslivraison_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Jour de livraison créé avec succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/jours-livraison/{id}": {
+      "delete": {
+        "summary": "Suppression d'un jour de livraison",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jour supprimé avec succès"
+          },
+          "404": {
+            "description": "Jour non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Mise à jour d'un jour de livraison",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jourslivraison_id_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Jour de livraison mis à jour avec succès"
+          },
+          "404": {
+            "description": "Jour non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/trajets/{id}": {
+      "put": {
+        "summary": "Mise à jour complète d'un trajet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/trajets_id_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Trajet mis à jour avec succès"
+          },
+          "404": {
+            "description": "Trajet non trouvé"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "/livraisons/{id}": {
+      "put": {
+        "summary": "Mise à jour complète d'une livraison",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/livraisons_id_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Livraison mise à jour avec succès"
+          },
+          "404": {
+            "description": "Livraison non trouvée"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "login_admin_body": {
+        "required": [
+          "password",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "login_adherent_body": {
+        "required": [
+          "email",
+          "name",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "id_status_body": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "validated",
+              "rejected"
+            ]
+          }
+        }
+      },
+      "adherent_connect_body": {
+        "required": [
+          "name",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "login_employe_body": {
+        "required": [
+          "email",
+          "name",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "id_status_body_1": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "validated",
+              "rejected"
+            ]
+          }
+        }
+      },
+      "employe_connect_body": {
+        "required": [
+          "name",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "register_adherentsabonne_body": {
+        "required": [
+          "adresse_mail",
+          "cotisation",
+          "nom",
+          "prenom"
+        ],
+        "type": "object",
+        "properties": {
+          "nom": {
+            "type": "string"
+          },
+          "prenom": {
+            "type": "string"
+          },
+          "date_naissance": {
+            "type": "string",
+            "format": "date"
+          },
+          "adresse_mail": {
+            "type": "string"
+          },
+          "adresse_postale": {
+            "type": "string"
+          },
+          "ville": {
+            "type": "string"
+          },
+          "code_postal": {
+            "type": "string"
+          },
+          "cotisation": {
+            "type": "number"
+          },
+          "don": {
+            "type": "number"
+          },
+          "formule_panier_legumes_bio": {
+            "type": "boolean"
+          },
+          "nb_panier_legumes_bio": {
+            "type": "integer"
+          },
+          "formule_panier_fruits_bio": {
+            "type": "boolean"
+          },
+          "nb_panier_fruits_bio": {
+            "type": "integer"
+          },
+          "formule_boite_oeufs_bio": {
+            "type": "boolean"
+          },
+          "nb_panier_oeufs_bio": {
+            "type": "integer"
+          },
+          "depot": {
+            "type": "boolean"
+          },
+          "domicile": {
+            "type": "boolean"
+          },
+          "formule_payement": {
+            "type": "string"
+          },
+          "iban": {
+            "type": "string"
+          },
+          "bic": {
+            "type": "string"
+          }
+        }
+      },
+      "trajetslivraison_body": {
+        "required": [
+          "day",
+          "locations",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "jourslivraison_body": {
+        "required": [
+          "date",
+          "frequence",
+          "tournee"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "tournee": {
+            "type": "string"
+          },
+          "frequence": {
+            "type": "string"
+          }
+        }
+      },
+      "jourslivraison_id_body": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "tournee": {
+            "type": "string"
+          },
+          "frequence": {
+            "type": "string"
+          }
+        }
+      },
+      "trajets_id_body": {
+        "required": [
+          "arrivee",
+          "chauffeur_id",
+          "date",
+          "depart"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "depart": {
+            "type": "string"
+          },
+          "arrivee": {
+            "type": "string"
+          },
+          "chauffeur_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "livraisons_id_body": {
+        "required": [
+          "adherent_id",
+          "adresse",
+          "date",
+          "trajet_id"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "adresse": {
+            "type": "string"
+          },
+          "adherent_id": {
+            "type": "integer"
+          },
+          "trajet_id": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
 import path from 'path';
 
@@ -1047,6 +1048,9 @@ app.patch('/api/jours-livraison/:id', async (req: Request, res: Response): Promi
   }
 });
 
+// Swagger setup
+const swaggerDocument = JSON.parse(fs.readFileSync('./swagger.json', 'utf-8'));
+app.use('/api/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Route de test par défaut
 app.get('/api/test', async (req: Request, res: Response): Promise<void> => {
