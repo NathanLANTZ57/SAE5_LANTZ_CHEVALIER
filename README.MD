@@ -71,6 +71,9 @@ Contient tout le code côté serveur, développé avec **Node.js**.
 
 ## 📖 Documentation API Swagger
 
-Notre documentation API est disponible ici :  
+La documentation API est accessible à l'adresse suivante : [http://localhost:3000/api/documentation](http://localhost:3000/api/documentation) lorsque l'application est démarrée via Docker.  
+Elle utilise **Swagger-ui-express** et un fichier `swagger.json` situé dans le dossier `server`, avec une configuration simplifiée en deux lignes de code dans server.ts.
+
+Notre documentation API est disponible ici directement :  
 [**Documentation SWAGGER**](https://app.swaggerhub.com/apis-docs/NATHANLANTZ57560/SAE5/1.0.0)
 
