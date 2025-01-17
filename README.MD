@@ -3,7 +3,7 @@
 
 ## 🚀 Environnement utilisé  
 - **GitHub** et **Docker** pour la gestion du projet et des conteneurs.  
-- **MEAN STACK** : Angular, Node.js, MongoDB.  
+- **MEAN STACK** : Angular, Node.js, MongoDB et Express.js.  
 - **Karma** et **Jasmine** pour les tests unitaires avec Angular.  
 
 ---
