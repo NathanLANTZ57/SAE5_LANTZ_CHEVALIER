@@ -55,7 +55,7 @@ Contient tout le code côté serveur, développé avec **Node.js**.
 
 1. Clonez le projet complet depuis GitHub :  
    ```bash
-   git clone <url_du_projet>
+   git clone https://github.com/NathanLANTZ57/SAE5_LANTZ_CHEVALIER.git ou alors télécharger le dossier en ZIP
    ```
 2. Accédez à la racine du projet (le dossier contenant `.github`, `client`, et `server`).  
 3. Ouvrez un terminal PowerShell.  
