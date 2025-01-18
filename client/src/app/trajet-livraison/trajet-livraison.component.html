@@ -30,11 +30,11 @@
     <!-- Mercredi -->
     <div class="day-container" 
          (mouseenter)="showWednesdayOptions = true" 
-         (mouseleave)="showWednesdayOptions = false">
+         (mouseleave)="showWednesdayOptions = true">
       <button class="day-button mercredi">Mercredi</button>
       <div class="sub-menu" *ngIf="showWednesdayOptions" 
            (mouseenter)="showWednesdayOptions = true" 
-           (mouseleave)="showWednesdayOptions = false">
+           (mouseleave)="showWednesdayOptions = true">
         <button class="sub-menu-item" *ngFor="let trajet of trajetsMercredi" (click)="showTrajet(trajet.type)">
           {{ trajet.type }}
         </button>

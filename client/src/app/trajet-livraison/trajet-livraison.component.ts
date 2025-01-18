@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
+import 'leaflet-routing-machine';
 
 @Component({
   selector: 'app-trajet-livraison',
@@ -9,17 +10,16 @@ import * as L from 'leaflet';
 })
 export class TrajetLivraisonComponent implements OnInit {
   map!: L.Map;
+  routingControl: any;
   trajets: any[] = [];
   trajetsMardi: any[] = [];
   trajetsMercredi: any[] = [];
   trajetsJeudi: any[] = [];
   trajetsVendredi: any[] = [];
-
   showTuesdayOptions = false;
   showWednesdayOptions = false;
   showThursdayOptions = false;
   showFridayOptions = false;
-
   isModalOpen = false;
   newTrajet = { day: '', type: '', locations: [{ name: '', address: '', coords: [0, 0] }] };
 
@@ -40,6 +40,7 @@ export class TrajetLivraisonComponent implements OnInit {
 
   fetchTrajets(): void {
     this.http.get<any[]>('http://localhost:3000/api/trajets-livraison').subscribe((data) => {
+      console.log('Fetched trajets:', data);
       this.trajets = data;
       this.filterTrajetsByDay();
     });
@@ -50,50 +51,68 @@ export class TrajetLivraisonComponent implements OnInit {
     this.trajetsMercredi = this.trajets.filter((trajet) => trajet.day === 'Mercredi');
     this.trajetsJeudi = this.trajets.filter((trajet) => trajet.day === 'Jeudi');
     this.trajetsVendredi = this.trajets.filter((trajet) => trajet.day === 'Vendredi');
+    console.log('Trajets par jour:', {
+      Mardi: this.trajetsMardi,
+      Mercredi: this.trajetsMercredi,
+      Jeudi: this.trajetsJeudi,
+      Vendredi: this.trajetsVendredi,
+    });
   }
 
   showTrajet(type: string): void {
+    console.log('Clicked trajet type:', type);
     const trajet = this.trajets.find((t) => t.type === type);
-    if (!trajet) return;
+    console.log('Found trajet:', trajet);
 
-    this.map.eachLayer((layer) => {
-      if (layer instanceof L.Marker || layer instanceof L.Polyline) {
-        this.map.removeLayer(layer);
-      }
-    });
+    if (!trajet) {
+      console.warn('Trajet not found!');
+      return;
+    }
 
-    trajet.locations.forEach((location: any) => {
-      L.marker(location.coords as [number, number])
-        .addTo(this.map)
-        .bindPopup(`<b>${location.name}</b><br>${location.address}`);
-    });
+    if (this.routingControl) {
+      console.log('Removing existing routing control...');
+      this.map.removeControl(this.routingControl);
+    }
 
-    const coords = trajet.locations.map((l: any) => l.coords);
-    L.polyline(coords, { color: 'black', weight: 4 }).addTo(this.map);
-    this.map.fitBounds(L.latLngBounds(coords));
+    console.log('Waypoints:', trajet.locations.map((location: any) => location.coords));
+
+    this.routingControl = (L as any).Routing.control({
+      waypoints: trajet.locations.map((location: any) =>
+        L.latLng(location.coords[0], location.coords[1])
+      ),
+      routeWhileDragging: true,
+      showAlternatives: true,
+      lineOptions: { styles: [{ color: 'blue', weight: 4 }] },
+    }).addTo(this.map);
+
+    console.log('Routing control added.');
   }
 
   deleteTrajet(id: number): void {
+    console.log('Deleting trajet with id:', id);
     this.http.delete(`http://localhost:3000/api/trajets-livraison/${id}`).subscribe(() => {
       this.fetchTrajets();
     });
   }
-  
+
   removeLocation(index: number): void {
+    console.log('Removing location at index:', index);
     this.newTrajet.locations.splice(index, 1);
   }
-  
 
   openAddModal(): void {
+    console.log('Opening modal...');
     this.isModalOpen = true;
   }
 
   closeAddModal(): void {
+    console.log('Closing modal...');
     this.isModalOpen = false;
     this.newTrajet = { day: '', type: '', locations: [{ name: '', address: '', coords: [0, 0] }] };
   }
 
   addTrajet(): void {
+    console.log('Adding new trajet:', this.newTrajet);
     this.http.post('http://localhost:3000/api/trajets-livraison', this.newTrajet).subscribe(() => {
       this.closeAddModal();
       this.fetchTrajets();
@@ -101,6 +120,7 @@ export class TrajetLivraisonComponent implements OnInit {
   }
 
   addLocation(): void {
+    console.log('Adding new location to trajet...');
     this.newTrajet.locations.push({ name: '', address: '', coords: [0, 0] });
   }
 }
