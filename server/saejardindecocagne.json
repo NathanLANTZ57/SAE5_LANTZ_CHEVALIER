@@ -288,7 +288,8 @@
           "coords": [
             48.1741,
             6.4489
-          ]
+          ],
+          "pointNumber": 1
         },
         {
           "name": "Ligue de l’enseignement",
@@ -296,7 +297,8 @@
           "coords": [
             48.1751,
             6.4495
-          ]
+          ],
+          "pointNumber": 2
         },
         {
           "name": "Centre Léo Lagrange",
@@ -304,7 +306,8 @@
           "coords": [
             48.176,
             6.4505
-          ]
+          ],
+          "pointNumber": 3
         }
       ]
     },
@@ -319,7 +322,8 @@
           "coords": [
             48.171,
             6.4814
-          ]
+          ],
+          "pointNumber": 1
         }
       ]
     },
@@ -334,7 +338,8 @@
           "coords": [
             48.1995,
             6.4296
-          ]
+          ],
+          "pointNumber": 1
         },
         {
           "name": "Botanic",
@@ -342,7 +347,8 @@
           "coords": [
             48.2008,
             6.4235
-          ]
+          ],
+          "pointNumber": 2
         }
       ]
     },
@@ -357,7 +363,8 @@
           "coords": [
             48.173,
             6.4492
-          ]
+          ],
+          "pointNumber": 1
         },
         {
           "name": "Botanic",
@@ -365,7 +372,8 @@
           "coords": [
             48.2008,
             6.424
-          ]
+          ],
+          "pointNumber": 2
         },
         {
           "name": "Centre Léo Lagrange",
@@ -373,7 +381,8 @@
           "coords": [
             48.1738,
             6.4553
-          ]
+          ],
+          "pointNumber": 3
         },
         {
           "name": "Chambre d’Agriculture",
@@ -381,7 +390,8 @@
           "coords": [
             48.1754,
             6.4482
-          ]
+          ],
+          "pointNumber": 4
         },
         {
           "name": "Ligue de l’enseignement",
@@ -389,7 +399,8 @@
           "coords": [
             48.1748,
             6.4521
-          ]
+          ],
+          "pointNumber": 5
         }
       ]
     },
@@ -404,7 +415,8 @@
           "coords": [
             48.2,
             6.4243
-          ]
+          ],
+          "pointNumber": 1
         }
       ]
     },
@@ -419,7 +431,8 @@
           "coords": [
             48.2824,
             6.9508
-          ]
+          ],
+          "pointNumber": 1
         }
       ]
     },
@@ -434,7 +447,8 @@
           "coords": [
             48.0145,
             6.5932
-          ]
+          ],
+          "pointNumber": 1
         },
         {
           "name": "Office du tourisme",
@@ -442,7 +456,8 @@
           "coords": [
             48.014,
             6.5857
-          ]
+          ],
+          "pointNumber": 2
         }
       ]
     },
@@ -457,7 +472,8 @@
           "coords": [
             48.0602,
             6.5643
-          ]
+          ],
+          "pointNumber": 1
         }
       ]
     },
@@ -472,7 +488,8 @@
           "coords": [
             48.1506,
             6.5743
-          ]
+          ],
+          "pointNumber": 1
         }
       ]
     },
@@ -487,7 +504,8 @@
           "coords": [
             48.2444,
             6.4039
-          ]
+          ],
+          "pointNumber": 1
         }
       ]
     },
@@ -502,7 +520,8 @@
           "coords": [
             48.2444,
             6.4039
-          ]
+          ],
+          "pointNumber": 1
         }
       ]
     },
@@ -517,7 +536,8 @@
           "coords": [
             48.1731,
             6.4489
-          ]
+          ],
+          "pointNumber": 1
         },
         {
           "name": "Centre Léo Lagrange",
@@ -525,7 +545,8 @@
           "coords": [
             48.1742,
             6.4551
-          ]
+          ],
+          "pointNumber": 2
         },
         {
           "name": "Botanic",
@@ -533,7 +554,8 @@
           "coords": [
             48.201,
             6.4236
-          ]
+          ],
+          "pointNumber": 3
         },
         {
           "name": "Ligue de l’enseignement",
@@ -541,7 +563,8 @@
           "coords": [
             48.1747,
             6.4519
-          ]
+          ],
+          "pointNumber": 4
         },
         {
           "name": "3ème Rive Café Associatif",
@@ -549,83 +572,8 @@
           "coords": [
             48.1736,
             6.4491
-          ]
-        }
-      ]
-    },
-    {
-      "id": 13,
-      "day": "Vendredi",
-      "type": "bruyereVen",
-      "locations": [
-        {
-          "name": "Point Vert Mafra",
-          "address": "Zac Barbazan",
-          "coords": [
-            48.2082,
-            6.7084
-          ]
-        },
-        {
-          "name": "Brico Marché",
-          "address": "2 rue de Fraisne",
-          "coords": [
-            48.2065,
-            6.7102
-          ]
-        }
-      ]
-    },
-    {
-      "id": 14,
-      "day": "Vendredi",
-      "type": "gerardmerVen",
-      "locations": [
-        {
-          "name": "Pro et Cie",
-          "address": "45 Boulevard d'Alsace",
-          "coords": [
-            48.0748,
-            6.8775
-          ]
-        }
-      ]
-    },
-    {
-      "id": 15,
-      "day": "Vendredi",
-      "type": "leTholyVen",
-      "locations": [
-        {
-          "name": "M. Lecomte François",
-          "address": "24 route du Noirpré",
-          "coords": [
-            48.0676,
-            6.7532
-          ]
-        }
-      ]
-    },
-    {
-      "id": 18,
-      "day": "Mercredi",
-      "type": "test1",
-      "locations": [
-        {
-          "name": "test1",
-          "address": "5b test",
-          "coords": [
-            50,
-            50
-          ]
-        },
-        {
-          "name": "test2",
-          "address": "10a test2",
-          "coords": [
-            -50,
-            -50
-          ]
+          ],
+          "pointNumber": 5
         }
       ]
     }
