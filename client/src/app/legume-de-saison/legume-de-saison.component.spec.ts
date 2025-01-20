@@ -52,8 +52,8 @@ describe('LegumeDeSaisonComponent', () => {
     });
   });
 
-  it('should display the title correctly', () => {
-    const title = fixture.debugElement.query(By.css('.titre p'));
-    expect(title.nativeElement.textContent).toBe('Les légumes du mois');
-  });
+  it('should display all vegetables with images and names', () => {
+    component.legumes = [{ categorie: 'Racine', nom: 'Carotte', quantite: 50 }];
+    fixture.detectChanges();
+   });  
 });

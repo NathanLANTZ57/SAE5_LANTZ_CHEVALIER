@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./legume-de-saison.component.scss']
 })
 export class LegumeDeSaisonComponent implements OnInit {
+  legumes: { categorie: string; nom: string; quantite: number; }[];
 
   constructor() { }
 
