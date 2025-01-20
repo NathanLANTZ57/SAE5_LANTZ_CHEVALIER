@@ -910,13 +910,18 @@ app.post('/api/trajets-livraison', async (req: Request, res: Response): Promise<
 
     const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 
+    const numberedLocations = locations.map((loc: any, index: number) => ({
+      ...loc,
+      pointNumber: index + 1
+    }));
+
     const newTrajet = {
       id: dbData.TrajetsLivraison.length
         ? dbData.TrajetsLivraison[dbData.TrajetsLivraison.length - 1].id + 1
         : 1,
       day,
       type,
-      locations
+      locations: numberedLocations
     };
 
     dbData.TrajetsLivraison.push(newTrajet);
@@ -927,6 +932,7 @@ app.post('/api/trajets-livraison', async (req: Request, res: Response): Promise<
     res.status(500).json({ error: 'Erreur lors de l’ajout du trajet.' });
   }
 });
+
 
 // Supprimer un trajet de livraison 
 app.delete('/api/trajets-livraison/:id', async (req: Request, res: Response): Promise<void> => {

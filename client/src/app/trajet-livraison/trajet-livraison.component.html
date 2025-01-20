@@ -1,4 +1,7 @@
-<div id="map"></div>
+<div id="map-container">
+  <div id="map"></div>
+  <div id="route-instructions" class="route-instructions"></div>
+</div>
 
 <div class="legend-days-container">
   <div class="legend">
@@ -13,57 +16,14 @@
   </div>
 
   <div class="days-container">
-    <!-- Mardi -->
+    <!-- Pour chaque jour, afficher les trajets associés -->
     <div class="day-container" 
-         (mouseenter)="showTuesdayOptions = true" 
-         (mouseleave)="showTuesdayOptions = false">
-      <button class="day-button mardi">Mardi</button>
-      <div class="sub-menu" *ngIf="showTuesdayOptions" 
-           (mouseenter)="showTuesdayOptions = true" 
-           (mouseleave)="showTuesdayOptions = false">
-        <button class="sub-menu-item" *ngFor="let trajet of trajetsMardi" (click)="showTrajet(trajet.type)">
-          {{ trajet.type }}
-        </button>
-      </div>
-    </div>
-
-    <!-- Mercredi -->
-    <div class="day-container" 
-         (mouseenter)="showWednesdayOptions = true" 
-         (mouseleave)="showWednesdayOptions = false">
-      <button class="day-button mercredi">Mercredi</button>
-      <div class="sub-menu" *ngIf="showWednesdayOptions" 
-           (mouseenter)="showWednesdayOptions = true" 
-           (mouseleave)="showWednesdayOptions = false">
-        <button class="sub-menu-item" *ngFor="let trajet of trajetsMercredi" (click)="showTrajet(trajet.type)">
-          {{ trajet.type }}
-        </button>
-      </div>
-    </div>
-
-    <!-- Jeudi -->
-    <div class="day-container" 
-         (mouseenter)="showThursdayOptions = true" 
-         (mouseleave)="showThursdayOptions = false">
-      <button class="day-button jeudi">Jeudi</button>
-      <div class="sub-menu" *ngIf="showThursdayOptions" 
-           (mouseenter)="showThursdayOptions = true" 
-           (mouseleave)="showThursdayOptions = false">
-        <button class="sub-menu-item" *ngFor="let trajet of trajetsJeudi" (click)="showTrajet(trajet.type)">
-          {{ trajet.type }}
-        </button>
-      </div>
-    </div>
-
-    <!-- Vendredi -->
-    <div class="day-container" 
-         (mouseenter)="showFridayOptions = true" 
-         (mouseleave)="showFridayOptions = false">
-      <button class="day-button vendredi">Vendredi</button>
-      <div class="sub-menu" *ngIf="showFridayOptions" 
-           (mouseenter)="showFridayOptions = true" 
-           (mouseleave)="showFridayOptions = false">
-        <button class="sub-menu-item" *ngFor="let trajet of trajetsVendredi" (click)="showTrajet(trajet.type)">
+         *ngFor="let day of days" 
+         (mouseenter)="day.showOptions = true" 
+         (mouseleave)="day.showOptions = true">
+      <button class="day-button" [ngClass]="day.class">{{ day.label }}</button>
+      <div class="sub-menu" *ngIf="day.showOptions">
+        <button class="sub-menu-item" *ngFor="let trajet of day.trajets" (click)="showTrajet(trajet.type)">
           {{ trajet.type }}
         </button>
       </div>
@@ -89,10 +49,7 @@
     <form (ngSubmit)="addTrajet()">
       <label for="day">Jour</label>
       <select id="day" [(ngModel)]="newTrajet.day" name="day" required>
-        <option value="Mardi">Mardi</option>
-        <option value="Mercredi">Mercredi</option>
-        <option value="Jeudi">Jeudi</option>
-        <option value="Vendredi">Vendredi</option>
+        <option *ngFor="let day of days" [value]="day.label">{{ day.label }}</option>
       </select>
 
       <label for="type">Type</label>
