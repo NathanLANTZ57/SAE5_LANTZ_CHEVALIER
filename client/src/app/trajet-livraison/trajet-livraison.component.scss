@@ -1,305 +1,372 @@
+#map-container {
+  display: flex;
+  flex-direction: column; /* Changer la direction pour empiler les éléments */
+  align-items: center; /* Centrer les éléments */
+  width: 62%; /* Ajuster selon vos besoins */
+  margin: 20px auto; /* Centrer le conteneur horizontalement */
+  gap: 20px; /* Espacement entre la carte et les instructions */
+}
+
 #map {
-    height: 30vw;
-    width: 60%;
-    margin: 2em auto;
-    border: 1px solid #A1A1A1;
-    border-radius: 10px;
-  }
+  width: 100%; /* La carte prend toute la largeur disponible */
+  height: 30vw;
+  border: 1px solid #A1A1A1;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .leaflet-routing-container {
-    display: none !important;
-  }  
-  
-  .legend-days-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-  }
-  
-  .legend {
-    width: 30%;
-  }
-  
-  .days-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin: 20px 2em;
-    gap: 1em;
-  }
-  
-  .day-container {
-    position: relative;
-  }
-  
-  .day-button {
-    width: 120px;
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease;
-  }
+#route-instructions {
+  display: none; /* Masquer par défaut */
+  width: 100%; /* Même largeur que la carte */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .trajet-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 50%;
-  }
-  
-  .mardi {
-    background-color: #32cd32;
-  }
-  
-  .mercredi {
-    background-color: #20b2aa;
-  }
-  
-  .jeudi {
-    background-color: #004f88;
-  }
-  
-  .vendredi {
-    background-color: #a062f5;
-  }
-  
-  .sub-menu {
-    position: absolute;
-    top: 0;
-    right: 130%;
-    display: flex;
-    flex-direction: column;
-    background: #f9f9f9;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-  }
-  
-  .sub-menu-item {
-    background-color: #ffffff;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 2px 0;
-    text-align: left;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sub-menu-item:hover {
-    background-color: #eee;
-  }
-  
-  .actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .actions button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .actions button:hover {
-    background-color: #45a049;
-  }
-  
-  .delete-button {
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-top: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .delete-button:hover {
-    background-color: #ff4500;
-  }
-  
-  .delete-location-button {
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-left: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .delete-location-button:hover {
-    background-color: #c9302c;
-  }
-  
-  .add-location-button {
-    background-color: #5bc0de;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .add-location-button:hover {
-    background-color: #31b0d5;
-  }
-  
-  .submit-button,
-  .cancel-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cancel-button {
-    background-color: #f0ad4e;
-  }
-  
-  .submit-button:hover {
-    background-color: #45a049;
-  }
-  
-  .cancel-button:hover {
-    background-color: #ec971f;
-  }
-  
-  /* Modal styles */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal.active {
-    display: flex;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 40%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .modal-content h3 {
-    margin-top: 0;
-  }
-  
-  .modal-content form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .modal-content label {
-    font-weight: bold;
-  }
-  
-  .modal-content input,
-  .modal-content select,
-  .modal-content button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .modal-content .location {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .modal-content .location button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ff6347;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .modal-content .location button:hover {
-    background-color: #ff4500;
-  }
-  
-  .modal-content .add-point-button {
-    background-color: #32cd32;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .modal-content .add-point-button:hover {
-    background-color: #28a745;
-  }
-  
-  .modal-content .form-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .modal-content .form-buttons button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .modal-content .form-buttons .save-button {
-    background-color: #4caf50;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  
-  .modal-content .form-buttons .save-button:hover {
-    background-color: #45a049;
-  }
-  
-  .modal-content .form-buttons .cancel-button {
-    background-color: #ff6347;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  
-  .modal-content .form-buttons .cancel-button:hover {
-    background-color: #ff4500;
-  }
-  
+#route-instructions.active {
+  display: block; /* Afficher lorsque la classe "active" est ajoutée */
+}
+
+#route-instructions h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}
+
+#route-instructions div {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+#route-instructions div:hover {
+  background-color: #eef;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.leaflet-routing-container {
+  display: none !important;
+}  
+
+.legend-days-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.legend {
+  width: 30%;
+}
+
+/* Conteneur du tableau */
+.trajets-container {
+  width: 62%; /* Largeur du tableau */
+  margin-left: 21.4%;
+}
+
+/* Table */
+.trajets-table {
+  width: 100%; /* Prend toute la largeur disponible */
+  border-collapse: collapse; /* Supprime les espaces entre les bordures */
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* Entêtes du tableau */
+.trajets-table th {
+  background-color: #ffc0d8; /* Couleur de fond des entêtes */
+  padding: 12px 15px; /* Espacement interne */
+  text-align: left; /* Alignement du texte */
+  font-weight: bold; /* Texte en gras */
+  border: 1px solid #A1A1A1; /* Bordures des colonnes */
+}
+
+/* Lignes du tableau */
+.trajets-table td {
+  padding: 12px 15px; /* Espacement interne */
+  border: 1px solid #ddd; /* Bordures des colonnes */
+  text-align: left; /* Alignement du texte */
+}
+
+/* Lignes paires (zébrures) */
+.trajets-table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Couleur de fond des lignes paires */
+}
+
+/* Lignes impaires */
+.trajets-table tr:nth-child(odd) {
+  background-color: #fff; /* Couleur de fond des lignes impaires */
+}
+
+/* Effet au survol */
+.trajets-table tr:hover {
+  background-color: #f1f1f1; /* Couleur de fond des lignes au survol */
+}
+
+/* Conteneur pour aligner les boutons sur une seule ligne */
+.trajets-table .actions-container {
+  display: flex;
+  gap: 10px; /* Espacement entre les boutons */
+}
+
+/* Boutons dans le tableau */
+.trajets-table .view-button,
+.trajets-table .delete-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Bouton Voir le Trajet */
+.trajets-table .view-button {
+  background-color: #a4d7f2; /* Bleu foncé */
+  transition: background-color 0.3s ease;
+  margin-right: 2%;
+}
+
+.trajets-table .view-button:hover {
+  background-color: #7a94b9; /* Bleu encore plus foncé au survol */
+}
+
+/* Bouton Supprimer */
+.trajets-table .delete-button {
+  background-color: #ffc9bf; /* Rouge */
+  transition: background-color 0.3s ease;
+}
+
+.trajets-table .delete-button:hover {
+  background-color: #d8a6a4; /* Rouge plus foncé au survol */
+}
+
+.days-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 20px 2em;
+  gap: 1em;
+}
+
+.day-container {
+  position: relative;
+}
+
+.day-button {
+  width: 120px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.trajet-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%; /* Centrer la liste des trajets */
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #a6f2a7;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-left: 56%;
+}
+
+.actions button:hover {
+  background-color: #45a049;
+}
+
+.delete-location-button {
+  background-color: #e7a09d;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-location-button:hover {
+  background-color: #c9302c;
+}
+
+.add-location-button {
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-location-button:hover {
+  background-color: #31b0d5;
+}
+
+.submit-button,
+.cancel-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+  background-color: #f0ad4e;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-button:hover {
+  background-color: #ec971f;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 40%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content label {
+  font-weight: bold;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-content .location {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.modal-content .location button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6347;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-content .location button:hover {
+  background-color: #ff4500;
+}
+
+.modal-content .add-point-button {
+  background-color: #32cd32;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content .add-point-button:hover {
+  background-color: #28a745;
+}
+
+.modal-content .form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-content .form-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content .form-buttons .save-button {
+  background-color: #4caf50;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content .form-buttons .save-button:hover {
+  background-color: #45a049;
+}
+
+.modal-content .form-buttons .cancel-button {
+  background-color: #ff6347;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content .form-buttons .cancel-button:hover {
+  background-color: #ff4500;
+}

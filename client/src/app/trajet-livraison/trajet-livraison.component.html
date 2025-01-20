@@ -1,46 +1,34 @@
 <div id="map-container">
   <div id="map"></div>
-  <div id="route-instructions" class="route-instructions"></div>
-</div>
-
-<div class="legend-days-container">
-  <div class="legend">
-    <h3>Légende :</h3>
-    <ul>
-      <li>
-        <img class="marker-icon" src="assets/marker-icon.png" alt="Icône de point de dépôt" />
-        <span class="pointDepot">Points de dépôt</span>
-      </li>
-      <li><span class="legend-line"></span> Trajet</li>
-    </ul>
-  </div>
-
-  <div class="days-container">
-    <!-- Pour chaque jour, afficher les trajets associés -->
-    <div class="day-container" 
-         *ngFor="let day of days" 
-         (mouseenter)="day.showOptions = true" 
-         (mouseleave)="day.showOptions = true">
-      <button class="day-button" [ngClass]="day.class">{{ day.label }}</button>
-      <div class="sub-menu" *ngIf="day.showOptions">
-        <button class="sub-menu-item" *ngFor="let trajet of day.trajets" (click)="showTrajet(trajet.type)">
-          {{ trajet.type }}
-        </button>
-      </div>
-    </div>
-  </div>
+  <div class="route-instructions"></div>
 </div>
 
 <div class="actions">
   <button (click)="openAddModal()">Ajouter un trajet</button>
 </div>
 
-<div class="trajet-list">
-  <h3>Liste des trajets</h3>
-  <div *ngFor="let trajet of trajets">
-    <span>{{ trajet.type }} ({{ trajet.day }})</span>
-    <button class="delete-button" (click)="deleteTrajet(trajet.id)">Supprimer</button>
-  </div>
+<!-- Tableau pour afficher les trajets -->
+<div class="trajets-container">
+  <table class="trajets-table">
+    <thead>
+      <tr>
+        <th>Jour</th>
+        <th>Type de trajet</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Boucle pour afficher les trajets récupérés -->
+      <tr *ngFor="let trajet of trajets">
+        <td>{{ trajet.day }}</td>
+        <td>{{ trajet.type }}</td>
+        <td>
+          <button class="view-button" (click)="showTrajet(trajet.type)">Voir le trajet</button>
+          <button class="delete-button" (click)="deleteTrajet(trajet.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <div class="modal" [ngClass]="{ active: isModalOpen }">
