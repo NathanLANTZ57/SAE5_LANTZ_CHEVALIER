@@ -24,21 +24,22 @@ p {
     width: 60%;
 }
 
-.option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 5vh;
+.formPanier .option {
+    margin-bottom: 2%;
 }
 
-.option label {
-    flex: 1;
+.fruit form {
+    font-family: 'Arima';
+    font-size: 17px;
+    margin: 6vh 50vh;
+    width: 60%;
 }
 
-.option input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin-right: 62%;
+.oeufs form {
+    font-family: 'Arima';
+    font-size: 17px;
+    margin: 6vh 50vh;
+    width: 60%;
 }
 
 .quantity {
@@ -63,23 +64,16 @@ p {
     margin-right: 50%;
 }
 
-.oeufs, .fruit{
-    margin-top: 8vw;
-}
-
-.oeufs {
-    margin-right: 0.4vh;
-}
-
-.fruit {
-    margin-right: 4vh;
-}
-
 hr {
-    max-width: 110vh;
-    margin-top: 6.5vw;
-    margin-left: 57vh;
+    max-width: 70%;
+    margin-top: 7vw;
+    margin-bottom: 5vw;
+    margin-left: 22%;
     color: #a1a1a1;
+}
+
+hr:last-of-type {
+    display: none; 
 }
 
 .buttons {
@@ -116,12 +110,3 @@ hr {
     opacity: 0.9;
 }
 
-.calendrier a {
-    color: black;
-    text-decoration: none;
-}
-
-.calendrier a:hover {
-    color: rgb(142, 142, 142);
-    text-decoration: none;
-}

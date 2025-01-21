@@ -132,6 +132,8 @@ export class TrajetLivraisonComponent implements OnInit {
       show: false, // Désactive les instructions sur la carte
     }).addTo(this.map);
 
+    
+
     // Display instructions in the custom container
     this.routingControl.on('routesfound', (e: any) => {
       const instructionsContainer = document.getElementById('route-instructions');

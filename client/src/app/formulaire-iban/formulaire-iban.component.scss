@@ -39,23 +39,7 @@ input {
     text-transform: uppercase;
 }
   
-  
-button {
-    padding: 10px 15px;
-    background-color: #19a21e;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 27.5%;
-    margin-top: 3vh;
-}
-  
-button[disabled] {
-    background-color: black;
-    color: white;
-    cursor: not-allowed;
-}
+
   
 .error {
     color: red;
@@ -84,7 +68,7 @@ button[disabled] {
 
 .buttons .retour {
     background-color: #66201C; 
-    margin-left: 60vh;
+    margin-left: 62vh;
 }
 
 .buttons .suivant {
@@ -95,6 +79,8 @@ button[disabled] {
 .buttons .btn:hover {
     opacity: 0.9;
 }
+
+
 
 #bic {
     margin-left: 1.5vh;
