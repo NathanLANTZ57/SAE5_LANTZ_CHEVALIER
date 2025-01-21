@@ -19,12 +19,6 @@
       "quantite": 30
     },
     {
-      "id": 4,
-      "categorie": "test2",
-      "nom": "test2",
-      "quantite": 10
-    },
-    {
       "id": 5,
       "categorie": "Fruit rouge",
       "nom": "Fraise",
@@ -51,18 +45,6 @@
       "quantite": 150
     },
     {
-      "id": 4,
-      "categorie": "test",
-      "nom": "aaaa",
-      "quantite": 20
-    },
-    {
-      "id": 5,
-      "categorie": "test3",
-      "nom": "test3",
-      "quantite": 25
-    },
-    {
       "id": 6,
       "categorie": "Chou",
       "nom": "Chou rouge",
@@ -78,13 +60,6 @@
       "status": "validated"
     },
     {
-      "id": 4,
-      "name": "xavier",
-      "password": "zuzu",
-      "email": "xav@gmail.com",
-      "status": "validated"
-    },
-    {
       "id": 5,
       "name": "noemy",
       "password": "noemy123",
@@ -92,24 +67,10 @@
       "status": "validated"
     },
     {
-      "id": 7,
-      "name": "emily",
-      "password": "passwordemily",
-      "email": "emily@gmail.com",
-      "status": "validated"
-    },
-    {
       "id": 8,
       "name": "titouan lakou",
       "password": "test",
       "email": "titouan.lakou@gmail.com",
-      "status": "validated"
-    },
-    {
-      "id": 9,
-      "name": "julio soares",
-      "password": "test",
-      "email": "julio.soares@gmail.com",
       "status": "validated"
     }
   ],
@@ -120,48 +81,6 @@
       "password": "managerpass",
       "email": "alice.manager@example.com",
       "status": "validated"
-    },
-    {
-      "id": 2,
-      "name": "Bob Worker",
-      "password": "worker123",
-      "email": "bob.worker@example.com",
-      "status": "validated"
-    },
-    {
-      "id": 3,
-      "name": "Charlie Admin",
-      "password": "adminsecure",
-      "email": "charlie.admin@example.com",
-      "status": "validated"
-    },
-    {
-      "id": 4,
-      "name": "Test12",
-      "password": "test",
-      "email": "employe1@gmail.com",
-      "status": "validated"
-    },
-    {
-      "id": 5,
-      "name": "noemy",
-      "password": "titi",
-      "email": "no@gmail.com",
-      "status": "validated"
-    },
-    {
-      "id": 6,
-      "name": "test",
-      "password": "test",
-      "email": "test@gmail.com",
-      "status": "validated"
-    },
-    {
-      "id": 7,
-      "name": "testt",
-      "password": "testtt",
-      "email": "testt@gmail.com",
-      "status": "rejected"
     }
   ],
   "AdhérentsAbonnés": [
@@ -212,90 +131,18 @@
       "iban": "FR4515451521",
       "bic": "BANKGDFQ",
       "statut_paiement": "validated"
-    },
-    {
-      "id": 5,
-      "nom": "chevalier",
-      "prenom": "emily",
-      "date_naissance": "2004-03-22",
-      "adresse_mail": "emily@gmail.com",
-      "adresse_postale": "5 B Lavalette",
-      "ville": "Abreschviller",
-      "code_postal": "57560",
-      "cotisation": 35,
-      "don": 30,
-      "formule_panier_legumes_bio": "simple-6",
-      "nb_panier_legumes_bio": 0,
-      "formule_panier_fruits_bio": false,
-      "nb_panier_fruits_bio": 0,
-      "formule_boite_oeufs_bio": false,
-      "nb_panier_oeufs_bio": 0,
-      "depot": false,
-      "domicile": true,
-      "formule_payement": "Trimestre",
-      "iban": "FR5415150",
-      "bic": "HGFEDCBAXXX",
-      "statut_paiement": "en_attente"
-    },
-    {
-      "id": 6,
-      "nom": "lantz",
-      "prenom": "nathan",
-      "date_naissance": "2004-03-22",
-      "adresse_mail": "julio.soares@gmail.com",
-      "adresse_postale": "5 B Lavalette",
-      "ville": "Abreschviller",
-      "code_postal": "57560",
-      "cotisation": 20,
-      "don": 15,
-      "formule_panier_legumes_bio": "simple-hebdo",
-      "nb_panier_legumes_bio": 0,
-      "formule_panier_fruits_bio": false,
-      "nb_panier_fruits_bio": 0,
-      "formule_boite_oeufs_bio": false,
-      "nb_panier_oeufs_bio": 0,
-      "depot": false,
-      "domicile": true,
-      "formule_payement": "Trimestre",
-      "iban": "FR6743647238",
-      "bic": "BANKGDFQ",
-      "statut_paiement": "validated"
-    },
-    {
-      "id": 7,
-      "nom": "chevalier",
-      "prenom": "noemy",
-      "date_naissance": "2004-05-30",
-      "adresse_mail": "noemychevalier@gmail.com",
-      "adresse_postale": "11b rue de boustroff",
-      "ville": "Adelange",
-      "code_postal": "57380",
-      "cotisation": 5,
-      "don": 0,
-      "formule_panier_legumes_bio": "familial-hebdo",
-      "nb_panier_legumes_bio": 0,
-      "formule_panier_fruits_bio": false,
-      "nb_panier_fruits_bio": 0,
-      "formule_boite_oeufs_bio": false,
-      "nb_panier_oeufs_bio": 0,
-      "depot": "49",
-      "domicile": false,
-      "formule_payement": "Annuel",
-      "iban": "FR78451562",
-      "bic": "HGFEDCBAXXX",
-      "statut_paiement": "en_attente"
     }
   ],
   "EmployésAbonnés": [
     {
       "id": 1,
-      "nom": "lantz",
-      "prenom": "nathan",
+      "nom": "manager",
+      "prenom": "alice",
       "date_naissance": "2004-03-20",
       "adresse_mail": "alice.manager@example.com",
-      "adresse_postale": "5 B Lavalette",
-      "ville": "Abreschviller",
-      "code_postal": "57560",
+      "adresse_postale": "30 Rue des trois villes",
+      "ville": "Saint Die des Vosges",
+      "code_postal": "88100",
       "formule_panier": "panierSimple",
       "statut_paiement": "en_attente"
     }
@@ -304,7 +151,7 @@
     {
       "id": 1,
       "day": "Mardi",
-      "type": "Epinal",
+      "type": "epinalMardi",
       "locations": [
         {
           "name": "Église Saint Antoine",
@@ -338,7 +185,7 @@
     {
       "id": 2,
       "day": "Mardi",
-      "type": "Dinozé",
+      "type": "dinoze",
       "locations": [
         {
           "name": "APF - Local extérieur – ESAT",
@@ -354,7 +201,7 @@
     {
       "id": 3,
       "day": "Mardi",
-      "type": "Golbey",
+      "type": "golbeyMardi",
       "locations": [
         {
           "name": "Ecodenn’ergie",
@@ -379,7 +226,7 @@
     {
       "id": 4,
       "day": "Mercredi",
-      "type": "Epinal",
+      "type": "epinalMercredi",
       "locations": [
         {
           "name": "Église Saint Antoine",
@@ -431,7 +278,7 @@
     {
       "id": 5,
       "day": "Mercredi",
-      "type": "Golbey",
+      "type": "golbey",
       "locations": [
         {
           "name": "Ecodenn’ergie",
@@ -447,7 +294,7 @@
     {
       "id": 6,
       "day": "Mercredi",
-      "type": "Saint Nabord",
+      "type": "stNarbordMer",
       "locations": [
         {
           "name": "Pharmacie Robert",
@@ -463,7 +310,7 @@
     {
       "id": 7,
       "day": "Mercredi",
-      "type": "Remiremont",
+      "type": "remiremontMer",
       "locations": [
         {
           "name": "Association AGACI",
@@ -488,7 +335,7 @@
     {
       "id": 8,
       "day": "Mercredi",
-      "type": "Raon-Aux-Bois",
+      "type": "raonAuxBois",
       "locations": [
         {
           "name": "",
@@ -504,7 +351,7 @@
     {
       "id": 9,
       "day": "Mercredi",
-      "type": "Docelles",
+      "type": "docellesMer",
       "locations": [
         {
           "name": "Mr et Mme Boulassel",
@@ -520,7 +367,7 @@
     {
       "id": 10,
       "day": "Mercredi",
-      "type": "Thaon",
+      "type": "thaon",
       "locations": [
         {
           "name": "Jardins de Cocagne",
@@ -536,7 +383,7 @@
     {
       "id": 11,
       "day": "Jeudi",
-      "type": "Charmes",
+      "type": "charmes",
       "locations": [
         {
           "name": "Madame Pierot",
@@ -552,7 +399,7 @@
     {
       "id": 12,
       "day": "Vendredi",
-      "type": "Epinal",
+      "type": "epinalVen",
       "locations": [
         {
           "name": "Église Saint Antoine",
