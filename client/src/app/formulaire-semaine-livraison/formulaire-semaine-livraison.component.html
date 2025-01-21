@@ -13,7 +13,7 @@
     <div class="calendar-container">
       <h1>{{ year }}</h1>
       <p>Semaines</p>
-
+    
       <hr>
       <table class="calendar-table">
         <thead>
@@ -29,15 +29,14 @@
               [class.disabled]="isDisabled(monthWeeks[row])"
               (click)="toggleSelection(monthWeeks[row])"
             >
-              <span *ngIf="monthWeeks[row] !== null && monthWeeks[row] !== 0">
-                {{ monthWeeks[row] }}
-              </span>
+              <span *ngIf="monthWeeks[row] !== null">{{ monthWeeks[row] }}</span>
             </td>
           </tr>
         </tbody>
       </table>
+      
     </div>
-
+    
     <div class="buttons">
       <a
         class="btn retour"

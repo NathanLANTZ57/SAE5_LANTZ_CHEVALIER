@@ -260,6 +260,30 @@
       "iban": "FR6743647238",
       "bic": "BANKGDFQ",
       "statut_paiement": "validated"
+    },
+    {
+      "id": 7,
+      "nom": "chevalier",
+      "prenom": "noemy",
+      "date_naissance": "2004-05-30",
+      "adresse_mail": "noemychevalier@gmail.com",
+      "adresse_postale": "11b rue de boustroff",
+      "ville": "Adelange",
+      "code_postal": "57380",
+      "cotisation": 5,
+      "don": 0,
+      "formule_panier_legumes_bio": "familial-hebdo",
+      "nb_panier_legumes_bio": 0,
+      "formule_panier_fruits_bio": false,
+      "nb_panier_fruits_bio": 0,
+      "formule_boite_oeufs_bio": false,
+      "nb_panier_oeufs_bio": 0,
+      "depot": "49",
+      "domicile": false,
+      "formule_payement": "Annuel",
+      "iban": "FR78451562",
+      "bic": "HGFEDCBAXXX",
+      "statut_paiement": "en_attente"
     }
   ],
   "EmployésAbonnés": [
