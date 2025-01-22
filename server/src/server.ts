@@ -35,6 +35,13 @@ mongoose
     process.exit(1);
   });
 
+  interface DeliveryDay {
+    id?: number;
+    date: string;
+    tournee: string;
+    frequence: string;
+  }  
+
 // Route pour l'authentification admin
 app.post('/api/login/admin', async (req: Request, res: Response): Promise<void> => {
   try {
@@ -1051,6 +1058,47 @@ app.patch('/api/jours-livraison/:id', async (req: Request, res: Response): Promi
     res.status(200).json({ message: 'Jour de livraison mis à jour avec succès.', jour });
   } catch (error) {
     res.status(500).json({ message: 'Erreur interne du serveur', error: error instanceof Error ? error.message : 'Erreur inconnue' });
+  }
+});
+
+app.post('/api/jours-livraison/bulk', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const jours: DeliveryDay[] = req.body;
+
+    // Vérifier si le corps de la requête contient un tableau
+    if (!Array.isArray(jours) || jours.length === 0) {
+      res.status(400).json({ message: 'Aucun jour de livraison fourni.' });
+      return;
+    }
+
+    // Lire les données existantes
+    const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+
+    // Ajouter chaque jour de livraison
+    jours.forEach((jour) => {
+      const newId =
+        dbData.JoursLivraison.length > 0
+          ? dbData.JoursLivraison[dbData.JoursLivraison.length - 1].id + 1
+          : 1;
+
+      dbData.JoursLivraison.push({
+        id: newId,
+        date: jour.date,
+        tournee: jour.tournee,
+        frequence: jour.frequence,
+      });
+    });
+
+    // Sauvegarder les données mises à jour
+    fs.writeFileSync(dbPath, JSON.stringify(dbData, null, 2));
+
+    res.status(201).json({ message: 'Jours de livraison ajoutés avec succès.' });
+  } catch (error) {
+    console.error('Erreur lors de l’ajout des jours de livraison :', error);
+    res.status(500).json({
+      message: 'Erreur interne du serveur',
+      error: error instanceof Error ? error.message : 'Erreur inconnue',
+    });
   }
 });
 

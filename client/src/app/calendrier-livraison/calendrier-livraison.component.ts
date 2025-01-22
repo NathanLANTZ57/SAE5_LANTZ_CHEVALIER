@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JoursLivraisonService } from '../services/jours-livraison.service';
 
 interface DeliveryDay {
-  id: number;
+  id?: number;
   date: string;
   tournee: string;
   frequence: string;
@@ -24,17 +24,45 @@ export class CalendrierLivraisonComponent implements OnInit {
   selectedDay: number | null = null;
   selectedDayLabel: string = '';
   isCustomDelivery: boolean = false;
+  isWeeklyDelivery: boolean = false;
+  isRecurringDelivery: boolean = false;
 
   selectedTournee: string = 'all';
   selectedFrequency: string = 'all';
   openWeeks: string = '';
   tournees: string[] = ['Tour 1', 'Tour 2', 'Tour 3'];
-  frequencies: string[] = ['Toutes les semaines', 'Toutes les 2 semaines', 'Toutes les 3 semaines'];
+  frequencies: string[] = ['Toutes les semaines', 'Toutes les 2 semaines'];
 
-  holidays: Date[] = [new Date('2025-01-01'), new Date('2025-12-25')];
+  holidays: Date[] = [
+    new Date('2025-01-01'), // Nouvel An
+    new Date('2025-04-18'), // Vendredi Saint (Alsace-Moselle)
+    new Date('2025-04-21'), // Lundi de Pâques
+    new Date('2025-05-01'), // Fête du Travail
+    new Date('2025-05-08'), // Fête de la Victoire
+    new Date('2025-05-29'), // Ascension
+    new Date('2025-06-09'), // Lundi de Pentecôte
+    new Date('2025-07-14'), // Fête Nationale
+    new Date('2025-08-15'), // Assomption
+    new Date('2025-11-01'), // Toussaint
+    new Date('2025-11-11'), // Armistice
+    new Date('2025-12-25'), // Noël
+    new Date('2025-12-26'), // Saint-Étienne (Alsace-Moselle)
+  ];
+
   deliveryDays: DeliveryDay[] = [];
 
-  constructor(private joursLivraisonService: JoursLivraisonService) {}
+  closedDays: Date[] = [
+    new Date('2025-01-01'),
+    new Date('2025-01-02'),
+    new Date('2025-01-03'),
+    new Date('2025-01-04'),
+    new Date('2025-01-05'),
+    new Date('2025-12-29'),
+    new Date('2025-12-30'),
+    new Date('2025-12-31')
+  ];
+
+  constructor(private joursLivraisonService: JoursLivraisonService) { }
 
   ngOnInit(): void {
     this.generateCalendar(this.currentDate);
@@ -58,9 +86,25 @@ export class CalendrierLivraisonComponent implements OnInit {
     const year = this.currentDate.getFullYear();
     const month = this.currentDate.getMonth() + 1;
 
-    this.joursLivraisonService.getJoursLivraison(year, month).subscribe((data) => {
-      this.deliveryDays = data;
-    });
+    this.joursLivraisonService.getJoursLivraison(year, month).subscribe(
+      (data) => {
+        this.deliveryDays = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des jours de livraison :', error);
+      }
+    );
+  }
+
+  changeMonth(offset: number): void {
+    const newDate = new Date(
+      this.currentDate.getFullYear(),
+      this.currentDate.getMonth() + offset,
+      1
+    );
+    this.currentDate = newDate;
+    this.generateCalendar(newDate);
+    this.loadDeliveryDays();
   }
 
   isToday(day: number): boolean {
@@ -77,19 +121,9 @@ export class CalendrierLivraisonComponent implements OnInit {
     return this.holidays.some((holiday) => holiday.toDateString() === date.toDateString());
   }
 
-  isClosedWeek(day: number): boolean {
-    const week = Math.ceil(day / 7);
-    if (!this.openWeeks) return false;
-
-    const weeks = this.openWeeks.split(',').flatMap((range) =>
-      range.includes('-')
-        ? Array.from(
-            { length: +range.split('-')[1] - +range.split('-')[0] + 1 },
-            (_, i) => +range.split('-')[0] + i
-          )
-        : [+range]
-    );
-    return !weeks.includes(week);
+  isClosedDay(day: number): boolean {
+    const date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
+    return this.closedDays.some((closedDay) => closedDay.toDateString() === date.toDateString());
   }
 
   isFilteredDeliveryDay(day: number): boolean {
@@ -97,18 +131,21 @@ export class CalendrierLivraisonComponent implements OnInit {
       .toString()
       .padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
-    const delivery = this.deliveryDays.find((delivery) => delivery.date === dateKey);
+    // Filtrer les livraisons par date
+    const deliveries = this.deliveryDays.filter((delivery) => delivery.date === dateKey);
 
-    if (!delivery) return false;
+    // Vérifier si au moins une livraison correspond à la tournée et à la fréquence
+    const tourneeMatches = deliveries.some((delivery) =>
+      this.selectedTournee === 'all' || delivery.tournee === this.selectedTournee
+    );
 
-    const tourneeMatches =
-      this.selectedTournee === 'all' || delivery.tournee === this.selectedTournee;
-
-    const frequencyMatches =
-      this.selectedFrequency === 'all' || delivery.frequence === this.selectedFrequency;
+    const frequencyMatches = deliveries.some((delivery) =>
+      this.selectedFrequency === 'all' || delivery.frequence === this.selectedFrequency
+    );
 
     return tourneeMatches && frequencyMatches;
   }
+
 
   getFrequency(day: number): string | undefined {
     const dateKey = `${this.currentDate.getFullYear()}-${(this.currentDate.getMonth() + 1)
@@ -125,30 +162,131 @@ export class CalendrierLivraisonComponent implements OnInit {
   }
 
   saveDayConfiguration(): void {
+    if (this.selectedTournee === 'all' || this.selectedFrequency === 'all') {
+      alert('Veuillez sélectionner une tournée et une fréquence avant d’ajouter un jour de livraison.');
+      return;
+    }
+
     if (this.selectedDay) {
-      const dateKey = `${this.currentDate.getFullYear()}-${(this.currentDate.getMonth() + 1)
-        .toString()
-        .padStart(2, '0')}-${this.selectedDay.toString().padStart(2, '0')}`;
+      const selectedDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.selectedDay);
 
-      if (this.isCustomDelivery) {
-        const newDelivery = {
-          id: this.deliveryDays.length ? Math.max(...this.deliveryDays.map((d) => d.id)) + 1 : 1,
-          date: dateKey,
-          tournee: this.selectedTournee || 'Non spécifiée',
-          frequence: this.selectedFrequency || 'Toutes les semaines',
-        };
+      // Vérifier si le jour est fermé
+      if (this.isClosedDay(this.selectedDay)) {
+        alert('Ce jour est fermé. Aucune livraison n’est possible.');
+        return;
+      }
 
-        this.joursLivraisonService.addJourLivraison(newDelivery).subscribe(() => {
-          this.deliveryDays.push(newDelivery);
-          this.closeModal();
-        });
-      } else {
-        const delivery = this.deliveryDays.find((d) => d.date === dateKey);
-        if (delivery) {
-          this.deleteDelivery();
-        }
+      // Vérifier si le jour est un jour férié
+      if (this.isHoliday(this.selectedDay)) {
+        alert('Il n’y a pas de livraison sur les jours fériés.');
+        return;
       }
     }
+
+    if (this.selectedDay && this.isCustomDelivery) {
+      const selectedFrequency = this.selectedFrequency;
+      const year = this.currentDate.getFullYear();
+      const month = this.currentDate.getMonth();
+      const startDate = new Date(year, month, this.selectedDay);
+
+      if (this.isWeeklyDelivery) {
+        this.addWeeklyDeliveries(startDate);
+      } else if (this.isRecurringDelivery && selectedFrequency !== 'all') {
+        const interval = selectedFrequency === 'Toutes les semaines' ? 7 : 14;
+        this.addRecurringDeliveries(startDate, interval);
+      } else {
+        this.addSingleDayDelivery();
+      }
+    }
+  }
+
+  addWeeklyDeliveries(startDate: Date): void {
+    const daysToAdd: DeliveryDay[] = [];
+    const year = startDate.getFullYear();
+    const month = startDate.getMonth();
+    const dayOfWeek = startDate.getDay();
+
+    for (let day = 1; day <= this.daysInMonth.length; day++) {
+      const date = new Date(year, month, day);
+
+      // Vérifier si c'est le bon jour de la semaine
+      if (date.getDay() === dayOfWeek) {
+        // Décaler si le jour est férié ou fermé
+        let validDate = date;
+        while (this.isHoliday(validDate.getDate()) || this.isClosedDay(validDate.getDate())) {
+          validDate = new Date(validDate.getFullYear(), validDate.getMonth(), validDate.getDate() + 1);
+        }
+
+        const dateKey = `${validDate.getFullYear()}-${(validDate.getMonth() + 1)
+          .toString()
+          .padStart(2, '0')}-${validDate.getDate().toString().padStart(2, '0')}`;
+
+        daysToAdd.push({
+          id: 0,
+          date: dateKey,
+          tournee: this.selectedTournee || 'Non spécifiée',
+          frequence: 'Toutes les semaines',
+        });
+      }
+    }
+
+    this.joursLivraisonService.addMultipleJoursLivraison(daysToAdd).subscribe(() => {
+      this.deliveryDays = [...this.deliveryDays, ...daysToAdd];
+      this.closeModal();
+    });
+  }
+
+  addRecurringDeliveries(startDate: Date, interval: number): void {
+    const daysToAdd: DeliveryDay[] = [];
+    const year = startDate.getFullYear();
+    const month = startDate.getMonth();
+    let day = startDate.getDate();
+
+    while (day <= this.daysInMonth.length) {
+      let validDate = new Date(year, month, day);
+
+      // Décaler si le jour est férié ou fermé
+      while (this.isHoliday(validDate.getDate()) || this.isClosedDay(validDate.getDate())) {
+        validDate = new Date(validDate.getFullYear(), validDate.getMonth(), validDate.getDate() + 1);
+      }
+
+      const dateKey = `${validDate.getFullYear()}-${(validDate.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}-${validDate.getDate().toString().padStart(2, '0')}`;
+
+      daysToAdd.push({
+        id: 0,
+        date: dateKey,
+        tournee: this.selectedTournee || 'Non spécifiée',
+        frequence: this.selectedFrequency,
+      });
+
+      day += interval;
+    }
+
+    this.joursLivraisonService.addMultipleJoursLivraison(daysToAdd).subscribe(() => {
+      this.deliveryDays = [...this.deliveryDays, ...daysToAdd];
+      this.closeModal();
+    });
+  }
+
+
+  addSingleDayDelivery(): void {
+    const dateKey = `${this.currentDate.getFullYear()}-${(this.currentDate.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${this.selectedDay!.toString().padStart(2, '0')}`;
+
+    const newDelivery: DeliveryDay = {
+      id: this.deliveryDays.length ? Math.max(...this.deliveryDays.map((d) => d.id)) + 1 : 1,
+      date: dateKey,
+      tournee: this.selectedTournee || 'Non spécifiée',
+      frequence: this.selectedFrequency || 'Toutes les semaines',
+    };
+
+    this.joursLivraisonService.addJourLivraison(newDelivery).subscribe(() => {
+      this.deliveryDays.push(newDelivery);
+      this.closeModal();
+    });
   }
 
   deleteDelivery(): void {
@@ -165,36 +303,41 @@ export class CalendrierLivraisonComponent implements OnInit {
           this.isCustomDelivery = false;
           this.closeModal();
         });
-      } else {
-        console.error('Aucune tournée trouvée ou ID manquant pour ce jour.');
       }
     }
-  }
-
-  openModal(day: number): void {
-    this.selectedDay = day;
-    const date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
-    const dayName = date.toLocaleDateString('fr-FR', { weekday: 'long' });
-    const formattedDayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
-
-    this.selectedDayLabel = `${formattedDayName} ${day} ${this.monthName}`;
-    this.isCustomDelivery = this.isFilteredDeliveryDay(day);
-    this.isModalOpen = true;
   }
 
   closeModal(): void {
     this.isModalOpen = false;
     this.selectedDay = null;
+    this.isWeeklyDelivery = false;
+    this.isRecurringDelivery = false;
   }
 
-  changeMonth(offset: number): void {
-    const newMonth = new Date(
-      this.currentDate.getFullYear(),
-      this.currentDate.getMonth() + offset,
-      1
-    );
-    this.currentDate = newMonth;
-    this.generateCalendar(newMonth);
-    this.loadDeliveryDays();
+  openModal(day: number): void {
+    const selectedDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
+
+    // Vérifier si le jour est fermé
+    if (this.isClosedDay(day)) {
+      alert('Ce jour est fermé. Aucune livraison n’est possible.');
+      return;
+    }
+
+    // Vérifier si le jour est un jour férié
+    if (this.isHoliday(day)) {
+      alert('Il n’y a pas de livraison sur les jours fériés.');
+      return;
+    }
+
+    this.selectedDay = day;
+    const dayName = selectedDate.toLocaleDateString('fr-FR', { weekday: 'long' });
+    const formattedDayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+
+    this.selectedDayLabel = `${formattedDayName} ${day} ${this.monthName}`;
+    this.isCustomDelivery = this.isFilteredDeliveryDay(day);
+    this.isWeeklyDelivery = false;
+    this.isRecurringDelivery = false;
+    this.isModalOpen = true;
   }
+
 }

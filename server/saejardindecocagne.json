@@ -151,7 +151,7 @@
     {
       "id": 1,
       "day": "Mardi",
-      "type": "epinalMardi",
+      "type": "Epinal",
       "locations": [
         {
           "name": "Église Saint Antoine",
@@ -185,7 +185,7 @@
     {
       "id": 2,
       "day": "Mardi",
-      "type": "dinoze",
+      "type": "Dinoze",
       "locations": [
         {
           "name": "APF - Local extérieur – ESAT",
@@ -201,7 +201,7 @@
     {
       "id": 3,
       "day": "Mardi",
-      "type": "golbeyMardi",
+      "type": "Golbey",
       "locations": [
         {
           "name": "Ecodenn’ergie",
@@ -226,7 +226,7 @@
     {
       "id": 4,
       "day": "Mercredi",
-      "type": "epinalMercredi",
+      "type": "Epinal",
       "locations": [
         {
           "name": "Église Saint Antoine",
@@ -278,7 +278,7 @@
     {
       "id": 5,
       "day": "Mercredi",
-      "type": "golbey",
+      "type": "Golbey",
       "locations": [
         {
           "name": "Ecodenn’ergie",
@@ -294,7 +294,7 @@
     {
       "id": 6,
       "day": "Mercredi",
-      "type": "stNarbordMer",
+      "type": "St-Narbord",
       "locations": [
         {
           "name": "Pharmacie Robert",
@@ -310,7 +310,7 @@
     {
       "id": 7,
       "day": "Mercredi",
-      "type": "remiremontMer",
+      "type": "Remiremont",
       "locations": [
         {
           "name": "Association AGACI",
@@ -335,7 +335,7 @@
     {
       "id": 8,
       "day": "Mercredi",
-      "type": "raonAuxBois",
+      "type": "Raon-Aux-Bois",
       "locations": [
         {
           "name": "",
@@ -351,7 +351,7 @@
     {
       "id": 9,
       "day": "Mercredi",
-      "type": "docellesMer",
+      "type": "Docelles",
       "locations": [
         {
           "name": "Mr et Mme Boulassel",
@@ -367,7 +367,7 @@
     {
       "id": 10,
       "day": "Mercredi",
-      "type": "thaon",
+      "type": "Thaon",
       "locations": [
         {
           "name": "Jardins de Cocagne",
@@ -383,7 +383,7 @@
     {
       "id": 11,
       "day": "Jeudi",
-      "type": "charmes",
+      "type": "Charmes",
       "locations": [
         {
           "name": "Madame Pierot",
@@ -399,7 +399,7 @@
     {
       "id": 12,
       "day": "Vendredi",
-      "type": "epinalVen",
+      "type": "Epinal",
       "locations": [
         {
           "name": "Église Saint Antoine",
@@ -450,53 +450,5 @@
     }
   ],
   "JoursLivraison": [
-    {
-      "id": 1,
-      "date": "2025-01-16",
-      "tournee": "Tour 1",
-      "frequence": "Toutes les semaines"
-    },
-    {
-      "id": 2,
-      "date": "2025-01-17",
-      "tournee": "Tour 2",
-      "frequence": "Toutes les 2 semaines"
-    },
-    {
-      "id": 4,
-      "date": "2025-01-25",
-      "tournee": "Tour 3",
-      "frequence": "Toutes les semaines"
-    },
-    {
-      "id": 5,
-      "date": "2025-01-02",
-      "tournee": "Tour 1",
-      "frequence": "Toutes les semaines"
-    },
-    {
-      "id": 6,
-      "date": "2025-01-13",
-      "tournee": "Tour 1",
-      "frequence": "Toutes les 2 semaines"
-    },
-    {
-      "id": 7,
-      "date": "2025-02-20",
-      "tournee": "Tour 1",
-      "frequence": "Toutes les 3 semaines"
-    },
-    {
-      "id": 8,
-      "date": "2025-01-24",
-      "tournee": "Tour 2",
-      "frequence": "Toutes les 2 semaines"
-    },
-    {
-      "id": 9,
-      "date": "2025-01-21",
-      "tournee": "all",
-      "frequence": "all"
-    }
   ]
 }
