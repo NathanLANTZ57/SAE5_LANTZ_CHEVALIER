@@ -95,14 +95,15 @@ export class TrajetLivraisonComponent implements OnInit {
       }
     });
 
-    // Add numbered markers
-    trajet.locations.forEach((location: any, index: number) => {
+    if (trajet.locations.length === 1) {
+      // Si le trajet contient un seul point, afficher uniquement le marqueur
+      const location = trajet.locations[0];
       const markerIcon = L.divIcon({
         html: `<div style="position: relative;">
                   <img src="assets/marker-icon.png" style="width: 25px; height: 41px;">
                   <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
                                color: black; font-size: 12px; font-weight: bold;">
-                    ${index + 1}
+                    1
                   </span>
                </div>`,
         iconSize: [25, 41],
@@ -110,50 +111,71 @@ export class TrajetLivraisonComponent implements OnInit {
         className: ''
       });
 
+      // Ajouter le marqueur sur la carte
       L.marker(L.latLng(location.coords[0], location.coords[1]), { icon: markerIcon })
         .addTo(this.map)
-        .bindPopup(`<b>Point ${index + 1}</b>: ${location.name}<br>${location.address}`);
-    });
+        .bindPopup(`<b>Point unique</b>: ${location.name}<br>${location.address}`);
 
-    // Add routing control with instructions disabled on the map
-    this.routingControl = (L as any).Routing.control({
-      waypoints: trajet.locations.map((location: any) =>
-        L.latLng(location.coords[0], location.coords[1])
-      ),
-      routeWhileDragging: true,
-      showAlternatives: true,
-      lineOptions: { styles: [{ color: 'blue', weight: 4 }] },
-      createMarker: () => null, // Désactive les marqueurs de routage
-      router: new (L as any).Routing.osrmv1({
-        serviceUrl: 'https://router.project-osrm.org/route/v1',
-      }),
-      addWaypoints: false, // Empêche l'ajout de points supplémentaires
-      fitSelectedRoutes: true, // Centrer automatiquement la carte
-      show: false, // Désactive les instructions sur la carte
-    }).addTo(this.map);
+      // Centrer la carte sur le point
+      this.map.setView(L.latLng(location.coords[0], location.coords[1]), 15);
+    } else {
+      // Ajouter des marqueurs numérotés pour plusieurs points
+      trajet.locations.forEach((location: any, index: number) => {
+        const markerIcon = L.divIcon({
+          html: `<div style="position: relative;">
+                    <img src="assets/marker-icon.png" style="width: 25px; height: 41px;">
+                    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                                 color: black; font-size: 12px; font-weight: bold;">
+                      ${index + 1}
+                    </span>
+                 </div>`,
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          className: ''
+        });
 
-    
+        L.marker(L.latLng(location.coords[0], location.coords[1]), { icon: markerIcon })
+          .addTo(this.map)
+          .bindPopup(`<b>Point ${index + 1}</b>: ${location.name}<br>${location.address}`);
+      });
 
-    // Display instructions in the custom container
-    this.routingControl.on('routesfound', (e: any) => {
-      const instructionsContainer = document.getElementById('route-instructions');
-      if (instructionsContainer) {
-        // Videz le conteneur avant d'ajouter de nouvelles instructions
-        instructionsContainer.innerHTML = '';
+      // Ajouter le contrôle de routage uniquement pour plusieurs points
+      this.routingControl = (L as any).Routing.control({
+        waypoints: trajet.locations.map((location: any) =>
+          L.latLng(location.coords[0], location.coords[1])
+        ),
+        routeWhileDragging: true,
+        showAlternatives: true,
+        lineOptions: { styles: [{ color: 'blue', weight: 4 }] },
+        createMarker: () => null, // Désactive les marqueurs de routage
+        router: new (L as any).Routing.osrmv1({
+          serviceUrl: 'https://router.project-osrm.org/route/v1',
+        }),
+        addWaypoints: false, // Empêche l'ajout de points supplémentaires
+        fitSelectedRoutes: true, // Centrer automatiquement la carte
+        show: false, // Désactive les instructions sur la carte
+      }).addTo(this.map);
 
-        // Récupérez les instructions de l'itinéraire
-        const route = e.routes[0];
-        const instructions = route.instructions.map((instr: any) =>
-          `<div>${instr.text}</div>`
-        ).join('');
+      // Afficher les instructions dans le conteneur personnalisé
+      this.routingControl.on('routesfound', (e: any) => {
+        const instructionsContainer = document.getElementById('route-instructions');
+        if (instructionsContainer) {
+          // Vider le conteneur avant d'ajouter de nouvelles instructions
+          instructionsContainer.innerHTML = '';
 
-        // Ajoutez les nouvelles instructions dans le conteneur
-        instructionsContainer.innerHTML = `<h3>Instructions</h3>${instructions}`;
-      }
-    });
+          // Récupérer les instructions de l'itinéraire
+          const route = e.routes[0];
+          const instructions = route.instructions.map((instr: any) =>
+            `<div>${instr.text}</div>`
+          ).join('');
 
-
+          // Ajouter les nouvelles instructions dans le conteneur
+          instructionsContainer.innerHTML = `<h3>Instructions</h3>${instructions}`;
+        }
+      });
+    }
   }
+
 
   deleteTrajet(id: number): void {
     this.http.delete(`http://localhost:3000/api/trajets-livraison/${id}`).subscribe(() => {

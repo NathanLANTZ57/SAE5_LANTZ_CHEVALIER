@@ -31,20 +31,12 @@
 
     <div *ngFor="let empty of [].constructor(firstDayIndex)" class="empty"></div>
 
-    <div
-      class="day"
-      *ngFor="let day of daysInMonth"
-      [class.today]="isToday(day)"
-      [class.holiday]="isHoliday(day)"
-      [class.closed]="isClosedWeek(day)"
-      [ngClass]="{
+    <div class="day" *ngFor="let day of daysInMonth" [class.today]="isToday(day)" [class.holiday]="isHoliday(day)"
+      [class.closed]="isClosedDay(day)" [ngClass]="{
         'delivery-day': isFilteredDeliveryDay(day),
         'toutes-les-semaines': isFilteredDeliveryDay(day) && getFrequency(day) === 'Toutes les semaines',
-        'toutes-les-2-semaines': isFilteredDeliveryDay(day) && getFrequency(day) === 'Toutes les 2 semaines',
-        'toutes-les-3-semaines': isFilteredDeliveryDay(day) && getFrequency(day) === 'Toutes les 3 semaines'
-      }"
-      (click)="openModal(day)"
-    >
+        'toutes-les-2-semaines': isFilteredDeliveryDay(day) && getFrequency(day) === 'Toutes les 2 semaines'
+      }" (click)="openModal(day)">
       {{ day }}
     </div>
   </div>
@@ -61,7 +53,28 @@
           Définir ce jour comme jour de livraison
         </label>
       </p>
-      <button (click)="saveDayConfiguration()">Enregistrer</button>
+      <!-- Nouvelle case pour ajouter tous les jours similaires du mois -->
+      <p *ngIf="isCustomDelivery">
+        <label>
+          <input type="checkbox" [(ngModel)]="isWeeklyDelivery" />
+          Ajouter comme jour de livraison pour tous les {{ selectedDayLabel.split(' ')[0] }}s du mois
+        </label>
+      </p>
+      <!-- Case existante pour ajouter des livraisons récurrentes en fonction de la fréquence -->
+      <p *ngIf="isCustomDelivery && selectedFrequency !== 'all'">
+        <label>
+          <input type="checkbox" [(ngModel)]="isRecurringDelivery" />
+          Ajouter ce jour de livraison toutes les {{ selectedFrequency.split(' ')[1] }} semaines
+        </label>
+      </p>
+
+      <p *ngIf="selectedTournee === 'all' || selectedFrequency === 'all'" class="error-message">
+        Veuillez sélectionner une tournée et une fréquence pour ajouter un jour de livraison.
+      </p>
+      <button (click)="saveDayConfiguration()" [disabled]="selectedTournee === 'all' || selectedFrequency === 'all'">
+        Enregistrer
+      </button>
+
       <button (click)="closeModal()">Retour au calendrier</button>
       <button *ngIf="isCustomDelivery" class="delete-btn" (click)="deleteDelivery()">Supprimer la tournée</button>
     </div>
