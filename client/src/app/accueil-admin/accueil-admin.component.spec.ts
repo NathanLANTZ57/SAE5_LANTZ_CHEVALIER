@@ -20,10 +20,6 @@ describe('AccueilAdminComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should render the section for inscriptions', () => {
     const inscriptionSection = fixture.debugElement.query(By.css('.InscriptionAdmin'));
     expect(inscriptionSection).toBeTruthy();

@@ -23,13 +23,12 @@ describe('InscriptionAdminComponent', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Vérifie qu'aucune requête n'est laissée ouverte
+    httpMock.verify(); 
   });
 
   it('should create', () => {
     fixture.detectChanges();
 
-    // Simuler les requêtes HTTP initiales
     httpMock.expectOne('http://localhost:3000/api/adherents/status?status=pending').flush([]);
     httpMock.expectOne('http://localhost:3000/api/employes/status?status=pending').flush([]);
 
@@ -46,11 +45,11 @@ describe('InscriptionAdminComponent', () => {
     expect(req.request.method).toBe('PATCH');
     expect(req.request.body).toEqual({ status: mockStatus });
 
-    req.flush({}); // Simuler une réponse vide pour la mise à jour
+    req.flush({}); 
 
     const refreshReq = httpMock.expectOne('http://localhost:3000/api/adherents/status?status=pending');
     expect(refreshReq.request.method).toBe('GET');
-    refreshReq.flush([]); // Simuler une liste vide après mise à jour
+    refreshReq.flush([]); 
 
     expect(component.pendingAdherents).toEqual([]);
   });
@@ -65,11 +64,11 @@ describe('InscriptionAdminComponent', () => {
     expect(req.request.method).toBe('PATCH');
     expect(req.request.body).toEqual({ status: mockStatus });
 
-    req.flush({}); // Simuler une réponse vide pour la mise à jour
+    req.flush({}); 
 
     const refreshReq = httpMock.expectOne('http://localhost:3000/api/employes/status?status=pending');
     expect(refreshReq.request.method).toBe('GET');
-    refreshReq.flush([]); // Simuler une liste vide après mise à jour
+    refreshReq.flush([]); 
 
     expect(component.pendingEmployees).toEqual([]);
   });

@@ -34,7 +34,7 @@ describe('FruitDeSaisonComponent', () => {
     expect(table).toBeTruthy();
 
     const rows = table.queryAll(By.css('tr'));
-    expect(rows.length).toBeGreaterThan(1); // At least one header and some data rows
+    expect(rows.length).toBeGreaterThan(1); 
   });
 
   it('should render images with alt attributes', () => {

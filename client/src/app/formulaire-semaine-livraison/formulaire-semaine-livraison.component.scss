@@ -52,6 +52,10 @@ p {
     font-size: 17.5px;
     cursor: pointer;
 }
+
+.calendar-table th {
+    margin-left: 3%;
+}
   
 .calendar-table th:nth-child(1) {
     background-color: #FFCCCC; 

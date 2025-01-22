@@ -13,18 +13,18 @@ describe('FormulaireSemaineLivraisonComponent', () => {
 
   beforeEach(async () => {
     mockAdherentDataService = {
-      getData: jasmine.createSpy('getData').and.returnValue([3, 5, 10]),
-      setData: jasmine.createSpy('setData')
+      getData: jasmine.createSpy('getData').and.callFake((key: string) => {
+        if (key === 'selectedWeek') return 3;
+        return null;
+      }),
+      setData: jasmine.createSpy('setData'),
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ FormulaireSemaineLivraisonComponent, LogoComponent ],
-      imports: [ RouterTestingModule ],
-      providers: [
-        { provide: AdherentDataService, useValue: mockAdherentDataService }
-      ]
-    })
-    .compileComponents();
+      declarations: [FormulaireSemaineLivraisonComponent, LogoComponent],
+      imports: [RouterTestingModule],
+      providers: [{ provide: AdherentDataService, useValue: mockAdherentDataService }],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -33,46 +33,55 @@ describe('FormulaireSemaineLivraisonComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize selectedWeeks from AdherentDataService', () => {
-    expect(mockAdherentDataService.getData).toHaveBeenCalledWith('selectedWeeks');
-    expect(component.selectedWeeks).toEqual([3, 5, 10]);
+  it('should initialize selectedWeek from AdherentDataService', () => {
+    expect(mockAdherentDataService.getData).toHaveBeenCalledWith('selectedWeek');
+    expect(component.selectedWeek).toEqual(3);
   });
 
   it('should toggle week selection', () => {
     component.toggleSelection(6);
-    expect(component.selectedWeeks).toContain(6);
+    expect(component.selectedWeek).toEqual(6);
 
     component.toggleSelection(6);
-    expect(component.selectedWeeks).not.toContain(6);
+    expect(component.selectedWeek).toBeNull();
+  });
+
+  it('should not allow selection of week 1 or 52', () => {
+    component.toggleSelection(1);
+    expect(component.selectedWeek).toBe(3);
+
+    component.toggleSelection(52);
+    expect(component.selectedWeek).toBe(3);
   });
 
   it('should detect selected weeks correctly', () => {
+    component.selectedWeek = 3;
     expect(component.isSelected(3)).toBeTrue();
     expect(component.isSelected(7)).toBeFalse();
   });
 
-  it('should save selectedWeeks and navigate on valid submission', () => {
+  it('should save selectedWeek and navigate on valid submission', () => {
     const router = TestBed.inject(Router);
     spyOn(router, 'navigate');
 
-    component.selectedWeeks = [1, 2, 3];
+    component.selectedWeek = 5;
     component.onNext();
 
-    expect(mockAdherentDataService.setData).toHaveBeenCalledWith('selectedWeeks', [1, 2, 3]);
+    expect(mockAdherentDataService.setData).toHaveBeenCalledWith('selectedWeek', 5);
     expect(router.navigate).toHaveBeenCalledWith(['/app-formulaire-mode-livraison']);
   });
 
-  it('should display an alert if no weeks are selected', () => {
+  it('should display an alert if no week is selected', () => {
     spyOn(window, 'alert');
 
-    component.selectedWeeks = [];
+    component.selectedWeek = null;
     component.onNext();
 
-    expect(window.alert).toHaveBeenCalledWith('Veuillez sélectionner au moins une semaine.');
+    expect(window.alert).toHaveBeenCalledWith('Veuillez sélectionner une semaine.');
   });
 
   it('should render weeks correctly in the calendar', () => {
@@ -83,11 +92,18 @@ describe('FormulaireSemaineLivraisonComponent', () => {
     expect(cells.length).toBeGreaterThan(0);
   });
 
-  it('should mark selected weeks with the selected class', () => {
-    component.selectedWeeks = [2, 4];
+  it('should mark selected week with the selected class', () => {
+    component.selectedWeek = 3;
     fixture.detectChanges();
 
     const selectedCells = fixture.debugElement.queryAll(By.css('.calendar-table td.selected'));
-    expect(selectedCells.length).toBe(24);
+    expect(selectedCells.length).toBe(1);
+  });
+
+  it('should disable weeks 1 and 52', () => {
+    const disabledWeeks = [1, 52];
+    disabledWeeks.forEach((week) => {
+      expect(component.isDisabled(week)).toBeTrue();
+    });
   });
 });
